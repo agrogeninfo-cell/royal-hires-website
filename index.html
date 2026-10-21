@@ -70,6 +70,25 @@
       .service-card { padding: 17px; }
     }
 
+  
+    /* Creative hero artwork and company profile details */
+    .hero-visual{min-width:0;min-height:430px;overflow:visible}
+    .art-orbit{position:absolute;border:1px solid rgba(167,139,250,.24);border-radius:50%;pointer-events:none}
+    .orbit-a{width:390px;height:390px;animation:artFloat 12s linear infinite}
+    .orbit-b{width:320px;height:320px;border-style:dashed;animation:artFloat 18s linear infinite reverse}
+    .art-glow{position:absolute;width:76%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(113,56,245,.27),rgba(48,22,94,.12) 55%,transparent 72%);filter:blur(8px)}
+    .workforce-art{position:relative;z-index:1;width:100%;max-width:540px;height:auto;overflow:visible;filter:drop-shadow(0 24px 45px rgba(0,0,0,.24));animation:artFloat 7s ease-in-out infinite}
+    .company-details{margin-top:30px;padding:23px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(22,15,37,.92),rgba(10,8,17,.92))}
+    .company-details>.eyebrow{margin-bottom:17px}
+    .company-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px}
+    .company-detail{min-width:0;padding:13px 0;border-bottom:1px solid rgba(180,153,255,.12)}
+    .company-detail span{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}
+    .company-detail strong{display:block;color:#eee9ff;font-size:12px;line-height:1.55;overflow-wrap:anywhere}
+    .company-note{margin:16px 0 0;color:#9289a5;font-size:10px;line-height:1.7}
+    @keyframes artFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @media(max-width:600px){.hero-visual{min-height:0;padding:0 0 8px}.workforce-art{width:100%;max-width:460px}.orbit-a{width:75vw;height:75vw}.orbit-b{width:61vw;height:61vw}.company-details{padding:17px}.company-detail-grid{grid-template-columns:minmax(0,1fr);}.company-detail{padding:10px 0}}
+    @media(prefers-reduced-motion:reduce){.workforce-art,.orbit-a,.orbit-b{animation:none!important}}
+
   </style>
 </head>
 <body>
@@ -104,12 +123,35 @@
           <div class="hero-micro reveal"><span class="pulse"></span> Reliable people. Meaningful opportunities. Lasting partnerships.</div>
         </div>
         <div class="hero-visual reveal" aria-label="Illustration representing a connected workforce">
-          <div class="visual-halo"></div><div class="visual-ring"></div><div class="orbit-dot"></div>
-          <div class="hero-card">
-            <div class="card-top"><span class="card-label">People power progress</span><span class="badge">Recruitment · Staffing</span></div>
-            <div class="people-graphic" aria-hidden="true"><div class="person"></div><div class="person"></div><div class="person"></div></div>
-            <div class="visual-footer"><div><strong>Talent</strong>Right people, right roles</div><div><strong>Trust</strong>Partnerships that last</div></div>
-          </div>
+          <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
+          <div class="art-glow"></div>
+          <svg class="workforce-art" viewBox="0 0 560 500" role="img" aria-label="Abstract violet artwork symbolising people, opportunity and connected workforce">
+            <defs>
+              <linearGradient id="artViolet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c5b4ff"/><stop offset=".52" stop-color="#8c5cf6"/><stop offset="1" stop-color="#45218b"/></linearGradient>
+              <linearGradient id="artDark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#261744"/><stop offset="1" stop-color="#0c0915"/></linearGradient>
+              <radialGradient id="artLight"><stop stop-color="#a78bfa" stop-opacity=".38"/><stop offset="1" stop-color="#7138f5" stop-opacity="0"/></radialGradient>
+            </defs>
+            <circle cx="280" cy="245" r="205" fill="url(#artLight)"/>
+            <circle cx="280" cy="245" r="174" fill="none" stroke="#a78bfa" stroke-opacity=".26" stroke-width="1.5" stroke-dasharray="4 10"/>
+            <circle cx="280" cy="245" r="135" fill="none" stroke="#a78bfa" stroke-opacity=".18"/>
+            <path d="M92 325 Q180 200 280 245 T468 155" fill="none" stroke="#a78bfa" stroke-opacity=".42" stroke-width="2"/>
+            <path d="M102 158 Q205 350 375 365 T470 290" fill="none" stroke="#8b5cf6" stroke-opacity=".35" stroke-width="2"/>
+            <g fill="#c4b5fd"><circle cx="92" cy="325" r="5"/><circle cx="468" cy="155" r="5"/><circle cx="102" cy="158" r="4"/><circle cx="470" cy="290" r="5"/></g>
+            <g transform="translate(110 150)">
+              <path d="M0 82 Q0 35 38 35 Q76 35 76 82 L76 158 Q76 172 62 172 L14 172 Q0 172 0 158Z" fill="url(#artDark)" stroke="#a78bfa" stroke-opacity=".55"/>
+              <circle cx="38" cy="20" r="25" fill="url(#artViolet)" stroke="#d7ccff" stroke-width="3"/>
+            </g>
+            <g transform="translate(226 100)">
+              <path d="M0 105 Q0 42 53 42 Q106 42 106 105 L106 222 Q106 238 90 238 L16 238 Q0 238 0 222Z" fill="url(#artViolet)" fill-opacity=".94" stroke="#d7ccff" stroke-opacity=".8" stroke-width="1.5"/>
+              <circle cx="53" cy="24" r="33" fill="url(#artViolet)" stroke="#e2d9ff" stroke-width="3"/>
+              <path d="M24 132 Q53 112 82 132" fill="none" stroke="#e9e2ff" stroke-opacity=".45" stroke-width="2"/>
+            </g>
+            <g transform="translate(370 188)">
+              <path d="M0 76 Q0 34 36 34 Q72 34 72 76 L72 145 Q72 158 59 158 L13 158 Q0 158 0 145Z" fill="url(#artDark)" stroke="#a78bfa" stroke-opacity=".55"/>
+              <circle cx="36" cy="20" r="24" fill="url(#artViolet)" stroke="#d7ccff" stroke-width="3"/>
+            </g>
+            <g transform="translate(168 408)"><rect width="224" height="48" rx="24" fill="#100b1b" stroke="#a78bfa" stroke-opacity=".48"/><circle cx="25" cy="24" r="5" fill="#a78bfa"/><text x="43" y="29" fill="#eee9ff" font-size="13" font-family="DM Sans, sans-serif" letter-spacing="1.5">PEOPLE · PURPOSE · PROGRESS</text></g>
+          </svg>
         </div>
       </div>
     </section>
@@ -133,7 +175,19 @@
     <section class="content" id="about" style="padding-top:25px">
       <div class="wrap about-grid">
         <div class="about-panel reveal"><p class="eyebrow">About Royal Hires</p><h2>People are at the heart of every successful business.</h2><p>Royal Hires is focused on connecting workforce capability with business opportunity through professional, dependable recruitment and manpower support.</p><a href="#contact" class="btn btn-outline">Meet our team <span aria-hidden="true">→</span></a></div>
-        <div class="about-copy reveal"><p class="eyebrow">Our approach</p><h2 style="font-size:clamp(27px,3vw,39px);line-height:1.2;letter-spacing:-.04em">The right people. A stronger team. A better future.</h2><p>We work to understand each employer’s staffing needs and each candidate’s goals. Our aim is to make workforce connections clearer, more responsive and more valuable to both sides.</p><ul class="check-list"><li><span class="check">✓</span>Business-focused staffing and recruitment support</li><li><span class="check">✓</span>Respectful, people-centred communication</li><li><span class="check">✓</span>Flexible solutions shaped around operational needs</li><li><span class="check">✓</span>Long-term partnerships built on professionalism</li></ul></div>
+        <div class="about-copy reveal"><p class="eyebrow">Our approach</p><h2 style="font-size:clamp(27px,3vw,39px);line-height:1.2;letter-spacing:-.04em">The right people. A stronger team. A better future.</h2><p>We work to understand each employer’s staffing needs and each candidate’s goals. Our aim is to make workforce connections clearer, more responsive and more valuable to both sides.</p><ul class="check-list"><li><span class="check">✓</span>Business-focused staffing and recruitment support</li><li><span class="check">✓</span>Respectful, people-centred communication</li><li><span class="check">✓</span>Flexible solutions shaped around operational needs</li><li><span class="check">✓</span>Long-term partnerships built on professionalism</li></ul>
+          <div class="company-details">
+            <p class="eyebrow">Company details</p>
+            <div class="company-detail-grid">
+              <div class="company-detail"><span>Company name</span><strong>Royal Hires Private Limited</strong></div>
+              <div class="company-detail"><span>Tagline</span><strong>The Royal Standard Of Recruitment</strong></div>
+              <div class="company-detail"><span>Industry</span><strong>Recruitment &amp; Manpower Solutions</strong></div>
+              <div class="company-detail"><span>Who we support</span><strong>Employers, factories &amp; job seekers</strong></div>
+              <div class="company-detail"><span>Core focus</span><strong>Workforce supply, staffing &amp; recruitment</strong></div>
+              <div class="company-detail"><span>Service market</span><strong>Sri Lanka</strong></div>
+            </div>
+            <p class="company-note">Official phone, email, office address and registration number can be added once the company confirms the exact details.</p>
+          </div></div>
       </div>
     </section>
     <section class="content" id="employers">
