@@ -22,6 +22,46 @@
     section.content{position:relative;padding:95px 0;isolation:isolate}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:34px}.section-head h2{font-size:clamp(30px,3.7vw,46px);letter-spacing:-.04em;line-height:1.13;margin:13px 0}.section-head p{max-width:490px;color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:4px}.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.service-card{position:relative;min-height:260px;padding:23px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(145deg,rgba(22,15,37,.96),rgba(10,8,17,.96));transition:transform .22s var(--ease),border-color .22s,box-shadow .22s;overflow:hidden}.service-card:before{content:"";position:absolute;width:140px;height:140px;right:-80px;bottom:-90px;border-radius:50%;background:var(--purple);filter:blur(50px);opacity:0;transition:opacity .25s}.service-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.55);box-shadow:0 20px 45px rgba(0,0,0,.25)}.service-card:hover:before{opacity:.32}.service-num{font-size:11px;color:#8874b5;letter-spacing:.1em}.service-icon{width:47px;height:47px;border-radius:14px;background:rgba(113,56,245,.14);color:#b39bff;display:grid;place-items:center;margin:24px 0 20px}.service-icon svg{width:23px;height:23px}.service-card h3{font-size:17px;margin-bottom:9px}.service-card p{color:var(--muted);font-size:12px;line-height:1.7;margin-bottom:20px}.round-arrow{display:grid;place-items:center;width:32px;height:32px;border:1px solid rgba(167,139,250,.52);color:#d5c7ff;border-radius:50%;transition:transform .2s,background .2s}.service-card:hover .round-arrow{transform:translateX(3px);background:rgba(113,56,245,.22)}
     .industries{display:grid;grid-template-columns:1fr 1.05fr;gap:34px;align-items:center}.industry-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.industry{min-height:104px;padding:18px 12px;border:1px solid var(--line);border-radius:14px;background:#0e0a18;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#d3cde0;font-size:11px}.industry svg{color:#9e83f7;width:24px;height:24px}.cta-band{border:1px solid rgba(167,139,250,.25);border-radius:22px;padding:32px;background:radial-gradient(ellipse at 100% 0%,rgba(113,56,245,.18),transparent 60%),#100b1b;display:flex;align-items:center;justify-content:space-between;gap:26px}.cta-band h2{font-size:26px;margin:0 0 6px}.cta-band p{font-size:13px;color:var(--muted);margin:0}.cta-band .btn{flex-shrink:0}
     .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;align-items:center}.about-panel{border:1px solid var(--line);border-radius:24px;padding:32px;background:radial-gradient(circle at 0 0,rgba(113,56,245,.17),transparent 65%),#100b1b}.md-portrait{display:block;width:100%;max-width:300px;aspect-ratio:4/5;object-fit:cover;object-position:center 28%;border-radius:18px;border:1px solid rgba(180,153,255,.24);margin:0 auto 28px;box-shadow:0 18px 45px rgba(0,0,0,.28)}.about-panel h2{font-size:38px;line-height:1.15;letter-spacing:-.04em;margin:14px 0}.about-panel p,.about-copy p{color:var(--muted);font-size:14px;line-height:1.9}.check-list{list-style:none;padding:0;margin:25px 0 0;display:grid;gap:13px}.check-list li{display:flex;gap:11px;font-size:13px;color:#ddd7e9}.check{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:rgba(113,56,245,.2);color:#c7b8ff;flex-shrink:0}
+    /* Managing Director profile: editorial, premium, responsive layout */
+    .leadership-section{overflow:hidden}
+    .leadership-heading{max-width:760px;margin:0 auto 46px;text-align:center}
+    .leadership-heading h2{font-size:clamp(34px,4.4vw,54px);line-height:1.1;letter-spacing:-.05em;margin:15px 0}
+    .leadership-heading h2 span,.leader-story h2 span{color:var(--violet)}
+    .leadership-heading>p:last-child{max-width:590px;margin:0 auto;color:var(--muted);font-size:14px;line-height:1.8}
+    .leader-layout{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.18fr);gap:clamp(28px,5vw,66px);align-items:stretch}
+    .leader-profile{position:relative;isolation:isolate;overflow:hidden;border:1px solid rgba(180,153,255,.24);border-radius:26px;padding:20px;background:linear-gradient(155deg,rgba(29,19,49,.98),rgba(9,7,16,.98) 72%);box-shadow:0 24px 70px rgba(0,0,0,.24)}
+    .leader-profile-glow{position:absolute;z-index:-1;width:280px;height:280px;top:-125px;right:-100px;border-radius:50%;background:#7138f5;filter:blur(75px);opacity:.26}
+    .leader-image-wrap{position:relative;overflow:hidden;border-radius:18px;background:#171027;border:1px solid rgba(180,153,255,.18)}
+    .md-portrait{display:block;width:100%;max-width:none;aspect-ratio:4/4.25;object-fit:cover;object-position:center 24%;border:0;border-radius:0;margin:0;box-shadow:none;transition:transform .55s var(--ease),filter .55s var(--ease);filter:saturate(.92)}
+    .leader-profile:hover .md-portrait{transform:scale(1.035);filter:saturate(1.08)}
+    .leader-image-index{position:absolute;left:13px;bottom:13px;display:flex;align-items:center;gap:9px;padding:8px 11px;border:1px solid rgba(255,255,255,.18);border-radius:99px;background:rgba(8,6,15,.75);backdrop-filter:blur(12px);font-size:9px;letter-spacing:.16em;color:#f7f3ff}
+    .leader-image-index i{display:block;width:18px;height:1px;background:var(--violet)}
+    .leader-identity{padding:23px 5px 19px}
+    .leader-identity .eyebrow{margin-bottom:8px}
+    .leader-identity h3{font-size:clamp(24px,2.5vw,31px);line-height:1.15;letter-spacing:-.04em;margin:0 0 7px;overflow-wrap:anywhere}
+    .leader-company{color:var(--muted);font-size:12px;margin:0}
+    .leader-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:19px}
+    .leader-tags span{font-size:10px;color:#d9ccff;border:1px solid rgba(177,145,255,.25);border-radius:99px;padding:6px 10px;background:rgba(113,56,245,.09)}
+    .leader-profile-foot{border-top:1px solid var(--line);padding:15px 5px 2px;display:flex;align-items:center;gap:9px;color:#b8afc9;font-size:10px}
+    .leader-status-dot{width:7px;height:7px;border-radius:50%;background:#a78bfa;box-shadow:0 0 12px rgba(167,139,250,.75);flex-shrink:0}
+    .leader-story{position:relative;align-self:center;padding:8px 0 8px 8px;min-width:0}
+    .leader-quote-mark{position:absolute;right:2px;top:-28px;font-family:Georgia,serif;font-size:115px;line-height:1;color:rgba(167,139,250,.12);pointer-events:none}
+    .leader-story>.eyebrow,.leader-story>h2,.leader-story>p,.leader-signoff{position:relative}
+    .leader-story h2{font-size:clamp(29px,3.5vw,43px);line-height:1.15;letter-spacing:-.045em;margin:15px 0 24px}
+    .leader-story>p:not(.eyebrow){color:var(--muted);font-size:13px;line-height:1.9;margin-bottom:15px}
+    .leader-signoff{display:flex;align-items:center;gap:14px;margin-top:25px}
+    .leader-sign-line{width:40px;height:2px;background:linear-gradient(90deg,var(--purple),var(--violet));border-radius:2px}
+    .leader-signoff div{display:grid;gap:3px}
+    .leader-signoff strong{font:700 13px Manrope,sans-serif;color:var(--white)}
+    .leader-signoff span:not(.leader-sign-line){font-size:11px;color:var(--muted)}
+    .leadership-pillars{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:24px}
+    .leadership-pillar{display:grid;grid-template-columns:42px 1fr;gap:13px;padding:23px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(22,15,37,.86),rgba(10,8,17,.94));transition:transform .22s var(--ease),border-color .22s}
+    .leadership-pillar:hover{transform:translateY(-3px);border-color:rgba(167,139,250,.48)}
+    .pillar-number{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:rgba(113,56,245,.16);color:#c2adff;font:700 11px Manrope,sans-serif}
+    .leadership-pillar h3{font-size:16px;margin:2px 0 8px}
+    .leadership-pillar p{font-size:12px;line-height:1.8;color:var(--muted);margin:0}
+    @media(max-width:760px){.leadership-heading{margin-bottom:30px}.leader-layout{grid-template-columns:1fr;gap:28px}.leader-profile{max-width:480px;width:100%;margin:0 auto}.md-portrait{aspect-ratio:4/3.8;object-position:center 24%}.leader-identity h3{font-size:27px}.leader-story{padding:0}.leader-story h2{font-size:clamp(29px,8vw,39px)}.leader-quote-mark{top:-24px;font-size:92px}.leadership-pillars{grid-template-columns:1fr}.leadership-pillar{padding:19px}}
+    @media(prefers-reduced-motion:reduce){.md-portrait,.leadership-pillar{transition:none}}
     .faq-item{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:12px 0;background:#100b1b}.faq-item summary{cursor:pointer;font-weight:700;color:#eee8ff}.faq-item p{margin:12px 0 0;color:var(--muted);font-size:13px}.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:45px}.contact-copy h2{font-size:42px;letter-spacing:-.04em;line-height:1.1}.contact-copy p{color:var(--muted);font-size:14px}.contact-point{display:flex;gap:12px;align-items:center;margin-top:20px;color:#d9d2e6;font-size:13px}.contact-point span{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(113,56,245,.15);color:#b59dff}.form{padding:26px;border:1px solid var(--line);border-radius:20px;background:#100b1b}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:grid;gap:7px;margin-bottom:15px}.field label{font-size:11px;color:#c9c1d7}.field input,.field textarea,.field select{width:100%;background:#090711;border:1px solid rgba(180,153,255,.17);border-radius:10px;padding:13px 12px;color:white;font:13px "DM Sans",sans-serif}.field textarea{min-height:112px;resize:vertical}.form-note{font-size:10px;color:#8f87a2;margin:10px 0 0}.form-status{display:none;border-radius:10px;padding:12px;margin-bottom:14px;font-size:12px;background:rgba(113,56,245,.13);color:#d9ceff}.form-status.show{display:block}
     footer{border-top:1px solid var(--line);padding:35px 0 25px;background:#06040a}.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:30px}.footer-brand p{max-width:340px;color:#91899f;font-size:12px;margin-top:15px}.footer-links{display:flex;flex-wrap:wrap;gap:22px;color:#b4adc2;font-size:12px}.footer-bottom{display:flex;justify-content:space-between;gap:20px;padding-top:22px;margin-top:24px;border-top:1px solid rgba(255,255,255,.06);color:#7f778f;font-size:10px}
     .nav-arrive{animation:section-arrive .48s var(--ease) both}@keyframes section-arrive{from{opacity:.72;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -206,28 +246,42 @@
           </div></div>
       </div>
     </section>
-    <section class="content" id="leadership">
-      <div class="wrap about-grid">
-        <div class="about-panel reveal">
-          <img class="md-portrait" src="./file_00000000b79882119e0425d2dda299f5.png" alt="Thusith Dissanayake, Managing Director of Royal Hires Private Limited" width="420" height="520" loading="lazy" decoding="async">
-          <p class="eyebrow">Managing Director</p>
-          <h2>Thusith Dissanayake</h2>
-          <p><strong>Managing Director, Royal Hires Private Limited</strong></p>
-          <p>As the Managing Director of Royal Hires Private Limited, I am committed to building a trusted and professional workforce solutions company that connects businesses with the right talent. My vision is to create meaningful employment opportunities while helping organizations strengthen their teams and achieve sustainable growth.</p>
-          <p>I believe that professionalism, integrity, and strong business relationships are the foundations of long-term success. Through strategic leadership and a people-focused approach, I aim to deliver reliable workforce solutions that create value for both our clients and employees.</p>
+    <section class="content leadership-section" id="leadership">
+      <div class="wrap">
+        <div class="leadership-heading reveal">
+          <p class="eyebrow">The leadership behind Royal Hires</p>
+          <h2>People-first leadership.<br><span>Purpose-driven progress.</span></h2>
+          <p>Building trusted workforce partnerships through integrity, ambition and a genuine commitment to people.</p>
         </div>
-        <div class="about-copy reveal">
-          <p class="eyebrow">A message from our Managing Director</p>
-          <h2 style="font-size:clamp(27px,3vw,39px);line-height:1.2;letter-spacing:-.04em">Connecting Talent. Empowering Businesses. Building Futures.</h2>
-          <p>At Royal Hires Private Limited, we believe that people are the foundation of every successful business. Our mission is to bridge the gap between employers seeking reliable talent and individuals looking for meaningful employment opportunities.</p>
-          <p>To our valued clients, we strive to be more than just a manpower service provider. We aim to be a trusted business partner who understands your challenges, supports your workforce requirements, and contributes to your long-term growth.</p>
-          <p>To our job seekers, we believe that every individual deserves respect, fair treatment, and the opportunity to build a better future. We are committed to helping you discover suitable employment opportunities and take positive steps toward your career goals.</p>
-          <p>As we continue to grow, our commitment remains clear: to serve with integrity, build lasting partnerships, and create value for both businesses and people.</p>
-          <p><strong>Thusith Dissanayake</strong><br>Managing Director<br>Royal Hires Private Limited</p>
-          <div class="mission-vision-grid">
-            <article class="mission-vision-card"><p class="eyebrow">Our mission</p><p>To deliver reliable, efficient, and tailored manpower solutions that empower businesses to achieve their goals while creating meaningful employment opportunities. We are committed to building lasting partnerships through professionalism, quality service, ethical practices, and continuous improvement.</p></article>
-            <article class="mission-vision-card"><p class="eyebrow">Our vision</p><p>To become one of Sri Lanka’s most trusted and respected workforce solutions providers, recognized for excellence, integrity, and innovation in connecting the right people with the right opportunities.</p></article>
+        <div class="leader-layout">
+          <article class="leader-profile reveal">
+            <div class="leader-profile-glow" aria-hidden="true"></div>
+            <div class="leader-image-wrap">
+              <img class="md-portrait" src="./file_00000000b79882119e0425d2dda299f5.png" alt="Thusith Dissanayake, Managing Director of Royal Hires Private Limited" width="420" height="520" loading="lazy" decoding="async">
+              <span class="leader-image-index">01 <i></i> LEADERSHIP</span>
+            </div>
+            <div class="leader-identity">
+              <p class="eyebrow">Managing Director</p>
+              <h3>Thusith Dissanayake</h3>
+              <p class="leader-company">Royal Hires Private Limited</p>
+              <div class="leader-tags"><span>Integrity</span><span>People first</span><span>Progress</span></div>
+            </div>
+            <div class="leader-profile-foot"><span class="leader-status-dot"></span> Committed to meaningful opportunities</div>
+          </article>
+          <div class="leader-story reveal">
+            <div class="leader-quote-mark" aria-hidden="true">“</div>
+            <p class="eyebrow">A message from our Managing Director</p>
+            <h2>Connecting talent.<br><span>Empowering businesses.</span><br>Building futures.</h2>
+            <p>At Royal Hires Private Limited, we believe that people are the foundation of every successful business. Our mission is to bridge the gap between employers seeking reliable talent and individuals looking for meaningful employment opportunities.</p>
+            <p>To our valued clients, we strive to be more than just a manpower service provider. We aim to be a trusted business partner who understands your challenges, supports your workforce requirements, and contributes to your long-term growth.</p>
+            <p>To our job seekers, we believe that every individual deserves respect, fair treatment, and the opportunity to build a better future. We are committed to helping you discover suitable employment opportunities and take positive steps toward your career goals.</p>
+            <p>As we continue to grow, our commitment remains clear: to serve with integrity, build lasting partnerships, and create value for both businesses and people.</p>
+            <div class="leader-signoff"><span class="leader-sign-line"></span><div><strong>Thusith Dissanayake</strong><span>Managing Director</span></div></div>
           </div>
+        </div>
+        <div class="leadership-pillars">
+          <article class="leadership-pillar reveal"><span class="pillar-number">01</span><div><h3>Our Mission</h3><p>To deliver reliable, efficient, and tailored manpower solutions that empower businesses to achieve their goals while creating meaningful employment opportunities. We are committed to building lasting partnerships through professionalism, quality service, ethical practices, and continuous improvement.</p></div></article>
+          <article class="leadership-pillar reveal"><span class="pillar-number">02</span><div><h3>Our Vision</h3><p>To become one of Sri Lanka’s most trusted and respected workforce solutions providers, recognized for excellence, integrity, and innovation in connecting the right people with the right opportunities.</p></div></article>
         </div>
       </div>
     </section>
