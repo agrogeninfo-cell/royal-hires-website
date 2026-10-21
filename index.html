@@ -92,6 +92,11 @@
     .company-note{margin:16px 0 0;color:#9289a5;font-size:10px;line-height:1.7}
     @keyframes artFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
     @media(max-width:600px){.hero-visual{min-height:0;padding:0 0 8px}.workforce-art{width:100%;max-width:460px}.orbit-a{width:75vw;height:75vw}.orbit-b{width:61vw;height:61vw}.company-details{padding:17px}.company-detail-grid{grid-template-columns:minmax(0,1fr);}.company-detail{padding:10px 0}}
+    .mission-vision-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:26px}
+    .mission-vision-card{min-width:0;padding:20px;border:1px solid rgba(180,153,255,.2);border-radius:16px;background:linear-gradient(145deg,rgba(22,15,37,.92),rgba(10,8,17,.92))}
+    .mission-vision-card .eyebrow{margin-bottom:10px}
+    .mission-vision-card p:last-child{margin-bottom:0;font-size:13px;line-height:1.75;overflow-wrap:anywhere}
+    @media(max-width:600px){.mission-vision-grid{grid-template-columns:minmax(0,1fr);gap:12px;margin-top:20px}.mission-vision-card{padding:16px;border-radius:14px}.section-head h2{font-size:clamp(26px,7.2vw,32px);line-height:1.15;overflow-wrap:anywhere}.section-head{gap:12px;margin-bottom:25px}}
     @media(prefers-reduced-motion:reduce){.workforce-art,.orbit-a,.orbit-b{animation:none!important}}
 
   </style>
@@ -130,7 +135,7 @@
         <div class="hero-visual reveal" aria-label="Illustration representing a connected workforce">
           <div class="art-orbit orbit-a"></div><div class="art-orbit orbit-b"></div>
           <div class="art-glow"></div>
-          <svg class="workforce-art" viewBox="0 0 560 500" role="img" aria-label="Abstract violet artwork symbolising people, opportunity and connected workforce">
+          <svg class="workforce-art" viewBox="0 0 560 460" role="img" aria-label="Abstract violet artwork symbolising people, opportunity and connected workforce">
             <defs>
               <linearGradient id="artViolet" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c5b4ff"/><stop offset=".52" stop-color="#8c5cf6"/><stop offset="1" stop-color="#45218b"/></linearGradient>
               <linearGradient id="artDark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#261744"/><stop offset="1" stop-color="#0c0915"/></linearGradient>
@@ -155,7 +160,7 @@
               <path d="M0 76 Q0 34 36 34 Q72 34 72 76 L72 145 Q72 158 59 158 L13 158 Q0 158 0 145Z" fill="url(#artDark)" stroke="#a78bfa" stroke-opacity=".55"/>
               <circle cx="36" cy="20" r="24" fill="url(#artViolet)" stroke="#d7ccff" stroke-width="3"/>
             </g>
-            <g transform="translate(130 408)"><rect width="300" height="48" rx="24" fill="#100b1b" stroke="#a78bfa" stroke-opacity=".48"/><circle cx="24" cy="24" r="4.5" fill="#a78bfa"/><text x="40" y="29" fill="#eee9ff" font-size="11" font-family="DM Sans, sans-serif" letter-spacing="1">PEOPLE · PURPOSE · PROGRESS</text></g>
+            
           </svg>
         </div>
       </div>
@@ -218,11 +223,9 @@
           <p>To our job seekers, we believe that every individual deserves respect, fair treatment, and the opportunity to build a better future. We are committed to helping you discover suitable employment opportunities and take positive steps toward your career goals.</p>
           <p>As we continue to grow, our commitment remains clear: to serve with integrity, build lasting partnerships, and create value for both businesses and people.</p>
           <p><strong>Thusith Dissanayake</strong><br>Managing Director<br>Royal Hires Private Limited</p>
-          <div class="company-details">
-            <p class="eyebrow">Our mission</p>
-            <p>To deliver reliable, efficient, and tailored manpower solutions that empower businesses to achieve their goals while creating meaningful employment opportunities. We are committed to building lasting partnerships through professionalism, quality service, ethical practices, and continuous improvement.</p>
-            <p class="eyebrow">Our vision</p>
-            <p>To become one of Sri Lanka’s most trusted and respected workforce solutions providers, recognized for excellence, integrity, and innovation in connecting the right people with the right opportunities.</p>
+          <div class="mission-vision-grid">
+            <article class="mission-vision-card"><p class="eyebrow">Our mission</p><p>To deliver reliable, efficient, and tailored manpower solutions that empower businesses to achieve their goals while creating meaningful employment opportunities. We are committed to building lasting partnerships through professionalism, quality service, ethical practices, and continuous improvement.</p></article>
+            <article class="mission-vision-card"><p class="eyebrow">Our vision</p><p>To become one of Sri Lanka’s most trusted and respected workforce solutions providers, recognized for excellence, integrity, and innovation in connecting the right people with the right opportunities.</p></article>
           </div>
         </div>
       </div>
