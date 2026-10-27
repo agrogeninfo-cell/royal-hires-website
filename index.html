@@ -218,6 +218,15 @@
     .drawer-panel{background:#003b39;border-left-color:rgba(216,166,74,.28)}
     .drawer-links a{border-bottom-color:rgba(216,166,74,.14)}
     input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline-color:#e1b65f}
+    /* Make employee salary access easy to find on mobile */
+    .salary-hero-btn{border-color:rgba(216,166,74,.65);color:#f2d89a}
+    .salary-float{display:none}
+    @media(max-width:760px){
+      .salary-float{position:fixed;z-index:30;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;padding:13px 20px;border:1px solid rgba(248,244,233,.3);border-radius:999px;background:linear-gradient(110deg,#00635d,#087c72 58%,#b98735);color:#fffaf0;font-size:14px;font-weight:850;letter-spacing:.01em;text-decoration:none;box-shadow:0 8px 28px rgba(0,0,0,.4),0 0 0 3px rgba(216,166,74,.1)}
+      .salary-float:active{transform:translateX(-50%) scale(.98)}
+      body{padding-bottom:76px}
+      .hero-actions{gap:10px}
+    }
     /* Employee salary-check section */
     .salary-section{padding-block:clamp(58px,8vw,100px);background:radial-gradient(ellipse at 12% 45%,rgba(0,107,101,.24),transparent 48%),linear-gradient(180deg,rgba(0,31,30,.42),rgba(0,43,42,.7));border-block:1px solid rgba(216,166,74,.16)}
     .salary-grid{display:grid;grid-template-columns:1fr minmax(300px,430px);align-items:center;gap:clamp(28px,6vw,76px)}
@@ -272,7 +281,7 @@
           <p class="eyebrow reveal">People&nbsp; | &nbsp;Opportunities&nbsp; | &nbsp;Stronger Tomorrows</p>
           <h1 class="reveal">Royal Hires <span>Private Limited</span></h1>
           <p class="reveal hero-copy">The Royal Standard Of Recruitment. Connecting businesses with the right workforce through professional recruitment and tailored manpower solutions.</p>
-          <div class="hero-actions reveal"><a class="btn btn-primary" href="#careers">Explore Careers <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#services">Our Services <span aria-hidden="true">→</span></a></div>
+          <div class="hero-actions reveal"><a class="btn btn-primary" href="#careers">Explore Careers <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#services">Our Services <span aria-hidden="true">→</span></a><a class="btn btn-outline salary-hero-btn" href="#salary-check">Salary Check <span aria-hidden="true">↗</span></a></div>
           <div class="hero-micro reveal"><span class="pulse"></span> Reliable people. Meaningful opportunities. Lasting partnerships.</div>
         </div>
         <div class="hero-visual reveal" aria-label="Illustration representing a connected workforce">
@@ -477,6 +486,7 @@
       </div>
     </section>
   </main>
+  <a class="salary-float" href="#salary-check" aria-label="Go to employee Salary Check"><span aria-hidden="true">₹</span> Salary Check <span aria-hidden="true">↗</span></a>
   <footer><div class="wrap"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#home"><img class="brand-mark brand-logo-img" src="./file_000000001c208211bf6fbef6f96a6bac.png" alt="Royal Hires company logo" width="48" height="48" loading="eager" decoding="async"><span class="brand-text">ROYAL HIRES<small>THE ROYAL STANDARD</small></span></a><p>The Royal Standard Of Recruitment. Professional manpower and recruitment solutions built around people and opportunity.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="#about">About</a><a href="#services">Services</a><a href="#leadership">Managing Director</a><a href="#employers">Industries</a><a href="#careers">Careers</a><a href="#faq">FAQ</a><a href="#policies">Privacy &amp; Terms</a><a href="#contact">Contact</a></nav></div><div class="footer-bottom"><span>© <span id="year"></span> Royal Hires. All rights reserved.</span><span>People · Opportunities · Stronger Tomorrows</span></div></div></footer>
   <script>
     (() => {
