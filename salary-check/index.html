@@ -28,21 +28,38 @@ main{max-width:980px;margin:auto;padding:clamp(26px,6vw,58px) 16px 60px}.intro{t
 <p class="foot"><strong>Royal Hires Private Limited</strong><br>Salary details ගැන ගැටලුවක් ඇත්නම් company එකෙන් විමසන්න.</p>
 </main>
 <script>
-/* Demo records only. Do not publish real salary data in client-side HTML. */
-const LABOURS=[
-{id:"RHSP200",name:"Sunil Perera",role:"Mason / Baas",month:"March 2025",days:26,basic:65000,otHours:12,otRate:450,allowance:8000,deduction:2500,advance:5000},
-{id:"RHTD201",name:"Thusith Dissanayake",role:"Tile Layer",month:"March 2025",days:24,basic:58000,otHours:8,otRate:400,allowance:5000,deduction:1200,advance:3000},
-{id:"RHNS202",name:"Nimal Silva",role:"Helper",month:"March 2025",days:27,basic:45000,otHours:15,otRate:300,allowance:6000,deduction:800,advance:2000}
+var LABOURS = [
+ {id:"RHSP200",name:"Sunil Perera",role:"Mason / Baas",month:"March 2025",days:26,basic:65000,otHours:12,otRate:450,allowance:8000,deduction:2500,advance:5000},
+ {id:"RHTD201",name:"Thusith Dissanayake",role:"Tile Layer",month:"March 2025",days:24,basic:58000,otHours:8,otRate:400,allowance:5000,deduction:1200,advance:3000},
+ {id:"RHNS202",name:"Nimal Silva",role:"Helper",month:"March 2025",days:27,basic:45000,otHours:15,otRate:300,allowance:6000,deduction:800,advance:2000}
 ];
-const form=document.getElementById("salaryForm"),input=document.getElementById("labourCode"),message=document.getElementById("message"),result=document.getElementById("result");
-function money(n){return "Rs. "+Number(n).toLocaleString("en-LK",{maximumFractionDigits:0})}
-function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-form.addEventListener("submit",e=>{e.preventDefault();const code=input.value.trim().toUpperCase().replace(/\s/g,"");result.innerHTML="";message.textContent="";
-if(!code){message.textContent="කරුණාකර Labour ID එක ඇතුළත් කරන්න. උදා: RHSP200";input.focus();return}
-if(!/^RH[A-Z]{1,6}\d{3}$/.test(code)){message.textContent="ID format එක නිවැරදි නැහැ. උදා: RHSP200";input.focus();return}
-const l=LABOURS.find(x=>x.id===code);if(!l){message.textContent="මෙම ID එකට salary record එකක් හමු වුණේ නැහැ. Company එකෙන් විමසන්න.";return}
-const ot=l.otHours*l.otRate,gross=l.basic+ot+l.allowance,net=gross-l.deduction-l.advance;
-result.innerHTML='<article class="resultcard"><div class="rhead"><span class="period">'+safe(l.month)+' · Days '+Number(l.days)+'</span><h3>'+safe(l.name)+'</h3><p>'+safe(l.id)+' · '+safe(l.role)+'</p></div><div class="rbody"><div class="payrow"><span>Basic Salary</span><strong>'+money(l.basic)+'</strong></div><div class="payrow"><span>OT ('+Number(l.otHours)+'h × '+money(l.otRate)+')</span><strong>'+money(ot)+'</strong></div><div class="payrow"><span>Allowance</span><strong>'+money(l.allowance)+'</strong></div><div class="payrow"><span>Deduction</span><strong class="neg">− '+money(l.deduction)+'</strong></div><div class="payrow"><span>Advance</span><strong class="neg">− '+money(l.advance)+'</strong></div><div class="net"><span>NET SALARY</span><strong>'+money(net)+'</strong></div><p class="note">Gross salary: '+money(gross)+'. මෙය sample data මත පදනම් වේ.</p></div></article>';
+function salaryMoney(value){return "Rs. "+Number(value).toLocaleString("en-LK",{maximumFractionDigits:0});}
+function salarySafe(value){return String(value).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];});}
+function checkSalary(event){
+ if(event){event.preventDefault();}
+ var input=document.getElementById("labourCode");
+ var message=document.getElementById("message");
+ var result=document.getElementById("result");
+ var code=input.value.trim().toUpperCase().replace(/\s/g,"");
+ result.innerHTML="";
+ message.textContent="";
+ if(!code){message.textContent="කරුණාකර Labour ID එක ඇතුළත් කරන්න. උදා: RHSP200";input.focus();return;}
+ var ending=code.slice(-3);
+ var initials=code.slice(2,-3);
+ if(code.indexOf("RH")!==0 || initials.length<1 || initials.length>6 || !/^[0-9]{3}$/.test(ending)){
+   message.textContent="ID format එක නිවැරදි නැහැ. උදා: RHSP200";input.focus();return;
+ }
+ var labour=null;
+ for(var i=0;i<LABOURS.length;i++){if(LABOURS[i].id===code){labour=LABOURS[i];break;}}
+ if(!labour){message.textContent="මෙම ID එකට salary record එකක් හමු වුණේ නැහැ. Company එකෙන් විමසන්න.";return;}
+ var overtime=labour.otHours*labour.otRate;
+ var gross=labour.basic+overtime+labour.allowance;
+ var net=gross-labour.deduction-labour.advance;
+ result.innerHTML='<article class="resultcard"><div class="rhead"><span class="period">'+salarySafe(labour.month)+' · Days '+Number(labour.days)+'</span><h3>'+salarySafe(labour.name)+'</h3><p>'+salarySafe(labour.id)+' · '+salarySafe(labour.role)+'</p></div><div class="rbody"><div class="payrow"><span>Basic Salary</span><strong>'+salaryMoney(labour.basic)+'</strong></div><div class="payrow"><span>OT ('+Number(labour.otHours)+'h × '+salaryMoney(labour.otRate)+')</span><strong>'+salaryMoney(overtime)+'</strong></div><div class="payrow"><span>Allowance</span><strong>'+salaryMoney(labour.allowance)+'</strong></div><div class="payrow"><span>Deduction</span><strong class="neg">− '+salaryMoney(labour.deduction)+'</strong></div><div class="payrow"><span>Advance</span><strong class="neg">− '+salaryMoney(labour.advance)+'</strong></div><div class="net"><span>NET SALARY</span><strong>'+salaryMoney(net)+'</strong></div><p class="note">Gross salary: '+salaryMoney(gross)+'. මෙය sample data මත පදනම් වේ.</p></div></article>';
+}
+document.addEventListener("DOMContentLoaded",function(){
+ var form=document.getElementById("salaryForm");
+ if(form){form.addEventListener("submit",checkSalary);}
 });
 </script>
 </body>
