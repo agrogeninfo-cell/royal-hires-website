@@ -448,8 +448,7 @@
           <h3>Salary Check</h3>
           <p class="salary-hint">Labour ID එක දාන්න (උදා: RHSP200)</p>
           <form id="salary-check-form" novalidate>
-            <label class="sr-only" for="labourCheckId">Labour ID</label>
-            <input id="labourCheckId" name="labourId" type="text" placeholder="RHSP200" autocomplete="off" autocapitalize="characters" maxlength="32" required>
+            <input id="labourCheckId" name="labourId" type="text" aria-label="Labour ID" placeholder="RHSP200" autocomplete="off" autocapitalize="characters" maxlength="32" required>
             <button class="btn btn-primary" type="submit">Salary බලන්න <span aria-hidden="true">→</span></button>
           </form>
           <p id="salary-check-status" class="salary-status" role="status" aria-live="polite"></p>
