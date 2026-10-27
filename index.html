@@ -218,6 +218,25 @@
     .drawer-panel{background:#003b39;border-left-color:rgba(216,166,74,.28)}
     .drawer-links a{border-bottom-color:rgba(216,166,74,.14)}
     input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline-color:#e1b65f}
+    /* Employee salary-check section */
+    .salary-section{padding-block:clamp(58px,8vw,100px);background:radial-gradient(ellipse at 12% 45%,rgba(0,107,101,.24),transparent 48%),linear-gradient(180deg,rgba(0,31,30,.42),rgba(0,43,42,.7));border-block:1px solid rgba(216,166,74,.16)}
+    .salary-grid{display:grid;grid-template-columns:1fr minmax(300px,430px);align-items:center;gap:clamp(28px,6vw,76px)}
+    .salary-copy h2{max-width:560px;margin:0 0 16px;font-size:clamp(30px,4vw,48px);line-height:1.12;letter-spacing:-.035em}
+    .salary-copy>p:not(.eyebrow){max-width:520px;color:var(--muted);line-height:1.8}
+    .salary-trust{display:flex;gap:10px;align-items:flex-start;margin-top:22px;color:#e5c578;font-size:13px;line-height:1.65}
+    .salary-card{padding:clamp(22px,4vw,34px);border:1px solid rgba(216,166,74,.38);border-radius:24px;background:linear-gradient(145deg,rgba(0,59,57,.98),rgba(0,31,30,.98));box-shadow:0 22px 70px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.06);text-align:center}
+    .salary-mark{display:grid;place-items:center;width:48px;height:48px;margin:0 auto 13px;border:1px solid rgba(216,166,74,.65);border-radius:15px;background:linear-gradient(145deg,#006b65,#002b2a);color:#f2d89a;font-size:23px;font-weight:900;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+    .salary-card h3{margin:0 0 7px;color:var(--white);font-size:22px;font-weight:850}
+    .salary-hint{margin:0 0 18px;color:var(--muted);font-size:13px}
+    #salary-check-form{display:grid;grid-template-columns:minmax(0,1fr);gap:11px}
+    #salary-check-form input{width:100%;min-width:0;padding:14px 16px;border:1px solid rgba(216,166,74,.3);border-radius:13px;background:#f8f4e9;color:#002b2a;font:700 16px/1.4 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+    #salary-check-form input::placeholder{color:#68817b;opacity:1}
+    #salary-check-form input:focus{outline:2px solid #e1b65f;outline-offset:2px}
+    #salary-check-form button{width:100%;justify-content:center}
+    .salary-status{min-height:0;margin:0;color:#f2d89a;font-size:13px}
+    .salary-status:not(:empty){margin-top:12px}
+    .salary-note{margin:13px 0 0;padding-top:13px;border-top:1px dashed rgba(216,166,74,.24);color:var(--muted);font-size:11px;line-height:1.6}
+    @media(max-width:760px){.salary-grid{grid-template-columns:1fr;gap:28px}.salary-copy{text-align:center}.salary-copy h2,.salary-copy>p:not(.eyebrow){margin-inline:auto}.salary-trust{text-align:left;max-width:460px;margin-inline:auto}.salary-card{width:100%;max-width:460px;margin-inline:auto}}
     /* Make the Managing Director portrait more compact while preserving the responsive layout */
     .leader-image-wrap{width:100%;max-width:245px}
     .md-portrait{max-width:245px;aspect-ratio:4/4.25;object-fit:cover}
@@ -233,7 +252,7 @@
         <img class="brand-mark brand-logo-img" src="./file_000000001c208211bf6fbef6f96a6bac.png" alt="Royal Hires company logo" width="48" height="48" loading="eager" decoding="async">
         <span class="brand-text">ROYAL HIRES<small>THE ROYAL STANDARD</small></span>
       </a>
-      <div class="navlinks" id="desktop-nav"><a class="active" href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="#contact">Contact Us</a></div>
+      <div class="navlinks" id="desktop-nav"><a class="active" href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="#salary-check">Salary Check</a><a href="#contact">Contact Us</a></div>
       <a class="btn btn-outline" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" id="menu-open" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-drawer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </nav>
@@ -242,7 +261,7 @@
     <button class="drawer-overlay" id="drawer-overlay" aria-label="Close navigation"></button>
     <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
       <div class="drawer-head"><a class="brand" href="#home"><span class="brand-text">ROYAL HIRES<small>THE ROYAL STANDARD</small></span></a><button class="drawer-close" id="menu-close" aria-label="Close menu">×</button></div>
-      <nav class="drawer-links" aria-label="Mobile navigation"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="#contact">Contact Us</a><a class="btn btn-primary" href="#contact">Let's Talk ↗</a></nav>
+      <nav class="drawer-links" aria-label="Mobile navigation"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="#salary-check">Salary Check</a><a href="#contact">Contact Us</a><a class="btn btn-primary" href="#contact">Let's Talk ↗</a></nav>
     </div>
   </aside>
   <main id="main-content">
@@ -416,6 +435,28 @@
         <p class="form-note">These are starter notices, not legal advice. Before enabling online applications or collecting personal data, have the final privacy policy and terms reviewed for applicable Sri Lankan law and the actual data-handling process.</p>
       </div>
     </section>
+    <section class="content salary-section" id="salary-check">
+      <div class="wrap salary-grid">
+        <div class="salary-copy reveal">
+          <p class="eyebrow">Employee self-service</p>
+          <h2>ඔයාගේ Salary බලන්න</h2>
+          <p>ඔබගේ Labour ID එක ඇතුළත් කර ඔබගේ salary details බලන්න payroll portal එකට යන්න.</p>
+          <div class="salary-trust"><span aria-hidden="true">🔒</span><span>ඔබගේ Labour ID එක පමණක් ඇතුළත් කරන්න. Password හෝ bank details මෙහි ඇතුළත් කරන්න එපා.</span></div>
+        </div>
+        <div class="salary-card reveal">
+          <div class="salary-mark" aria-hidden="true">R</div>
+          <h3>Salary Check</h3>
+          <p class="salary-hint">Labour ID එක දාන්න (උදා: RHSP200)</p>
+          <form id="salary-check-form" novalidate>
+            <label class="sr-only" for="labourCheckId">Labour ID</label>
+            <input id="labourCheckId" name="labourId" type="text" placeholder="RHSP200" autocomplete="off" autocapitalize="characters" maxlength="32" required>
+            <button class="btn btn-primary" type="submit">Salary බලන්න <span aria-hidden="true">→</span></button>
+          </form>
+          <p id="salary-check-status" class="salary-status" role="status" aria-live="polite"></p>
+          <p class="salary-note">ඔබගේ Labour ID එක නිවැරදිව ඇතුළත් කර ඇති බව තහවුරු කරන්න.</p>
+        </div>
+      </div>
+    </section>
     <section class="content" id="contact">
       <div class="wrap contact-grid">
         <div class="contact-copy reveal"><p class="eyebrow">Contact us</p><h2>Let’s start a conversation.</h2><p>Looking for manpower, recruitment support or a new opportunity? Send us an inquiry and tell us how we can help.</p>
@@ -493,6 +534,19 @@
         const status=document.getElementById('form-status');
         status.textContent='Your email app will open with a drafted inquiry. No message has been sent yet.';status.classList.add('show');
         window.location.href='mailto:royalhiresinfo@gmail.com?subject='+subject+'&body='+body;
+      });
+      // Employee salary lookup: hand off to the payroll app with the entered Labour ID.
+      const salaryForm = document.getElementById('salary-check-form');
+      salaryForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const input = document.getElementById('labourCheckId');
+        const status = document.getElementById('salary-check-status');
+        const id = input.value.trim().toUpperCase();
+        if (!id) { status.textContent = 'කරුණාකර Labour ID එක ඇතුළත් කරන්න. උදා: RHSP200'; input.focus(); return; }
+        if (id.length < 4 || !/^[A-Z0-9-]+$/.test(id)) { status.textContent = 'කරුණාකර නිවැරදි Labour ID එකක් ඇතුළත් කරන්න.'; input.focus(); return; }
+        const payrollUrl = 'https://royal-hires-manpower.netlify.app/#payroll?id=' + encodeURIComponent(id);
+        window.open(payrollUrl, '_blank', 'noopener,noreferrer');
+        status.textContent = 'Payroll portal එක අලුත් tab එකක විවෘත කළා. Salary details නොපෙනේ නම් company එකෙන් විමසන්න.';
       });
       document.getElementById('year').textContent=String(new Date().getFullYear());
     })();
