@@ -261,7 +261,7 @@
         <img class="brand-mark brand-logo-img" src="./file_000000001c208211bf6fbef6f96a6bac.png" alt="Royal Hires company logo" width="48" height="48" loading="eager" decoding="async">
         <span class="brand-text">ROYAL HIRES<small>THE ROYAL STANDARD</small></span>
       </a>
-      <div class="navlinks" id="desktop-nav"><a class="active" href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="#salary-check">Salary Check</a><a href="#contact">Contact Us</a></div>
+      <div class="navlinks" id="desktop-nav"><a class="active" href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="./salary-check/">Salary Check</a><a href="#contact">Contact Us</a></div>
       <a class="btn btn-outline" href="#contact">Let's Talk <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" id="menu-open" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-drawer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
     </nav>
@@ -270,7 +270,7 @@
     <button class="drawer-overlay" id="drawer-overlay" aria-label="Close navigation"></button>
     <div class="drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
       <div class="drawer-head"><a class="brand" href="#home"><span class="brand-text">ROYAL HIRES<small>THE ROYAL STANDARD</small></span></a><button class="drawer-close" id="menu-close" aria-label="Close menu">×</button></div>
-      <nav class="drawer-links" aria-label="Mobile navigation"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="#salary-check">Salary Check</a><a href="#contact">Contact Us</a><a class="btn btn-primary" href="#contact">Let's Talk ↗</a></nav>
+      <nav class="drawer-links" aria-label="Mobile navigation"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Our Services</a><a href="#employers">For Employers</a><a href="#careers">Careers</a><a href="./salary-check/">Salary Check</a><a href="#contact">Contact Us</a><a class="btn btn-primary" href="#contact">Let's Talk ↗</a></nav>
     </div>
   </aside>
   <main id="main-content">
@@ -281,7 +281,7 @@
           <p class="eyebrow reveal">People&nbsp; | &nbsp;Opportunities&nbsp; | &nbsp;Stronger Tomorrows</p>
           <h1 class="reveal">Royal Hires <span>Private Limited</span></h1>
           <p class="reveal hero-copy">The Royal Standard Of Recruitment. Connecting businesses with the right workforce through professional recruitment and tailored manpower solutions.</p>
-          <div class="hero-actions reveal"><a class="btn btn-primary" href="#careers">Explore Careers <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#services">Our Services <span aria-hidden="true">→</span></a><a class="btn btn-outline salary-hero-btn" href="#salary-check">Salary Check <span aria-hidden="true">↗</span></a></div>
+          <div class="hero-actions reveal"><a class="btn btn-primary" href="#careers">Explore Careers <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#services">Our Services <span aria-hidden="true">→</span></a><a class="btn btn-outline salary-hero-btn" href="./salary-check/">Salary Check <span aria-hidden="true">↗</span></a></div>
           <div class="hero-micro reveal"><span class="pulse"></span> Reliable people. Meaningful opportunities. Lasting partnerships.</div>
         </div>
         <div class="hero-visual reveal" aria-label="Illustration representing a connected workforce">
@@ -449,19 +449,15 @@
         <div class="salary-copy reveal">
           <p class="eyebrow">Employee self-service</p>
           <h2>ඔයාගේ Salary බලන්න</h2>
-          <p>ඔබගේ Labour ID එක ඇතුළත් කර ඔබගේ salary details බලන්න payroll portal එකට යන්න.</p>
-          <div class="salary-trust"><span aria-hidden="true">🔒</span><span>ඔබගේ Labour ID එක පමණක් ඇතුළත් කරන්න. Password හෝ bank details මෙහි ඇතුළත් කරන්න එපා.</span></div>
+          <p>ID eka danna, salary balanna. ඔබගේ Labour ID එක භාවිත කර salary check page එකට යන්න.</p>
+          <div class="salary-trust"><span aria-hidden="true">🔒</span><span>Secure - ID eke ayithukaru ge payroll witharai penne</span></div>
         </div>
         <div class="salary-card reveal">
           <div class="salary-mark" aria-hidden="true">R</div>
           <h3>Salary Check</h3>
-          <p class="salary-hint">Labour ID එක දාන්න (උදා: RHSP200)</p>
-          <form id="salary-check-form" novalidate>
-            <input id="labourCheckId" name="labourId" type="text" aria-label="Labour ID" placeholder="RHSP200" autocomplete="off" autocapitalize="characters" maxlength="32" required>
-            <button class="btn btn-primary" type="submit">Salary බලන්න <span aria-hidden="true">→</span></button>
-          </form>
-          <p id="salary-check-status" class="salary-status" role="status" aria-live="polite"></p>
-          <p class="salary-note">ඔබගේ Labour ID එක නිවැරදිව ඇතුළත් කර ඇති බව තහවුරු කරන්න.</p>
+          <p class="salary-hint">Labour ID එක ඇතුළත් කර salary බලන්න.</p>
+          <a class="btn btn-primary salary-open-link" href="./salary-check/">Salary Check විවෘත කරන්න <span aria-hidden="true">→</span></a>
+          <p class="salary-note">Open the dedicated salary-check page to enter your RH code.</p>
         </div>
       </div>
     </section>
@@ -486,7 +482,7 @@
       </div>
     </section>
   </main>
-  <a class="salary-float" href="#salary-check" aria-label="Go to employee Salary Check"><span aria-hidden="true">₹</span> Salary Check <span aria-hidden="true">↗</span></a>
+  <a class="salary-float" href="./salary-check/" aria-label="Go to employee Salary Check"><span aria-hidden="true">₹</span> Salary Check <span aria-hidden="true">↗</span></a>
   <footer><div class="wrap"><div class="footer-top"><div class="footer-brand"><a class="brand" href="#home"><img class="brand-mark brand-logo-img" src="./file_000000001c208211bf6fbef6f96a6bac.png" alt="Royal Hires company logo" width="48" height="48" loading="eager" decoding="async"><span class="brand-text">ROYAL HIRES<small>THE ROYAL STANDARD</small></span></a><p>The Royal Standard Of Recruitment. Professional manpower and recruitment solutions built around people and opportunity.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="#about">About</a><a href="#services">Services</a><a href="#leadership">Managing Director</a><a href="#employers">Industries</a><a href="#careers">Careers</a><a href="#faq">FAQ</a><a href="#policies">Privacy &amp; Terms</a><a href="#contact">Contact</a></nav></div><div class="footer-bottom"><span>© <span id="year"></span> Royal Hires. All rights reserved.</span><span>People · Opportunities · Stronger Tomorrows</span></div></div></footer>
   <script>
     (() => {
@@ -543,19 +539,6 @@
         const status=document.getElementById('form-status');
         status.textContent='Your email app will open with a drafted inquiry. No message has been sent yet.';status.classList.add('show');
         window.location.href='mailto:royalhiresinfo@gmail.com?subject='+subject+'&body='+body;
-      });
-      // Employee salary lookup: hand off to the payroll app with the entered Labour ID.
-      const salaryForm = document.getElementById('salary-check-form');
-      salaryForm.addEventListener('submit', e => {
-        e.preventDefault();
-        const input = document.getElementById('labourCheckId');
-        const status = document.getElementById('salary-check-status');
-        const id = input.value.trim().toUpperCase();
-        if (!id) { status.textContent = 'කරුණාකර Labour ID එක ඇතුළත් කරන්න. උදා: RHSP200'; input.focus(); return; }
-        if (id.length < 4 || !/^[A-Z0-9-]+$/.test(id)) { status.textContent = 'කරුණාකර නිවැරදි Labour ID එකක් ඇතුළත් කරන්න.'; input.focus(); return; }
-        const payrollUrl = 'https://royal-hires-manpower.netlify.app/#payroll?id=' + encodeURIComponent(id);
-        window.open(payrollUrl, '_blank', 'noopener,noreferrer');
-        status.textContent = 'Payroll portal එක අලුත් tab එකක විවෘත කළා. Salary details නොපෙනේ නම් company එකෙන් විමසන්න.';
       });
       document.getElementById('year').textContent=String(new Date().getFullYear());
     })();
