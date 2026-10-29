@@ -1,0 +1,10 @@
+{
+  "name": "Pay Royal",
+  "short_name": "Pay Royal",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#062D27",
+  "theme_color": "#062D27",
+  "description": "Royal Hires manpower management system",
+  "icons": []
+}
