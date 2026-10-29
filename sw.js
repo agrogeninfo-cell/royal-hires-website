@@ -1,4 +1,4 @@
-const CACHE='pay-royal-v10';
+const CACHE='pay-royal-v11';
 const ASSETS=['./','./index.html','./meals.html','./boarding.html','./reports.html','./settings.html','./salary-check.html','./website-index.html','./manifest.webmanifest'];
 self.addEventListener('install',event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)))});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('pay-royal-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
