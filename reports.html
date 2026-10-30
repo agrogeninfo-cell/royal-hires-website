@@ -31,7 +31,7 @@ function renderRates(){let host=$('#ratesForm');if(!host)return;host.innerHTML=O
 function initMeals(){let host=$('#mealWorkers');if(!host)return;employees().then(staff=>{host.innerHTML=staff.map(e=>`<div class="worker"><div class="between"><div><h4>${e.name}</h4><div class="meta">${e.labour_code}</div></div><b class="amount" data-total>Rs. 0</b></div>${[['breakfast','Breakfast','B'],['lunch','Lunch','L'],['dinner','Dinner','D']].map(([key,label,letter])=>`<div class="meal"><label><input type="checkbox" data-meal="${key}"> ${label} <span class="muted">${letter} · ${money(rates[key])}</span></label><span class="pill">${letter} 1×Rate</span></div>`).join('')}<button class="primary" data-save-meal style="width:100%;margin-top:10px">Save Meals</button></div>`).join('');host.querySelectorAll('.worker').forEach(card=>{const calc=()=>{let total=0;card.querySelectorAll('[data-meal]').forEach(i=>{if(i.checked)total+=rates[i.dataset.meal]});card.querySelector('[data-total]').textContent=money(total)};card.querySelectorAll('[data-meal]').forEach(i=>i.onchange=calc);card.querySelector('[data-save-meal]').onclick=async()=>{let e=staff.find(x=>x.labour_code===card.querySelector('.meta').textContent);let row={labour_code:e.labour_code,meal_date:dateValue(),breakfast:card.querySelector('[data-meal="breakfast"]').checked?1:0,lunch:card.querySelector('[data-meal="lunch"]').checked?1:0,dinner:card.querySelector('[data-meal="dinner"]').checked?1:0};await upsert('meals',row,'labour_code,meal_date')}})})}
 function initSalary(){let f=$('#salaryForm');if(!f)return;f.onsubmit=async ev=>{ev.preventDefault();let code=$('#labourCode').value.trim().toUpperCase();$('#salaryResult').innerHTML='Checking…';let rows=await query('settlements',{labour_code:code});if(!rows.length){$('#salaryResult').innerHTML='<div class="warning">No salary record found for this code. Check the code or contact Royal Hires.</div>';return}let r=rows[0];$('#salaryResult').innerHTML=`<div class="card"><div class="muted">Salary result for ${code}</div><h2>${r.employee_name||r.name||'Employee'}</h2><div class="metric">${money(r.net_salary||r.net_pay||r.amount)}</div><div class="divider"></div><p>Period: ${r.period||r.month||'As recorded'}</p><p class="muted">This page displays records returned by the database. Access is not private until Supabase authentication and Row Level Security policies are configured.</p></div>`}}
 
-let payrollPreview=null, invoicePreview=null, reportEmployees=[];
+let payrollPreview=null, invoicePreview=null, reportEmployees=[], dailySummary=[];
 const rupee=n=>'Rs. '+Number(n||0).toLocaleString('en-LK',{minimumFractionDigits:2,maximumFractionDigits:2});
 function setReportStatus(t){const e=document.querySelector('#statusText');if(e)e.textContent=t;}
 function setPeriodDefaults(){
@@ -76,7 +76,7 @@ async function calculatePayroll(){
   const workers=(staff||[]).filter(e=>(e.factory||e.factory_id)===factory);
   if(!workers.length)throw new Error('No employees assigned to '+factory+'. Open Settings → Unassigned Employees and assign each worker to a factory.');
   const ids=new Set(workers.map(e=>e.id));
-  const aRows=(att||[]).filter(x=>ids.has(x.employee_id));
+  const aRows=(att||[]).filter(x=>ids.has(x.employee_id));\n  const dailyMap=new Map();aRows.forEach(x=>{const k=x.date;if(!dailyMap.has(k))dailyMap.set(k,{date:k,shifts:0,ot:0,late:0});const d=dailyMap.get(k);d.shifts+=x.status==='P'?1:x.status==='H'?.5:0;d.ot+=Number(x.ot_hours||0);d.late+=Number(x.late_minutes||0);});dailySummary=[...dailyMap.values()].sort((a,b)=>a.date.localeCompare(b.date));
   const mRows=(meals||[]).filter(x=>ids.has(x.employee_id));
   const byAtt=new Map(),byMeal=new Map();
   for(const x of aRows){if(!byAtt.has(x.employee_id))byAtt.set(x.employee_id,[]);byAtt.get(x.employee_id).push(x);}
@@ -141,7 +141,8 @@ function renderInvoicePaper(){
  $('#invoiceTotalPreview').textContent=rupee(v.total);
  $('#invoicePaper').style.display=v.ready?'block':'none';
 }
-function updatePayrollMetrics(){const rows=payrollPreview||[];$('#mWorkers').textContent=rows.length;$('#mDays').textContent=rows.reduce((s,x)=>s+x.days,0).toFixed(1);$('#mOT').textContent=rows.reduce((s,x)=>s+x.ot,0).toFixed(1);$('#mPayroll').textContent=rupee(rows.reduce((s,x)=>s+x.net,0));}
+function updatePayrollMetrics(){const rows=payrollPreview||[];$('#mWorkers').textContent=rows.length;$('#mMale').textContent=rows.filter(x=>String(x.employee.gender).toLowerCase()==='male').length;$('#mFemale').textContent=rows.filter(x=>String(x.employee.gender).toLowerCase()==='female').length;$('#mDays').textContent=rows.reduce((s,x)=>s+x.days,0).toFixed(1);$('#mOT').textContent=rows.reduce((s,x)=>s+x.ot,0).toFixed(1);$('#mMeals').textContent=rupee(rows.reduce((s,x)=>s+x.mealDeduction,0));$('#mLate').textContent=rupee(rows.reduce((s,x)=>s+x.lateDeduction,0));$('#mPayroll').textContent=rupee(rows.reduce((s,x)=>s+x.net,0));}
+function renderDailySummary(){const rate=invoicePreview?.rate;$('#dailySummaryBody').innerHTML=dailySummary.map(x=>'<tr><td>'+x.date+'</td><td>'+x.shifts.toFixed(1)+'</td><td>'+x.ot.toFixed(1)+'</td><td>'+x.late+'</td><td>'+rupee(x.late*Number(rate?.late_deduction_per_hour||150)/60)+'</td></tr>').join('')||'<tr><td colspan="5">No attendance rows for this period.</td></tr>';}
 async function savePayroll(){
  if(!payrollPreview?.length)return;
  const c=client(),period=$('#periodLabel').value.trim()||$('#periodStart').value+' to '+$('#periodEnd').value;
@@ -194,8 +195,12 @@ document.addEventListener('DOMContentLoaded',()=>{initReports();});
  </div>
  <div class="grid" style="margin-top:14px">
   <div class="card"><div class="muted">Workers</div><div class="metric" id="mWorkers">—</div></div>
+  <div class="card"><div class="muted">Male workers</div><div class="metric" id="mMale">—</div></div>
+  <div class="card"><div class="muted">Female workers</div><div class="metric" id="mFemale">—</div></div>
   <div class="card"><div class="muted">Attendance days</div><div class="metric" id="mDays">—</div></div>
   <div class="card"><div class="muted">Total OT hours</div><div class="metric" id="mOT">—</div></div>
+  <div class="card"><div class="muted">Meal deductions</div><div class="metric" id="mMeals">—</div></div>
+  <div class="card"><div class="muted">Late deductions</div><div class="metric" id="mLate">—</div></div>
   <div class="card"><div class="muted">Net payroll</div><div class="metric" id="mPayroll">—</div></div>
  </div>
  <div class="card" style="margin-top:14px">
@@ -203,6 +208,7 @@ document.addEventListener('DOMContentLoaded',()=>{initReports();});
   <div class="tablewrap"><table id="payrollTable"><thead><tr><th>Labour Code</th><th>Name</th><th>Gender</th><th>Days</th><th>OT Hrs</th><th>Gross</th><th>Bonus</th><th>Meals</th><th>Late</th><th>Advance</th><th>Net Pay</th></tr></thead><tbody><tr><td colspan="11" class="muted">Calculate payroll to see results.</td></tr></tbody></table></div>
   <button class="primary" id="savePayrollBtn" style="margin-top:14px" disabled>Save Salary Settlements</button>
  </div>
+ <div class="card" style="margin-top:14px"><h3>Day-wise attendance, OT & late deductions</h3><div class="tablewrap"><table><thead><tr><th>Date</th><th>Shifts</th><th>OT hours</th><th>Late minutes</th><th>Late deduction</th></tr></thead><tbody id="dailySummaryBody"><tr><td colspan="5" class="muted">Calculate payroll to view daily totals.</td></tr></tbody></table></div></div>
  <div class="card" style="margin-top:14px">
   <h3>Factory invoice preview</h3><p class="muted small">Invoice uses configured male/female billing rates and approved OT billing rate. Late deductions and meal deductions are not added to factory billing.</p>
   <div class="grid"><div><div class="muted">Labour billing</div><div class="metric" id="mBillLabour">—</div></div><div><div class="muted">OT billing</div><div class="metric" id="mBillOT">—</div></div><div><div class="muted">Invoice total</div><div class="metric" id="mInvoice">—</div></div></div>
