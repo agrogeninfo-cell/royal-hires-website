@@ -55,7 +55,8 @@ async function initReports(){
  $('#calculateBtn').onclick=calculatePayroll;
  $('#savePayrollBtn').onclick=savePayroll;
  $('#invoiceBtn').onclick=saveInvoice;
- $('#csvBtn').onclick=exportPayrollCsv;\n $('#printInvoiceBtn').onclick=()=>window.print();
+ $('#csvBtn').onclick=exportPayrollCsv;
+ $('#printInvoiceBtn').onclick=()=>window.print();
 }
 async function calculatePayroll(){
  const c=client(),factory=$('#factorySelect').value,start=$('#periodStart').value,end=$('#periodEnd').value;
