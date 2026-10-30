@@ -100,7 +100,9 @@ async function calculatePayroll(){
   reportEmployees=workers;
   renderPayroll();
   $('#savePayrollBtn').disabled=false;
-  $('#invoiceBtn').disabled=!invoicePreview.ready;\n  $('#printInvoiceBtn').disabled=!invoicePreview.ready;\n  renderInvoicePaper();
+  $('#invoiceBtn').disabled=!invoicePreview.ready;
+  $('#printInvoiceBtn').disabled=!invoicePreview.ready;
+  renderInvoicePaper();
   $('#csvBtn').disabled=false;
   const missing=(staff||[]).filter(e=>!e.factory&&!e.factory_id).length;
   setReportStatus('Calculation ready for '+activeWorkers.length+' active workers. '+(missing?missing+' employee(s) still have no factory assignment; assign them in Settings. ':'')+'Review rows, enter advances, then save settlements.');
