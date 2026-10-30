@@ -5,7 +5,7 @@ button,input,select{font:inherit}button{cursor:pointer;min-height:44px;border:0}
 @media(max-width:650px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.hero{min-height:300px;padding:20px}.formgrid{grid-template-columns:1fr 1fr}.brand h1{font-size:17px}.brand small{font-size:9px}.desktop{display:none}.card{padding:15px}}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./auth.js"></script><script>
 const SUPABASE_URL='https://jwghmsflabvzzhucuwsn.supabase.co';
-const SUPABASE_ANON_KEY='PASTE_YOUR_SUPABASE_ANON_PUBLIC_KEY_HERE';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTM4NzUsImV4cCI6MjEwODcyOTg3NX0.JgUcVdMOTnYP1Txp_U2xO8R3Txvp0QEQnAvwnpxX5sU';
 let sb=null, live=false;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function toast(msg){let t=$('#toast');if(t){t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',3000)}}
