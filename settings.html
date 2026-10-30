@@ -11,8 +11,9 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function toast(msg){let t=$('#toast');if(t){t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',3000)}}
 function money(n){return 'Rs. '+Number(n||0).toLocaleString('en-LK',{maximumFractionDigits:2})}
 function today(){return new Date().toLocaleDateString('en-CA')}
-const defaultRates={empWeekday:2000,empSaturday:2000,empSunday:2300,empWeekBase:1525,empSatBase:1875,empOTHours:3,empOTRate:225,empSundayBase:null,night:100,bonus:5500,bonusDays:21,malePay:2500,femalePay:2100,maleBill:3000,femaleBill:2500,millOT:225,lateRate:150,breakfast:150,lunch:350,dinner:320,boarding:6000};
+const defaultRates={empWeekday:2000,empSaturday:2000,empSunday:2300,empWeekBase:1525,empSatBase:1875,empOTHours:3,empOTRate:225,empSundayBase:null,night:100,bonus:5500,bonusDays:21,malePay:2500,femalePay:2100,maleBill:3000,femaleBill:2500,millOT:225,lateRate:150,breakfast:130,lunch:250,dinner:250,boarding:6000};
 let rates={...defaultRates,...JSON.parse(localStorage.getItem('payroyal-rates')||'{}')};
+if(rates.breakfast===150&&rates.lunch===350&&rates.dinner===320){rates.breakfast=130;rates.lunch=250;rates.dinner=250;localStorage.setItem('payroyal-rates',JSON.stringify(rates));}
 function saveRates(){localStorage.setItem('payroyal-rates',JSON.stringify(rates));toast('Settings saved on this device');}
 function client(){if(!window.supabase){toast('Supabase library is still loading');return null}if(SUPABASE_ANON_KEY.includes('PASTE_YOUR')){toast('Add your Supabase anon public key in this file first');return null}if(!sb)sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{realtime:{params:{eventsPerSecond:10}}});return sb}
 async function query(table,filters={}){let c=client();if(!c)return [];let q=c.from(table).select('*');Object.entries(filters).forEach(([k,v])=>q=q.eq(k,v));let {data,error}=await q;if(error){console.error(error);toast(table+': '+error.message);return []}return data||[]}
