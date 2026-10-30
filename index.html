@@ -24,7 +24,7 @@ button,input,select{font:inherit}button{cursor:pointer;min-height:44px;border:0}
 .rh-card-logo{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
 @media(max-width:520px){.rh-card{border-radius:10px;padding:3.5%}.rh-card-content{width:65%}.rh-card-heading{padding-bottom:4px}.rh-card-company{letter-spacing:1px}.rh-card-private{letter-spacing:1.5px}.rh-card-membership{margin-top:5px;padding:3px 7px;letter-spacing:1px}.rh-card-id-label{margin-top:5px;letter-spacing:1.5px}.rh-card-id{margin-top:1px}.rh-card-name{margin-top:4px}.rh-card-info{margin-top:6px;column-gap:7px;row-gap:4px}.rh-card-logo-panel{right:2.5%;top:11%;width:29%;height:72%;border-radius:10px;padding:2.5%}}
 @media print{body *{visibility:hidden!important}#memberCardPrintArea,#memberCardPrintArea *{visibility:visible!important}#memberCardPrintArea{position:fixed;left:0;top:0;width:85.6mm!important;height:54mm!important;padding:0!important;margin:0!important}#memberCardDesign{width:85.6mm!important;height:54mm!important;max-width:none!important;aspect-ratio:auto!important;border-radius:0!important;box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./auth.js"></script><script>
 const SUPABASE_URL='https://jwghmsflabvzzhucuwsn.supabase.co';
 const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTM4NzUsImV4cCI6MjEwODcyOTg3NX0.JgUcVdMOTnYP1Txp_U2xO8R3Txvp0QEQnAvwnpxX5sU';
 let sb=null, live=false;
