@@ -14,11 +14,13 @@ const msg=document.querySelector('#msg');
 const loginPanel=document.querySelector('#loginPanel'),resetPanel=document.querySelector('#resetPanel');
 const params=new URLSearchParams(location.search);
 let sb=null;
+let authReady=false;
 function showError(text){msg.style.color='#a33';msg.textContent=text;}
 function showSuccess(text){msg.style.color='#176b59';msg.textContent=text;}
 async function initAuth(){
   if(!window.supabase || typeof window.supabase.createClient!=='function') throw new Error('Secure login service did not load. Check your internet connection and refresh.');
   sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  authReady=true;
   if(params.get('reason')==='access')showError('This account is inactive or not authorised. Contact the administrator.');
   if(params.get('error'))showError('The password reset link is invalid or expired. Request a new one.');
   const {data:{session},error}=await sb.auth.getSession();
@@ -36,6 +38,7 @@ document.querySelector('#loginForm').addEventListener('submit',async e=>{
   if(!sb){showError('Login service is still loading. Please wait a moment and try again.');return;}
   btn.disabled=true;btn.textContent='Verifying…';msg.textContent='';
   try{
+    if(!authReady) await initAuth();
     const email=document.querySelector('#email').value.trim();
     const password=document.querySelector('#password').value;
     const {data,error}=await sb.auth.signInWithPassword({email,password});
@@ -55,6 +58,7 @@ document.querySelector('#forgotBtn').addEventListener('click',async()=>{
   if(!sb){showError('Login service is still loading. Please wait and try again.');return;}
   btn.disabled=true;showSuccess('Sending password reset email…');
   try{
+    if(!authReady) await initAuth();
     const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname+'?reset=1'});
     if(error)throw error;
     showSuccess('If this account exists, a password reset email has been sent. Check Gmail Inbox and Spam.');
@@ -69,6 +73,7 @@ document.querySelector('#resetForm').addEventListener('submit',async e=>{
   if(!sb){showError('Login service is still loading. Please refresh and try again.');return;}
   btn.disabled=true;btn.textContent='Saving…';
   try{
+    if(!authReady) await initAuth();
     const {error}=await sb.auth.updateUser({password:a});
     if(error)throw error;
     showSuccess('Password updated. Please sign in with your new password.');
@@ -78,5 +83,5 @@ document.querySelector('#resetForm').addEventListener('submit',async e=>{
   }catch(error){showError(error.message||'Could not update password. Request a new reset link.');}
   finally{btn.disabled=false;btn.textContent='Save new password';}
 });
-initAuth().catch(error=>showError(error.message||'Secure login could not start. Refresh the page.'));
+initAuth().catch(error=>{authReady=false;showError(error.message||'Secure login could not start. Refresh the page.');});
 </script></body></html>
