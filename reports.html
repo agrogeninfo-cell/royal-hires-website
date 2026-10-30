@@ -90,7 +90,7 @@ async function calculatePayroll(){
    const ot=ar.reduce((s,x)=>s+Number(x.ot_hours||0),0);
    const late=ar.reduce((s,x)=>s+Number(x.late_minutes||0),0);
    const mealCount=mr.reduce((s,x)=>s+Number(x.breakfast||0)*Number(rate.breakfast_rate)+Number(x.lunch||0)*Number(rate.lunch_rate)+Number(x.dinner||0)*Number(rate.dinner_rate),0);
-   const fallbackDaily=Number(e.daily_rate??(e.gender==='Female'?rate.female_wage:rate.male_wage)??0);
+   const fallbackDaily=Number((String(e.gender||'').toLowerCase()==='female'?rate.female_wage:rate.male_wage)??e.daily_rate??0);
    const basePay=ar.reduce((sum,x)=>{const units=x.status==='P'?1:x.status==='H'?.5:0;const day=new Date(x.date+'T00:00:00').getDay();const shift=x.shift_type||(day===0?'sunday_poya':day===6?'saturday':'weekday');const specific=shift==='sunday_poya'?rate.sunday_poya_wage:shift==='saturday'?rate.saturday_wage:rate.weekday_wage;return sum+units*Number(specific??fallbackDaily);},0);
    const otRate=Number(e.ot_rate??rate.ot_wage_rate??0);
    const gross=basePay+ot*otRate;
