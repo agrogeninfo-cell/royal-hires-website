@@ -90,9 +90,10 @@ async function calculatePayroll(){
    const ot=ar.reduce((s,x)=>s+Number(x.ot_hours||0),0);
    const late=ar.reduce((s,x)=>s+Number(x.late_minutes||0),0);
    const mealCount=mr.reduce((s,x)=>s+Number(x.breakfast||0)*Number(rate.breakfast_rate)+Number(x.lunch||0)*Number(rate.lunch_rate)+Number(x.dinner||0)*Number(rate.dinner_rate),0);
-   const daily=Number(e.daily_rate??(e.gender==='Female'?rate.female_wage:rate.male_wage)??0);
+   const fallbackDaily=Number(e.daily_rate??(e.gender==='Female'?rate.female_wage:rate.male_wage)??0);
+   const basePay=ar.reduce((sum,x)=>{const units=x.status==='P'?1:x.status==='H'?.5:0;const day=new Date(x.date+'T00:00:00').getDay();const shift=x.shift_type||(day===0?'sunday_poya':day===6?'saturday':'weekday');const specific=shift==='sunday_poya'?rate.sunday_poya_wage:shift==='saturday'?rate.saturday_wage:rate.weekday_wage;return sum+units*Number(specific??fallbackDaily);},0);
    const otRate=Number(e.ot_rate??rate.ot_wage_rate??0);
-   const gross=days*daily+ot*otRate;
+   const gross=basePay+ot*otRate;
    const bonus=days>=Number(rate.attendance_bonus_days||21)?Number(rate.attendance_bonus||5500):0;
    const lateDeduction=late*Number(rate.late_deduction_per_hour||150)/60;
    return {employee:e,days,ot,late,mealDeduction:mealCount,lateDeduction,advanceDeduction:0,gross,otPay:ot*otRate,bonus,net:gross+bonus-mealCount-lateDeduction};
@@ -150,7 +151,7 @@ async function savePayroll(){
  $('#savePayrollBtn').disabled=true;setReportStatus('Saving salary settlements…');
  try{
   for(const x of payrollPreview){
-   const row={employee_id:x.employee.id,labour_code:x.employee.labour_code,period,period_start:$('#periodStart').value,period_end:$('#periodEnd').value,factory_name:$('#factorySelect').value,days:Math.round(x.days*100)/100,ot_hours:x.ot,gross:x.gross,gross_pay:x.gross,ot_pay:x.otPay,bonus:x.bonus,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,net_pay:x.net,net_payable:x.net,calculated_at:new Date().toISOString(),calculation_details:{attendance_days:x.days,late_minutes:x.late,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,daily_rate:Number(x.employee.daily_rate||0),ot_rate:Number(x.employee.ot_rate||0)}};
+   const row={employee_id:x.employee.id,labour_code:x.employee.labour_code,period,period_start:$('#periodStart').value,period_end:$('#periodEnd').value,factory_name:$('#factorySelect').value,days:Math.round(x.days*100)/100,ot_hours:x.ot,gross:x.gross,gross_pay:x.gross,ot_pay:x.otPay,bonus:x.bonus,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,net_pay:x.net,net_payable:x.net,calculated_at:new Date().toISOString(),calculation_details:{attendance_days:x.days,late_minutes:x.late,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,base_pay:x.gross-x.otPay,ot_rate:Number(x.employee.ot_rate??0),shift_rates:{weekday:invoicePreview.rate.weekday_wage,saturday:invoicePreview.rate.saturday_wage,sunday_poya:invoicePreview.rate.sunday_poya_wage}}};
    const {data:existing,error:findError}=await c.from('settlements').select('id').eq('employee_id',x.employee.id).eq('period',period).maybeSingle();
    if(findError)throw findError;
    const result=existing?await c.from('settlements').update(row).eq('id',existing.id):await c.from('settlements').insert(row);
