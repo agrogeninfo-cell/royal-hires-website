@@ -74,6 +74,7 @@ async function calculatePayroll(){
   if(se||ae||me||re)throw se||ae||me||re;
   const rate=rateRows?.[0];if(!rate)throw new Error('Factory rate card not found.');
   const workers=(staff||[]).filter(e=>(e.factory||e.factory_id)===factory);
+  const missingGender=workers.filter(e=>!['male','female'].includes(String(e.gender||'').toLowerCase()));if(missingGender.length)throw new Error(missingGender.length+' employee(s) assigned to this factory still need a Male/Female value in Settings before payroll.');
   if(!workers.length)throw new Error('No employees assigned to '+factory+'. Open Settings → Unassigned Employees and assign each worker to a factory.');
   const ids=new Set(workers.map(e=>e.id));
   const aRows=(att||[]).filter(x=>ids.has(x.employee_id));
