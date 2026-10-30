@@ -30,6 +30,169 @@ function initAttendance(){let d=$('#workDate');if(d){d.value=today();d.addEventL
 function renderRates(){let host=$('#ratesForm');if(!host)return;host.innerHTML=Object.entries(rates).map(([k,v])=>`<label><span class="label">${k.replace(/[A-Z]/g,' $&')}</span><input class="field" data-rate="${k}" type="number" step=".01" value="${v===null?'':v}"></label>`).join('');$('#saveRates').onclick=()=>{host.querySelectorAll('[data-rate]').forEach(i=>rates[i.dataset.rate]=i.value===''?null:Number(i.value));saveRates()}}
 function initMeals(){let host=$('#mealWorkers');if(!host)return;employees().then(staff=>{host.innerHTML=staff.map(e=>`<div class="worker"><div class="between"><div><h4>${e.name}</h4><div class="meta">${e.labour_code}</div></div><b class="amount" data-total>Rs. 0</b></div>${[['breakfast','Breakfast','B'],['lunch','Lunch','L'],['dinner','Dinner','D']].map(([key,label,letter])=>`<div class="meal"><label><input type="checkbox" data-meal="${key}"> ${label} <span class="muted">${letter} · ${money(rates[key])}</span></label><span class="pill">${letter} 1×Rate</span></div>`).join('')}<button class="primary" data-save-meal style="width:100%;margin-top:10px">Save Meals</button></div>`).join('');host.querySelectorAll('.worker').forEach(card=>{const calc=()=>{let total=0;card.querySelectorAll('[data-meal]').forEach(i=>{if(i.checked)total+=rates[i.dataset.meal]});card.querySelector('[data-total]').textContent=money(total)};card.querySelectorAll('[data-meal]').forEach(i=>i.onchange=calc);card.querySelector('[data-save-meal]').onclick=async()=>{let e=staff.find(x=>x.labour_code===card.querySelector('.meta').textContent);let row={labour_code:e.labour_code,meal_date:dateValue(),breakfast:card.querySelector('[data-meal="breakfast"]').checked?1:0,lunch:card.querySelector('[data-meal="lunch"]').checked?1:0,dinner:card.querySelector('[data-meal="dinner"]').checked?1:0};await upsert('meals',row,'labour_code,meal_date')}})})}
 function initSalary(){let f=$('#salaryForm');if(!f)return;f.onsubmit=async ev=>{ev.preventDefault();let code=$('#labourCode').value.trim().toUpperCase();$('#salaryResult').innerHTML='Checking…';let rows=await query('settlements',{labour_code:code});if(!rows.length){$('#salaryResult').innerHTML='<div class="warning">No salary record found for this code. Check the code or contact Royal Hires.</div>';return}let r=rows[0];$('#salaryResult').innerHTML=`<div class="card"><div class="muted">Salary result for ${code}</div><h2>${r.employee_name||r.name||'Employee'}</h2><div class="metric">${money(r.net_salary||r.net_pay||r.amount)}</div><div class="divider"></div><p>Period: ${r.period||r.month||'As recorded'}</p><p class="muted">This page displays records returned by the database. Access is not private until Supabase authentication and Row Level Security policies are configured.</p></div>`}}
-function initReports(){let b=$('#exportCsv');if(b)b.onclick=async()=>{let rows=await query('attendance',{date:dateValue()});if(!rows.length){toast('No attendance rows for this date');return}let keys=Object.keys(rows[0]);let csv=[keys.join(','),...rows.map(r=>keys.map(k=>JSON.stringify(r[k]??'')).join(','))].join('\n');let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='pay-royal-attendance-'+dateValue()+'.csv';a.click();URL.revokeObjectURL(a.href)}}
-document.addEventListener('DOMContentLoaded',()=>{initAttendance();initMeals();initSalary();initReports();renderRates();flushQueue();});
-</script></head><body><header class="top"><div class="brand"><div class="logo">R</div><div><h1>Royal Hires</h1><small>MILLENNIUM ESTATE • EMPIRE TEA FACTORY</small></div><div class="spacer"></div><a class="iconbtn" href="settings.html" aria-label="Settings">⚙</a></div></header><main class="wrap"><div class="sectionhead"><div><h2>Reports & Exports</h2><p class="muted">Export selected-day attendance to CSV for Excel</p></div></div><div class="grid"><div class="card"><h3>Attendance Export</h3><p class="muted">Download attendance records for the selected date.</p><input class="field" type="date" id="workDate"><button class="primary" id="exportCsv" style="width:100%">Export CSV</button></div><div class="card"><h3>12 Report Categories</h3><p class="muted">Attendance · Male/Female · OT · Late deductions · Meals · Boarding · Payroll · Factory invoice · Employee ledger · Settlements · Daily totals · Monthly totals</p><button class="goldbtn" onclick="toast('PDF export requires a configured PDF renderer')">PDF (setup required)</button></div></div><div class="warning">Late deductions use lateMinutes ÷ 60 × Rs.150 and must not reduce factory billing. Empire Sunday/Poya billing base remains unset until you enter the correct value in Settings.</div></main><div class="toast" id="toast"></div><nav class="nav"><a href="index.html" class="">◷<br>Attendance</a><a href="meals.html" class="">♧<br>Meals</a><a href="index.html#add" class="plus">＋<span>Add</span></a><a href="boarding.html" class="">⌂<br>Boarding</a><a href="reports.html" class="active">▤<br>Reports</a></nav><div class="footer">Pay Royal · Royal Hires Private Limited</div><script>if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);</script></body></html>
+
+let payrollPreview=null, invoicePreview=null, reportEmployees=[];
+const rupee=n=>'Rs. '+Number(n||0).toLocaleString('en-LK',{minimumFractionDigits:2,maximumFractionDigits:2});
+function setReportStatus(t){const e=document.querySelector('#statusText');if(e)e.textContent=t;}
+function setPeriodDefaults(){
+ const now=new Date(), y=now.getFullYear(),m=now.getMonth(),d=now.getDate();
+ let start,end;
+ if(d>=25){start=new Date(y,m,25);end=new Date(y,m+1,24);}
+ else{start=new Date(y,m-1,25);end=new Date(y,m,24);}
+ const iso=x=>new Date(x.getTime()-x.getTimezoneOffset()*60000).toISOString().slice(0,10);
+ $('#periodStart').value=iso(start);$('#periodEnd').value=iso(end);
+ updatePeriodLabel();
+}
+function updatePeriodLabel(){const a=$('#periodStart').value,b=$('#periodEnd').value;if(a&&b)$('#periodLabel').value=a+' to '+b;}
+async function initReports(){
+ const c=client();if(!c)return;
+ setPeriodDefaults();
+ $('#periodStart').addEventListener('change',updatePeriodLabel);$('#periodEnd').addEventListener('change',updatePeriodLabel);
+ const {data:ratesData,error}=await c.from('factory_rate_cards').select('*').order('factory_name');
+ if(error){setReportStatus('Factory rates could not load: '+error.message);return;}
+ $('#factorySelect').innerHTML=(ratesData||[]).map(x=>'<option value="'+String(x.factory_name).replace(/"/g,'&quot;')+'">'+x.factory_name+'</option>').join('');
+ if(!ratesData?.length){setReportStatus('No factory rate cards found. Open Settings and configure a factory first.');return;}
+ $('#calculateBtn').onclick=calculatePayroll;
+ $('#savePayrollBtn').onclick=savePayroll;
+ $('#invoiceBtn').onclick=saveInvoice;
+ $('#csvBtn').onclick=exportPayrollCsv;
+}
+async function calculatePayroll(){
+ const c=client(),factory=$('#factorySelect').value,start=$('#periodStart').value,end=$('#periodEnd').value;
+ if(!start||!end||start>end){setReportStatus('Please enter a valid date range.');return;}
+ const period=$('#periodLabel').value.trim()||start+' to '+end;
+ setReportStatus('Loading employee, attendance and meal records…');
+ $('#calculateBtn').disabled=true;
+ try{
+  const [{data:staff,error:se},{data:att,error:ae},{data:meals,error:me},{data:rateRows,error:re}]=await Promise.all([
+   c.from('employees').select('*').or('factory.eq.'+factory+',factory_id.eq.'+factory),
+   c.from('attendance').select('*').gte('date',start).lte('date',end),
+   c.from('meals').select('*').gte('meal_date',start).lte('meal_date',end),
+   c.from('factory_rate_cards').select('*').eq('factory_name',factory).limit(1)
+  ]);
+  if(se||ae||me||re)throw se||ae||me||re;
+  const rate=rateRows?.[0];if(!rate)throw new Error('Factory rate card not found.');
+  const workers=(staff||[]).filter(e=>(e.factory||e.factory_id)===factory);
+  if(!workers.length)throw new Error('No employees assigned to '+factory+'. Check employee factory names.');
+  const ids=new Set(workers.map(e=>e.id));
+  const aRows=(att||[]).filter(x=>ids.has(x.employee_id));
+  const mRows=(meals||[]).filter(x=>ids.has(x.employee_id));
+  const byAtt=new Map(),byMeal=new Map();
+  for(const x of aRows){if(!byAtt.has(x.employee_id))byAtt.set(x.employee_id,[]);byAtt.get(x.employee_id).push(x);}
+  for(const x of mRows){if(!byMeal.has(x.employee_id))byMeal.set(x.employee_id,[]);byMeal.get(x.employee_id).push(x);}
+  payrollPreview=workers.map(e=>{
+   const ar=byAtt.get(e.id)||[],mr=byMeal.get(e.id)||[];
+   const days=ar.reduce((s,x)=>s+(x.status==='P'?1:x.status==='H'?.5:0),0);
+   const ot=ar.reduce((s,x)=>s+Number(x.ot_hours||0),0);
+   const late=ar.reduce((s,x)=>s+Number(x.late_minutes||0),0);
+   const mealCount=mr.reduce((s,x)=>s+Number(x.breakfast||0)*Number(rate.breakfast_rate)+Number(x.lunch||0)*Number(rate.lunch_rate)+Number(x.dinner||0)*Number(rate.dinner_rate),0);
+   const daily=Number(e.daily_rate??(e.gender==='Female'?rate.female_wage:rate.male_wage)??0);
+   const otRate=Number(e.ot_rate??rate.ot_wage_rate??0);
+   const gross=days*daily+ot*otRate;
+   const bonus=days>=Number(rate.attendance_bonus_days||21)?Number(rate.attendance_bonus||5500):0;
+   const lateDeduction=late*Number(rate.late_deduction_per_hour||150)/60;
+   return {employee:e,days,ot,late,mealDeduction:mealCount,lateDeduction,advanceDeduction:0,gross,otPay:ot*otRate,bonus,net:gross+bonus-mealCount-lateDeduction};
+  });
+  invoicePreview=buildInvoicePreview(payrollPreview,rate,factory,period,start,end);
+  reportEmployees=workers;
+  renderPayroll();
+  $('#savePayrollBtn').disabled=false;
+  $('#invoiceBtn').disabled=!invoicePreview.ready;
+  $('#csvBtn').disabled=false;
+  setReportStatus('Calculation ready. Review the rows, enter any advances, then save settlements.');
+ }catch(e){console.error(e);setReportStatus('Calculation failed: '+e.message);payrollPreview=null;invoicePreview=null;$('#savePayrollBtn').disabled=true;$('#invoiceBtn').disabled=true;}
+ finally{$('#calculateBtn').disabled=false;}
+}
+function buildInvoicePreview(rows,rate,factory,period,start,end){
+ const maleDays=rows.filter(x=>String(x.employee.gender).toLowerCase()==='male').reduce((s,x)=>s+x.days,0);
+ const femaleDays=rows.filter(x=>String(x.employee.gender).toLowerCase()==='female').reduce((s,x)=>s+x.days,0);
+ const ot=rows.reduce((s,x)=>s+x.ot,0);
+ const valid=rate.male_bill_rate!==null&&rate.male_bill_rate!==undefined&&rate.female_bill_rate!==null&&rate.female_bill_rate!==undefined&&rate.ot_bill_rate!==null&&rate.ot_bill_rate!==undefined;
+ const labour=maleDays*Number(rate.male_bill_rate||0)+femaleDays*Number(rate.female_bill_rate||0);
+ const otAmount=ot*Number(rate.ot_bill_rate||0);
+ return {ready:valid,factory,period,start,end,maleDays,femaleDays,ot,labour,otAmount,total:labour+otAmount,attendanceTotal:maleDays+femaleDays,rate};
+}
+function renderPayroll(){
+ const rows=payrollPreview||[];
+ const money=rupee;
+ $('#payrollTable tbody').innerHTML=rows.map((x,i)=>'<tr><td>'+x.employee.labour_code+'</td><td>'+x.employee.name+'</td><td>'+x.employee.gender+'</td><td>'+x.days.toFixed(1)+'</td><td>'+x.ot.toFixed(1)+'</td><td>'+money(x.gross)+'</td><td>'+money(x.bonus)+'</td><td>'+money(x.mealDeduction)+'</td><td>'+money(x.lateDeduction)+'</td><td><input data-advance="'+i+'" type="number" min="0" step="0.01" value="'+x.advanceDeduction+'" style="width:90px;padding:6px;border:1px solid var(--line);border-radius:8px"></td><td data-net="'+i+'">'+money(x.net)+'</td></tr>').join('')||'<tr><td colspan="11">No employees found.</td></tr>';
+ $('#payrollTable').querySelectorAll('[data-advance]').forEach(inp=>inp.addEventListener('input',()=>{const x=rows[Number(inp.dataset.advance)];x.advanceDeduction=Math.max(0,Number(inp.value||0));x.net=x.gross+x.bonus-x.mealDeduction-x.lateDeduction-x.advanceDeduction;$('#payrollTable').querySelector('[data-net="'+inp.dataset.advance+'"]').textContent=money(x.net);updatePayrollMetrics();}));
+ updatePayrollMetrics();
+ const inv=invoicePreview;
+ $('#mBillLabour').textContent=money(inv.labour);$('#mBillOT').textContent=money(inv.otAmount);$('#mInvoice').textContent=inv.ready?money(inv.total):'Rates required';
+ $('#invoiceHint').textContent=inv.ready?'Male days: '+inv.maleDays+' × '+money(inv.rate.male_bill_rate)+' · Female days: '+inv.femaleDays+' × '+money(inv.rate.female_bill_rate)+' · OT: '+inv.ot+' × '+money(inv.rate.ot_bill_rate):'Billing rates are not configured for this factory. Open Settings → Factory Billing Rates before generating an invoice.';
+ $('#periodBadge').textContent=inv.period;
+}
+function updatePayrollMetrics(){const rows=payrollPreview||[];$('#mWorkers').textContent=rows.length;$('#mDays').textContent=rows.reduce((s,x)=>s+x.days,0).toFixed(1);$('#mOT').textContent=rows.reduce((s,x)=>s+x.ot,0).toFixed(1);$('#mPayroll').textContent=rupee(rows.reduce((s,x)=>s+x.net,0));}
+async function savePayroll(){
+ if(!payrollPreview?.length)return;
+ const c=client(),period=$('#periodLabel').value.trim()||$('#periodStart').value+' to '+$('#periodEnd').value;
+ $('#savePayrollBtn').disabled=true;setReportStatus('Saving salary settlements…');
+ try{
+  for(const x of payrollPreview){
+   const row={employee_id:x.employee.id,labour_code:x.employee.labour_code,period,period_start:$('#periodStart').value,period_end:$('#periodEnd').value,factory_name:$('#factorySelect').value,days:Math.round(x.days*100)/100,ot_hours:x.ot,gross:x.gross,gross_pay:x.gross,ot_pay:x.otPay,bonus:x.bonus,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,net_pay:x.net,net_payable:x.net,calculated_at:new Date().toISOString(),calculation_details:{attendance_days:x.days,late_minutes:x.late,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,daily_rate:Number(x.employee.daily_rate||0),ot_rate:Number(x.employee.ot_rate||0)}};
+   const {data:existing,error:findError}=await c.from('settlements').select('id').eq('employee_id',x.employee.id).eq('period',period).maybeSingle();
+   if(findError)throw findError;
+   const result=existing?await c.from('settlements').update(row).eq('id',existing.id):await c.from('settlements').insert(row);
+   if(result.error)throw result.error;
+  }
+  setReportStatus('Saved '+payrollPreview.length+' salary settlements successfully.');
+ }catch(e){console.error(e);setReportStatus('Settlement save stopped: '+e.message+' (Some earlier rows may already have saved. Recalculate and save again safely.)');}
+ finally{$('#savePayrollBtn').disabled=false;}
+}
+async function saveInvoice(){
+ if(!invoicePreview?.ready){setReportStatus('Invoice rates are missing. Configure them in Settings first.');return;}
+ const c=client(),v=invoicePreview;
+ const invoiceNumber='RH-'+v.factory.replace(/[^A-Z0-9]/gi,'').toUpperCase().slice(0,8)+'-'+v.start.replace(/-/g,'')+'-'+v.end.replace(/-/g,'');
+ const row={invoice_number:invoiceNumber,factory_name:v.factory,period:v.period,period_start:v.start,period_end:v.end,attendance_total:v.attendanceTotal,ot_hours:v.ot,labour_amount:v.labour,ot_amount:v.otAmount,other_amount:0,total_amount:v.total,status:'draft',line_items:[{description:'Male attendance',quantity:v.maleDays,rate:Number(v.rate.male_bill_rate),amount:v.maleDays*Number(v.rate.male_bill_rate)},{description:'Female attendance',quantity:v.femaleDays,rate:Number(v.rate.female_bill_rate),amount:v.femaleDays*Number(v.rate.female_bill_rate)},{description:'Approved overtime',quantity:v.ot,rate:Number(v.rate.ot_bill_rate),amount:v.otAmount}]};
+ const {data:existing,error:findError}=await c.from('factory_invoices').select('id').eq('factory_name',v.factory).eq('period',v.period).maybeSingle();
+ if(findError){setReportStatus('Invoice lookup failed: '+findError.message);return;}
+ const result=existing?await c.from('factory_invoices').update(row).eq('id',existing.id):await c.from('factory_invoices').insert({...row,created_by:window.PayRoyalAuth?.session?.user?.id||null});
+ if(result.error){setReportStatus('Invoice save failed: '+result.error.message);return;}
+ setReportStatus('Draft invoice '+invoiceNumber+' saved. Review it before issuing to the factory.');
+}
+function exportPayrollCsv(){
+ if(!payrollPreview?.length)return;
+ const cols=['Labour Code','Name','Gender','Days','OT Hours','Gross','Bonus','Meal Deduction','Late Deduction','Advance','Net Pay'];
+ const lines=[cols,...payrollPreview.map(x=>[x.employee.labour_code,x.employee.name,x.employee.gender,x.days,x.ot,x.gross,x.bonus,x.mealDeduction,x.lateDeduction,x.advanceDeduction,x.net])];
+ const csv=lines.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='pay-royal-payroll-'+$('#periodStart').value+'-'+$('#periodEnd').value+'.csv';a.click();URL.revokeObjectURL(a.href);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{initReports();});
+</script></head><body>
+<header class="top"><div class="brand"><div class="logo">R</div><div><h1>Royal Hires</h1><small>PAYROLL & FACTORY BILLING</small></div><div class="spacer"></div><a class="iconbtn" href="settings.html">⚙ Rates</a></div></header>
+<main class="wrap">
+ <div class="sectionhead"><div><h2>Payroll & Factory Reports</h2><p class="muted">25th–24th payroll cycle · calculate, review and save</p></div></div>
+ <div class="card">
+  <div class="formgrid">
+   <label><span class="label">Factory</span><select id="factorySelect" class="field"><option>Loading factories…</option></select></label>
+   <label><span class="label">Period label</span><input id="periodLabel" class="field" placeholder="2026-10-25 to 2026-11-24"></label>
+   <label><span class="label">From</span><input id="periodStart" class="field" type="date"></label>
+   <label><span class="label">To</span><input id="periodEnd" class="field" type="date"></label>
+  </div>
+  <div class="row" style="margin-top:10px"><button class="primary" id="calculateBtn">Calculate Payroll</button><button class="goldbtn" id="invoiceBtn" disabled>Generate Factory Invoice</button><button class="iconbtn" id="csvBtn" style="color:var(--green);background:white;border-color:var(--line)" disabled>Export CSV</button></div>
+  <p class="muted small" id="statusText">Select a factory and payroll period to begin.</p>
+ </div>
+ <div class="grid" style="margin-top:14px">
+  <div class="card"><div class="muted">Workers</div><div class="metric" id="mWorkers">—</div></div>
+  <div class="card"><div class="muted">Attendance days</div><div class="metric" id="mDays">—</div></div>
+  <div class="card"><div class="muted">Total OT hours</div><div class="metric" id="mOT">—</div></div>
+  <div class="card"><div class="muted">Net payroll</div><div class="metric" id="mPayroll">—</div></div>
+ </div>
+ <div class="card" style="margin-top:14px">
+  <div class="between"><div><h3>Payroll calculation</h3><p class="muted small">Advance defaults to Rs. 0. Adjust it before saving if an advance was paid.</p></div><span class="pill" id="periodBadge">Not calculated</span></div>
+  <div class="tablewrap"><table id="payrollTable"><thead><tr><th>Labour Code</th><th>Name</th><th>Gender</th><th>Days</th><th>OT Hrs</th><th>Gross</th><th>Bonus</th><th>Meals</th><th>Late</th><th>Advance</th><th>Net Pay</th></tr></thead><tbody><tr><td colspan="11" class="muted">Calculate payroll to see results.</td></tr></tbody></table></div>
+  <button class="primary" id="savePayrollBtn" style="margin-top:14px" disabled>Save Salary Settlements</button>
+ </div>
+ <div class="card" style="margin-top:14px">
+  <h3>Factory invoice preview</h3><p class="muted small">Invoice uses configured male/female billing rates and approved OT billing rate. Late deductions and meal deductions are not added to factory billing.</p>
+  <div class="grid"><div><div class="muted">Labour billing</div><div class="metric" id="mBillLabour">—</div></div><div><div class="muted">OT billing</div><div class="metric" id="mBillOT">—</div></div><div><div class="muted">Invoice total</div><div class="metric" id="mInvoice">—</div></div></div>
+  <p class="small muted" id="invoiceHint">Calculate payroll to preview the invoice.</p>
+ </div>
+</main>
+<div class="toast" id="toast"></div>
+<nav class="nav"><a href="index.html">◷<br>Attendance</a><a href="meals.html">♧<br>Meals</a><a href="index.html#add" class="plus">＋<span>Add</span></a><a href="boarding.html">⌂<br>Boarding</a><a href="reports.html" class="active">▤<br>Reports</a></nav>
+<div class="footer">Pay Royal · Royal Hires Private Limited</div>
+<script>if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);</script>
+</body></html>
