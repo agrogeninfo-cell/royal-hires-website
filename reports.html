@@ -80,7 +80,8 @@ async function calculatePayroll(){
   const byAtt=new Map(),byMeal=new Map();
   for(const x of aRows){if(!byAtt.has(x.employee_id))byAtt.set(x.employee_id,[]);byAtt.get(x.employee_id).push(x);}
   for(const x of mRows){if(!byMeal.has(x.employee_id))byMeal.set(x.employee_id,[]);byMeal.get(x.employee_id).push(x);}
-  const activeWorkers=workers.filter(e=>(byAtt.get(e.id)||[]).length||(byMeal.get(e.id)||[]).length);\n  if(!activeWorkers.length)throw new Error('No attendance or meal entries for this factory in the selected period. Check employee factory assignments.');\n  payrollPreview=activeWorkers.map(e=>{
+  const activeWorkers=workers.filter(e=>(byAtt.get(e.id)||[]).length||(byMeal.get(e.id)||[]).length);
+  if(!activeWorkers.length)throw new Error('No attendance or meal entries for this factory in the selected period. Check employee factory assignments.');\n  payrollPreview=activeWorkers.map(e=>{
    const ar=byAtt.get(e.id)||[],mr=byMeal.get(e.id)||[];
    const days=ar.reduce((s,x)=>s+(x.status==='P'?1:x.status==='H'?.5:0),0);
    const ot=ar.reduce((s,x)=>s+Number(x.ot_hours||0),0);
@@ -99,7 +100,8 @@ async function calculatePayroll(){
   $('#savePayrollBtn').disabled=false;
   $('#invoiceBtn').disabled=!invoicePreview.ready;
   $('#csvBtn').disabled=false;
-  const missing=(staff||[]).filter(e=>!e.factory&&!e.factory_id).length;\n  setReportStatus('Calculation ready for '+activeWorkers.length+' active workers. '+(missing?missing+' employee(s) still have no factory assignment; assign them in Settings. ':'')+'Review rows, enter advances, then save settlements.');
+  const missing=(staff||[]).filter(e=>!e.factory&&!e.factory_id).length;
+  setReportStatus('Calculation ready for '+activeWorkers.length+' active workers. '+(missing?missing+' employee(s) still have no factory assignment; assign them in Settings. ':'')+'Review rows, enter advances, then save settlements.');
  }catch(e){console.error(e);setReportStatus('Calculation failed: '+e.message);payrollPreview=null;invoicePreview=null;$('#savePayrollBtn').disabled=true;$('#invoiceBtn').disabled=true;}
  finally{$('#calculateBtn').disabled=false;}
 }
