@@ -5,7 +5,7 @@ button,input,select{font:inherit}button{cursor:pointer;min-height:44px;border:0}
 @media(max-width:650px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.hero{min-height:300px;padding:20px}.formgrid{grid-template-columns:1fr 1fr}.brand h1{font-size:17px}.brand small{font-size:9px}.desktop{display:none}.card{padding:15px}}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./auth.js"></script><script>
 const SUPABASE_URL='https://jwghmsflabvzzhucuwsn.supabase.co';
-const SUPABASE_ANON_KEY='PASTE_YOUR_SUPABASE_ANON_PUBLIC_KEY_HERE';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTM4NzUsImV4cCI6MjEwODcyOTg3NX0.JgUcVdMOTnYP1Txp_U2xO8R3Txvp0QEQnAvwnpxX5sU';
 let sb=null, live=false;
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function toast(msg){let t=$('#toast');if(t){t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',3000)}}
@@ -13,6 +13,7 @@ function money(n){return 'Rs. '+Number(n||0).toLocaleString('en-LK',{maximumFrac
 function today(){return new Date().toLocaleDateString('en-CA')}
 const defaultRates={empWeekday:2000,empSaturday:2000,empSunday:2300,empWeekBase:1525,empSatBase:1875,empOTHours:3,empOTRate:225,empSundayBase:null,night:100,bonus:5500,bonusDays:21,malePay:2500,femalePay:2100,maleBill:3000,femaleBill:2500,millOT:225,lateRate:150,breakfast:130,lunch:250,dinner:250,boarding:6000};
 let rates={...defaultRates,...JSON.parse(localStorage.getItem('payroyal-rates')||'{}')};
+if(rates.breakfast===150&&rates.lunch===350&&rates.dinner===320){rates.breakfast=130;rates.lunch=250;rates.dinner=250;localStorage.setItem('payroyal-rates',JSON.stringify(rates));}
 if(rates.breakfast===150&&rates.lunch===350&&rates.dinner===320){rates.breakfast=130;rates.lunch=250;rates.dinner=250;localStorage.setItem('payroyal-rates',JSON.stringify(rates));}
 function saveRates(){localStorage.setItem('payroyal-rates',JSON.stringify(rates));toast('Settings saved on this device');}
 function client(){if(!window.supabase){toast('Supabase library is still loading');return null}if(SUPABASE_ANON_KEY.includes('PASTE_YOUR')){toast('Add your Supabase anon public key in this file first');return null}if(!sb)sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{realtime:{params:{eventsPerSecond:10}}});return sb}
