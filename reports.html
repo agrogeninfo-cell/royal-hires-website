@@ -56,7 +56,8 @@ async function initReports(){
  $('#savePayrollBtn').onclick=savePayroll;
  $('#invoiceBtn').onclick=saveInvoice;
  $('#csvBtn').onclick=exportPayrollCsv;
- $('#printInvoiceBtn').onclick=()=>window.print();\n $('#printPayrollBtn').onclick=()=>{document.body.classList.add('print-payroll');window.print();};window.addEventListener('afterprint',()=>document.body.classList.remove('print-payroll'));
+ $('#printInvoiceBtn').onclick=()=>window.print();
+ $('#printPayrollBtn').onclick=()=>{document.body.classList.add('print-payroll');window.print();};window.addEventListener('afterprint',()=>document.body.classList.remove('print-payroll'));
 }
 async function calculatePayroll(){
  const c=client(),factory=$('#factorySelect').value,start=$('#periodStart').value,end=$('#periodEnd').value;
@@ -104,7 +105,8 @@ async function calculatePayroll(){
   renderPayroll();
   $('#savePayrollBtn').disabled=false;
   $('#invoiceBtn').disabled=!invoicePreview.ready;
-  $('#printInvoiceBtn').disabled=!invoicePreview.ready;\n  $('#printPayrollBtn').disabled=false;\n  $('#payrollPrintPeriod').textContent=factory+' · '+period;
+  $('#printInvoiceBtn').disabled=!invoicePreview.ready;
+  $('#printPayrollBtn').disabled=false;\n  $('#payrollPrintPeriod').textContent=factory+' · '+period;
   renderInvoicePaper();
   $('#csvBtn').disabled=false;
   const missing=(staff||[]).filter(e=>!e.factory&&!e.factory_id).length;
