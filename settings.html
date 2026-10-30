@@ -31,7 +31,10 @@ function initAttendance(){let d=$('#workDate');if(d){d.value=today();d.addEventL
 
 async function initFactoryRates(){
  const host=document.querySelector('#factoryRateCards'),c=client();if(!c||!host)return;
- const {data,error}=await c.from('factory_rate_cards').select('*').order('factory_name');
+ const [{data,error},{data:staff,error:staffError}]=await Promise.all([c.from('factory_rate_cards').select('*').order('factory_name'),c.from('employees').select('id,labour_code,name,factory,gender')]);
+ if(staffError){document.querySelector('#unassignedEmployees').innerHTML='<div class="warning">Employee list could not load: '+staffError.message+'</div>';return;}
+ const missing=(staff||[]).filter(e=>!e.factory);\n const unassigned=document.querySelector('#unassignedEmployees');\n unassigned.innerHTML=missing.length?missing.map(e=>'<section class="card" style="margin-bottom:10px"><b>'+e.labour_code+' · '+e.name+'</b><div class="formgrid" style="margin-top:10px"><label><span class="label">Factory</span><select class="field" data-factory><option value="">Select factory</option>'+((data||[]).map(x=>'<option value="'+x.factory_name+'">'+x.factory_name+'</option>').join(''))+'</select></label><label><span class="label">Gender</span><select class="field" data-gender><option value="">Select gender</option><option value="Male" '+(e.gender==='Male'?'selected':'')+'>Male</option><option value="Female" '+(e.gender==='Female'?'selected':'')+'>Female</option></select></label></div><button class="primary" data-assign="'+e.id+'" style="width:100%;margin-top:8px">Save employee assignment</button></section>').join(''):'<div class="card">All employees have a factory assigned.</div>';
+ unassigned.querySelectorAll('[data-assign]').forEach(btn=>btn.addEventListener('click',async()=>{const card=btn.closest('section'),factory=card.querySelector('[data-factory]').value,gender=card.querySelector('[data-gender]').value;if(!factory||!gender){toast('Select both factory and gender first.');return;}btn.disabled=true;const {error}=await c.from('employees').update({factory,gender}).eq('id',btn.dataset.assign);btn.disabled=false;if(error){toast('Assignment failed: '+error.message);return;}toast('Employee assignment saved.');initFactoryRates();}));
  if(error){host.innerHTML='<div class="warning">Could not load factory rates: '+error.message+'</div>';return;}
  if(!data?.length){host.innerHTML='<div class="warning">No factory rate cards configured.</div>';return;}
  const fields=[
@@ -60,7 +63,7 @@ document.addEventListener('DOMContentLoaded',()=>{initFactoryRates();});
 <main class="wrap">
  <div class="sectionhead"><div><h2>Factory Rates & Settings</h2><p class="muted">These rates are stored in Supabase and shared across devices.</p></div></div>
  <div class="warning">Millennium rates are prefilled from your confirmed instructions. Empire billing rates are intentionally blank until you confirm them. Never generate an invoice while billing rates are missing.</div>
- <div id="factoryRateCards"><div class="card">Loading factory rate cards…</div></div>
+ <div id="factoryRateCards"><div class="card">Loading factory rate cards…</div></div><div class="sectionhead"><div><h2>Unassigned Employees</h2><p class="muted">Assign factory and gender before including employees in payroll and invoices.</p></div></div><div id="unassignedEmployees"><div class="card">Loading employee assignments…</div></div>
  <div class="card" style="margin-top:14px"><h3>Payroll calculation rules</h3><ul class="small"><li>Full day = 1.0 · Half day = 0.5 · Absent = 0</li><li>Late deduction = configured hourly rate ÷ 60 × late minutes</li><li>Attendance bonus applies at or above configured qualifying days</li><li>Meal deduction = recorded breakfast + lunch + dinner counts × configured rates</li><li>Factory invoice excludes worker late deductions and meal deductions</li><li>Advance defaults to Rs. 0 and can be entered in the payroll review before saving</li></ul></div>
 </main>
 <div class="toast" id="toast"></div>
