@@ -17,6 +17,9 @@ create table if not exists public.factory_rate_cards (
   breakfast_rate numeric(12,2) not null default 130,
   lunch_rate numeric(12,2) not null default 250,
   dinner_rate numeric(12,2) not null default 250,
+  weekday_wage numeric(12,2),
+  saturday_wage numeric(12,2),
+  sunday_poya_wage numeric(12,2),
   updated_at timestamptz not null default now(),
   constraint factory_rate_cards_nonnegative check (
     coalesce(male_wage,0)>=0 and coalesce(female_wage,0)>=0 and
@@ -40,6 +43,11 @@ values
 ('Millennium Estate',2500,2100,3000,2500,180,225,150,5500,21,130,250,250,null,null,null),
 ('Empire Tea Factory',null,null,null,null,null,null,150,5500,21,130,250,250,2000,2000,2300)
 on conflict(factory_name) do nothing;
+
+alter table public.attendance add column if not exists shift_type text not null default 'weekday';
+alter table public.attendance drop constraint if exists attendance_shift_type_check;
+alter table public.attendance add constraint attendance_shift_type_check check (shift_type in ('weekday','saturday','sunday_poya'));
+update public.factory_rate_cards set weekday_wage=2000,saturday_wage=2000,sunday_poya_wage=2300,updated_at=now() where factory_name='Empire Tea Factory' and weekday_wage is null and saturday_wage is null and sunday_poya_wage is null;
 
 alter table public.attendance
   add column if not exists shift_type text not null default 'weekday';
