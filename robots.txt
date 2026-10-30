@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://agrogeninfo-cell.github.io/royal-hires-website/sitemap.xml
