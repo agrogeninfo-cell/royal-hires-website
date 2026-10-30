@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#062d27"><title>Secure Login | Pay Royal</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#062d27,#0b5145);font:15px/1.5 Inter,system-ui,sans-serif;color:#18352e}.panel{width:min(100%,430px);background:#fff;border-radius:26px;padding:30px;box-shadow:0 24px 80px #001b1880}.mark{width:58px;height:58px;border:2px solid #d7ad63;border-radius:18px;display:grid;place-items:center;color:#d7ad63;background:#062d27;font-size:32px;font-weight:900}.eyebrow{color:#92713a;font-size:11px;letter-spacing:2px;font-weight:800;margin-top:20px}h1{margin:5px 0;color:#062d27;font-size:28px}.muted{color:#71847c;font-size:13px}.field{width:100%;padding:14px;border:1px solid #dce8e0;border-radius:13px;margin:7px 0 15px;font:inherit}.btn{width:100%;padding:14px;border:0;border-radius:99px;background:#062d27;color:white;font-weight:800;font:inherit;cursor:pointer}.link{border:0;background:none;color:#176b59;text-decoration:underline;padding:10px 0;cursor:pointer;font:inherit;font-size:13px}.msg{margin-top:14px;font-size:13px;color:#a33;min-height:20px}.foot{text-align:center;margin-top:20px;color:#75867f;font-size:11px}.hidden{display:none!important}
+</style></head><body><main class="panel"><div class="mark">R</div><div class="eyebrow">ROYAL HIRES PRIVATE LIMITED</div><h1>Pay Royal Login</h1><p class="muted">Sign in with your authorised account to access workforce and payroll records.</p>
+<section id="loginPanel"><form id="loginForm"><label class="muted" for="email">Email address</label><input class="field" id="email" type="email" autocomplete="username" required placeholder="name@example.com"><label class="muted" for="password">Password</label><input class="field" id="password" type="password" autocomplete="current-password" required placeholder="Your password"><button class="btn" id="loginBtn" type="submit">Sign in securely</button></form><button class="link" id="forgotBtn" type="button">Forgot password?</button></section>
+<section id="resetPanel" class="hidden"><p class="muted">Enter your new password after opening the secure reset link sent to your Gmail.</p><form id="resetForm"><label class="muted" for="newPassword">New password</label><input class="field" id="newPassword" type="password" minlength="8" autocomplete="new-password" required placeholder="At least 8 characters"><label class="muted" for="confirmPassword">Confirm new password</label><input class="field" id="confirmPassword" type="password" minlength="8" autocomplete="new-password" required placeholder="Re-enter password"><button class="btn" id="resetBtn" type="submit">Save new password</button></form></section>
+<div id="msg" class="msg" role="alert" aria-live="polite"></div><div class="foot">Protected access · Pay Royal</div></main>
+<script>
+const SUPABASE_URL='https://jwghmsflabvzzhucuwsn.supabase.co';
+const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTM4NzUsImV4cCI6MjEwODcyOTg3NX0.JgUcVdMOTnYP1Txp_U2xO8R3Txvp0QEQnAvwnpxX5sU';
+const msg=document.querySelector('#msg');
+const loginPanel=document.querySelector('#loginPanel'),resetPanel=document.querySelector('#resetPanel');
+const params=new URLSearchParams(location.search);
+let sb=null;
+let authReady=false;
+function showError(text){msg.style.color='#a33';msg.textContent=text;}
+function showSuccess(text){msg.style.color='#176b59';msg.textContent=text;}
+async function initAuth(){
+  if(!window.supabase || typeof window.supabase.createClient!=='function') throw new Error('Secure login service did not load. Check your internet connection and refresh.');
+  sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  authReady=true;
+  if(params.get('reason')==='access')showError('This account is inactive or not authorised. Contact the administrator.');
+  if(params.get('error'))showError('The password reset link is invalid or expired. Request a new one.');
+  const {data:{session},error}=await sb.auth.getSession();
+  if(error)throw error;
+  if(location.hash.includes('type=recovery')||params.get('reset')==='1'){
+    loginPanel.classList.add('hidden');resetPanel.classList.remove('hidden');
+  } else if(session){
+    const {data:p,error:pe}=await sb.from('user_profiles').select('role,is_active').eq('user_id',session.user.id).maybeSingle();
+    if(!pe&&p&&p.is_active)location.replace('index.html');
+  }
+}
+document.querySelector('#loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=document.querySelector('#loginBtn');
+  if(!sb){showError('Login service is still loading. Please wait a moment and try again.');return;}
+  btn.disabled=true;btn.textContent='Verifying…';msg.textContent='';
+  try{
+    if(!authReady) await initAuth();
+    const email=document.querySelector('#email').value.trim();
+    const password=document.querySelector('#password').value;
+    const {data,error}=await sb.auth.signInWithPassword({email,password});
+    if(error)throw error;
+    const {data:p,error:pe}=await sb.from('user_profiles').select('role,is_active').eq('user_id',data.user.id).maybeSingle();
+    if(pe)throw pe;
+    if(!p||!p.is_active||!['admin','office_staff','supervisor','worker'].includes(p.role)){
+      await sb.auth.signOut();throw new Error('Access not authorised. Contact Royal Hires administrator.');
+    }
+    location.replace(p.role==='worker'?'salary-check.html':'index.html');
+  }catch(error){showError(error.message||'Sign in failed. Please try again.');btn.disabled=false;btn.textContent='Sign in securely';}
+});
+document.querySelector('#forgotBtn').addEventListener('click',async()=>{
+  const email=document.querySelector('#email').value.trim();
+  if(!email){showError('Enter your Gmail address first.');document.querySelector('#email').focus();return;}
+  const btn=document.querySelector('#forgotBtn');
+  if(!sb){showError('Login service is still loading. Please wait and try again.');return;}
+  btn.disabled=true;showSuccess('Sending password reset email…');
+  try{
+    if(!authReady) await initAuth();
+    const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname+'?reset=1'});
+    if(error)throw error;
+    showSuccess('If this account exists, a password reset email has been sent. Check Gmail Inbox and Spam.');
+  }catch(error){showError(error.message||'Could not send the reset email. Please try again.');}
+  finally{btn.disabled=false;}
+});
+document.querySelector('#resetForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const a=document.querySelector('#newPassword').value,b=document.querySelector('#confirmPassword').value;
+  if(a!==b){showError('Passwords do not match.');return;}
+  const btn=document.querySelector('#resetBtn');
+  if(!sb){showError('Login service is still loading. Please refresh and try again.');return;}
+  btn.disabled=true;btn.textContent='Saving…';
+  try{
+    if(!authReady) await initAuth();
+    const {error}=await sb.auth.updateUser({password:a});
+    if(error)throw error;
+    showSuccess('Password updated. Please sign in with your new password.');
+    await sb.auth.signOut();
+    resetPanel.classList.add('hidden');loginPanel.classList.remove('hidden');
+    document.querySelector('#password').value='';
+  }catch(error){showError(error.message||'Could not update password. Request a new reset link.');}
+  finally{btn.disabled=false;btn.textContent='Save new password';}
+});
+initAuth().catch(error=>{authReady=false;showError(error.message||'Secure login could not start. Refresh the page.');});
+</script></body></html>

@@ -1,14 +1,40 @@
-# Royal Hires Corporate Website
+# Royal Hires Private Limited — Official Website
 
-This directory contains the standalone public-facing Royal Hires company website.
+**The Royal Standard Of Recruitment**
 
-## Deploy safely
-- Set the hosting publish/output directory to `corporate-site`.
-- Do not change the repository root deployment for the Pay Royal payroll application.
-- This site is static HTML/CSS/JS and does not connect to the payroll database.
-- The contact form opens a prefilled WhatsApp message; it does not store or submit data to a server.
+This repository contains the standalone public website for Royal Hires Private Limited.
+
+## Website sections
+- Home
+- About Us
+- Our Services
+- For Employers
+- Careers
+- Contact Us
+
+## Design
+- Premium near-black, deep purple, electric violet and white palette
+- Responsive desktop and mobile layout
+- Smooth section reveals and interactive navigation
+- Respects the user's reduced-motion preference
+- No gold accents
+
+## Preview locally
+Open `index.html` in a modern browser. Google Fonts are loaded online; the site remains usable if the fonts cannot load.
+
+## Publish with GitHub Pages
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment**, choose **Deploy from a branch**.
+3. Select `main` and `/ (root)`, then save.
+4. Wait for publishing to finish and use the URL shown in Settings → Pages.
+5. Test the site on Android Chrome and desktop before sharing it.
 
 ## Before public launch
-- Confirm that +94 77 358 0063 is the approved public recruitment/enquiry WhatsApp number.
-- Confirm the office address and public-facing service descriptions.
-- Replace the temporary stock photography with approved Royal Hires photography where available.
+- Verify and add official company phone, email, office address and approved service details.
+- Confirm contact behavior. The static contact form prepares a local email draft; it does not send or store submissions on a server.
+- Do not add fictional testimonials, unverified statistics, confidential information or unapproved claims.
+
+## Privacy and separation
+This repository is separate from the Royal Pay payroll application. The website does not connect to the payroll database or payroll Supabase project. Do not add employee records, salaries, attendance, invoices, payment information, credentials or API secrets.
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) and [MOTION_SPEC.md](MOTION_SPEC.md) for additional notes.

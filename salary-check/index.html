@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#062d27">
+<title>Royal Hires | Salary Check</title>
+<style>
+:root{--emerald:#062d27;--emerald2:#0a3b32;--gold:#d7ad63;--paper:#fcf9ef;--ink:#18342c;--muted:#687a72;--line:#e0e8e2;--red:#a11}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,rgba(215,173,99,.13),transparent 38rem),var(--paper);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:var(--emerald);color:var(--paper);border-bottom:4px solid var(--gold);padding:20px 16px}.head{max-width:980px;margin:auto;display:flex;align-items:center;gap:13px}.mark{display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--gold);border-radius:15px;color:var(--gold);font-size:24px;font-weight:950}.brand{font-size:21px;font-weight:900;letter-spacing:.07em}.tag{margin-top:3px;color:var(--gold);font-size:10px;letter-spacing:.23em;font-weight:800}
+main{max-width:980px;margin:auto;padding:clamp(26px,6vw,58px) 16px 60px}.intro{text-align:center;max-width:650px;margin:0 auto 26px}.eyebrow{margin:0 0 10px;color:#8c692f;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:900}h1{margin:0;color:var(--emerald);font-size:clamp(29px,6vw,43px);letter-spacing:-.04em;line-height:1.12}.intro p:last-child{color:var(--muted);line-height:1.7;margin:12px 0 0}
+.card{max-width:560px;margin:auto;background:#fff;border:2px solid var(--emerald);border-radius:24px;padding:clamp(18px,5vw,30px);box-shadow:6px 6px 0 var(--emerald),0 18px 48px #062d2712}.cardtop{display:flex;align-items:center;gap:12px;margin-bottom:22px}.shield{width:44px;height:44px;flex:0 0 44px;display:grid;place-items:center;border-radius:14px;background:var(--emerald);color:var(--gold);font-size:21px}.cardtop h2{margin:0;color:var(--emerald);font-size:20px}.cardtop p{margin:3px 0 0;color:var(--muted);font-size:12px}label{display:block;margin-bottom:8px;color:var(--emerald);font-size:14px;font-weight:850}.row{display:flex;gap:10px}input{min-width:0;flex:1;width:100%;padding:15px 14px;border:2px solid #dce4df;border-radius:14px;background:#fffef9;color:var(--emerald);font:800 17px system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;outline:none}input:focus{border-color:var(--gold);box-shadow:0 0 0 4px #d7ad6333}input::placeholder{color:#89968f;letter-spacing:0}button,.back{border:0;border-radius:14px;padding:14px 18px;background:var(--gold);color:var(--emerald);font-size:15px;font-weight:900;white-space:nowrap;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}button:hover,.back:hover{filter:brightness(1.04)}.hint{margin:8px 0 0;color:#7b8982;font-size:11px}.msg{margin:0;color:var(--red);font-size:13px;font-weight:750}.msg:not(:empty){margin-top:12px}.secure{margin-top:18px;padding:13px;border:1px dashed #c5d9cf;border-radius:14px;background:#f4faf5;text-align:center;color:#176047;font-size:12px;font-weight:750;line-height:1.6}.secure small{display:block;margin-top:5px;color:#718078;font-size:10px;font-weight:500}.result{margin-top:20px}.resultcard{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:white}.rhead{padding:18px;background:var(--emerald);color:var(--paper)}.period{display:inline-block;padding:5px 10px;border-radius:999px;background:var(--gold);color:var(--emerald);font-size:11px;font-weight:900}.rhead h3{margin:12px 0 3px;font-size:23px}.rhead p{margin:0;color:#d2ded8;font-size:12px}.rbody{padding:14px 18px 18px}.payrow{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:14px}.payrow span{color:#586b63}.payrow strong{text-align:right;color:var(--emerald);font-variant-numeric:tabular-nums}.neg{color:var(--red)!important}.net{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:16px;border-radius:13px;background:var(--emerald);color:var(--paper);font-size:14px;font-weight:850}.net strong{color:var(--gold);font-size:clamp(18px,4vw,24px);text-align:right}.note{margin:12px 0 0;color:#78867f;font-size:11px;line-height:1.5}.foot{text-align:center;margin:28px auto 0;color:#7a8981;font-size:11px;line-height:1.6}.foot strong{color:var(--emerald)}.backrow{text-align:center;margin-top:28px}.back{background:var(--emerald);color:var(--paper);border:1px solid var(--gold)}
+@media(max-width:480px){header{padding:17px 14px}.mark{width:42px;height:42px;flex-basis:42px}.brand{font-size:18px}.row{flex-direction:column}.row button{width:100%;padding:15px}.card{box-shadow:4px 4px 0 var(--emerald)}.payrow{font-size:13px}}
+</style>
+</head>
+<body>
+<header><div class="head"><div class="mark" aria-hidden="true">R</div><div><div class="brand">ROYAL HIRES</div><div class="tag">THE ROYAL STANDARD</div></div></div></header>
+<main>
+<section class="intro"><p class="eyebrow">Employee self-service</p><h1>ඔයාගේ Salary බලන්න</h1><p>ID eka danna, salary balanna</p></section>
+<section class="card" aria-label="Salary check">
+<div class="cardtop"><div class="shield" aria-hidden="true">₹</div><div><h2>Salary Check</h2><p>ඔබගේ Labour ID එක ඇතුළත් කරන්න</p></div></div>
+<form id="salaryForm" novalidate><label for="labourCode">Labour ID / RH Code</label><div class="row"><input id="labourCode" name="labourCode" placeholder="උදා: RHSP200" autocomplete="off" autocapitalize="characters" maxlength="24" aria-describedby="hint" required><button type="submit">බලන්න →</button></div><p class="hint" id="hint">උදා: RHSP200, RHTD201, RHNS202</p><p class="msg" id="message" role="status" aria-live="polite"></p></form>
+<div class="result" id="result" aria-live="polite"></div>
+<div class="secure">🔒 Secure - ID eke ayithukaru ge payroll witharai penne<small>මෙහි දැනට sample payroll records පමණක් ඇත. සැබෑ සේවක වැටුප් ආරක්ෂා කිරීමට authenticated server-side access අවශ්‍යයි.</small></div>
+</section>
+<div class="backrow"><a class="back" href="../">← Main Website එකට යන්න</a></div>
+<p class="foot"><strong>Royal Hires Private Limited</strong><br>Salary details ගැන ගැටලුවක් ඇත්නම් company එකෙන් විමසන්න.</p>
+</main>
+<script>
+var LABOURS = [
+ {id:"RHSP200",name:"Sunil Perera",role:"Mason / Baas",month:"March 2025",days:26,basic:65000,otHours:12,otRate:450,allowance:8000,deduction:2500,advance:5000},
+ {id:"RHTD201",name:"Thusith Dissanayake",role:"Tile Layer",month:"March 2025",days:24,basic:58000,otHours:8,otRate:400,allowance:5000,deduction:1200,advance:3000},
+ {id:"RHNS202",name:"Nimal Silva",role:"Helper",month:"March 2025",days:27,basic:45000,otHours:15,otRate:300,allowance:6000,deduction:800,advance:2000}
+];
+function salaryMoney(value){return "Rs. "+Number(value).toLocaleString("en-LK",{maximumFractionDigits:0});}
+function salarySafe(value){return String(value).replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch];});}
+function checkSalary(event){
+ if(event){event.preventDefault();}
+ var input=document.getElementById("labourCode");
+ var message=document.getElementById("message");
+ var result=document.getElementById("result");
+ var code=input.value.trim().toUpperCase().replace(/\s/g,"");
+ result.innerHTML="";
+ message.textContent="";
+ if(!code){message.textContent="කරුණාකර Labour ID එක ඇතුළත් කරන්න. උදා: RHSP200";input.focus();return;}
+ var ending=code.slice(-3);
+ var initials=code.slice(2,-3);
+ if(code.indexOf("RH")!==0 || initials.length<1 || initials.length>6 || !/^[0-9]{3}$/.test(ending)){
+   message.textContent="ID format එක නිවැරදි නැහැ. උදා: RHSP200";input.focus();return;
+ }
+ var labour=null;
+ for(var i=0;i<LABOURS.length;i++){if(LABOURS[i].id===code){labour=LABOURS[i];break;}}
+ if(!labour){message.textContent="මෙම ID එකට salary record එකක් හමු වුණේ නැහැ. Company එකෙන් විමසන්න.";return;}
+ var overtime=labour.otHours*labour.otRate;
+ var gross=labour.basic+overtime+labour.allowance;
+ var net=gross-labour.deduction-labour.advance;
+ result.innerHTML='<article class="resultcard"><div class="rhead"><span class="period">'+salarySafe(labour.month)+' · Days '+Number(labour.days)+'</span><h3>'+salarySafe(labour.name)+'</h3><p>'+salarySafe(labour.id)+' · '+salarySafe(labour.role)+'</p></div><div class="rbody"><div class="payrow"><span>Basic Salary</span><strong>'+salaryMoney(labour.basic)+'</strong></div><div class="payrow"><span>OT ('+Number(labour.otHours)+'h × '+salaryMoney(labour.otRate)+')</span><strong>'+salaryMoney(overtime)+'</strong></div><div class="payrow"><span>Allowance</span><strong>'+salaryMoney(labour.allowance)+'</strong></div><div class="payrow"><span>Deduction</span><strong class="neg">− '+salaryMoney(labour.deduction)+'</strong></div><div class="payrow"><span>Advance</span><strong class="neg">− '+salaryMoney(labour.advance)+'</strong></div><div class="net"><span>NET SALARY</span><strong>'+salaryMoney(net)+'</strong></div><p class="note">Gross salary: '+salaryMoney(gross)+'. මෙය sample data මත පදනම් වේ.</p></div></article>';
+}
+document.addEventListener("DOMContentLoaded",function(){
+ var form=document.getElementById("salaryForm");
+ if(form){form.addEventListener("submit",checkSalary);}
+});
+</script>
+</body>
+</html>

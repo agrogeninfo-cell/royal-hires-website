@@ -1,0 +1,228 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#062D27"><meta name="description" content="Pay Royal workforce management by Royal Hires Private Limited"><title>Reports | Pay Royal</title><link rel="manifest" href="manifest.webmanifest"><style>
+:root{--bg:#f0fdf4;--green:#062d27;--gold:#d7ad63;--mint:#e8f5e9;--ink:#18352e;--muted:#668078;--line:#e3eee6;--white:#fff;--red:#c94343}
+*{box-sizing:border-box}html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:120px}
+button,input,select{font:inherit}button{cursor:pointer;min-height:44px;border:0}a{color:inherit;text-decoration:none}.wrap{max-width:1100px;margin:auto;padding:16px}.top{background:var(--green);color:white;border-bottom:4px solid var(--gold);padding:12px 16px;position:sticky;top:0;z-index:10}.brand{max-width:1100px;margin:auto;display:flex;align-items:center;gap:12px}.logo{height:48px;width:48px;border:2px solid var(--gold);border-radius:15px;display:grid;place-items:center;color:var(--gold);font-size:30px;font-weight:900;box-shadow:0 0 18px #d7ad6330}.brand h1{font-size:19px;line-height:1.15;margin:0;font-weight:800}.brand small{display:block;color:var(--gold);font-size:10px;letter-spacing:.06em;margin-top:4px}.spacer{flex:1}.iconbtn{background:#ffffff16;color:white;border:1px solid #ffffff30;border-radius:13px;padding:8px 12px}.hero{margin:16px 0;border-radius:28px;overflow:hidden;min-height:280px;position:relative;background:#183b31;color:white;display:flex;align-items:end;padding:25px;background-size:cover;background-position:center;isolation:isolate}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#062d27e8,#062d2766 70%,#062d2720);z-index:-1}.hero h2{font-size:clamp(27px,4vw,42px);line-height:1.08;margin:12px 0;max-width:560px}.hero p{color:#ffffffd9;max-width:480px}.pill{display:inline-flex;align-items:center;border-radius:99px;padding:7px 13px;background:white;color:var(--green);font-weight:700;font-size:12px}.goldpill{background:var(--gold);color:var(--green)}.outline{display:inline-flex;margin-top:18px;border:2px solid var(--gold);color:var(--gold);border-radius:50px;padding:10px 18px;background:#ffffff12;backdrop-filter:blur(12px);font-weight:700}.slidebtn{position:absolute;right:16px;top:16px;border-radius:50%;background:#062d27d9;color:white;width:42px;height:42px}.slidebtn.prev{right:66px}.dots{display:flex;gap:7px;margin-top:18px}.dot{width:8px;height:8px;background:#ffffff80;border-radius:20px}.dot.active{width:24px;background:var(--gold)}.filters{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:14px 0}.filter,.field{border:1px solid var(--line);background:white;border-radius:50px;padding:10px 14px;color:var(--green)}.primary{background:var(--green);color:white;border-radius:50px;padding:11px 18px;font-weight:750}.goldbtn{background:var(--gold);color:var(--green);border-radius:50px;padding:10px 16px;font-weight:800}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:white;border:1px solid #eaf1eb;border-radius:20px;padding:17px;box-shadow:0 8px 28px #062d270a;min-width:0}.card h3{margin:0 0 4px;font-size:17px}.muted{color:var(--muted);font-size:13px}.metric{font-size:30px;font-weight:850;color:var(--green);line-height:1.2;margin:8px 0}.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.between{display:flex;align-items:center;justify-content:space-between;gap:10px}.divider{height:1px;background:var(--line);margin:14px 0}.worker{border:1px solid var(--line);border-radius:16px;padding:13px;margin-top:10px}.worker h4{margin:0;font-size:15px}.worker .meta{font-size:12px;color:var(--muted)}.seg{display:flex;gap:5px;margin:10px 0}.seg button{flex:1;border-radius:11px;background:#f3f7f3;color:var(--green);font-weight:750}.seg button.active{background:var(--green);color:white}.counter{display:flex;align-items:center;gap:8px}.counter button{width:34px;height:34px;border-radius:50%;background:var(--mint);color:var(--green);font-weight:900}.counter input{width:58px;text-align:center;border:1px solid var(--line);border-radius:9px;padding:6px}.amount{font-weight:850;color:var(--green)}.warning{background:#fff7e7;border:1px solid #f1d8a5;color:#79541a;border-radius:13px;padding:12px;font-size:13px;margin:12px 0}.nav{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#fffffff2;backdrop-filter:blur(18px);box-shadow:0 -8px 30px #062d2712;border-radius:24px 24px 0 0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px}.nav a{flex:1;max-width:150px;text-align:center;padding:8px 3px;border-radius:15px;color:#6b8178;font-size:11px;font-weight:700}.nav a.active{background:var(--mint);color:var(--green)}.nav .plus{background:#5cb8c7;color:white;border:4px solid white;border-radius:50%;height:56px;width:56px;min-width:56px;flex:none;margin-top:-18px;font-size:28px;box-shadow:0 7px 18px #062d2725}.nav .plus span{display:block;font-size:9px;line-height:1}.toast{position:fixed;top:82px;right:15px;z-index:40;background:var(--green);color:white;padding:12px 16px;border-radius:14px;box-shadow:0 8px 30px #0002;display:none;max-width:90vw}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:20px 0 12px}.sectionhead h2{font-size:21px;margin:0}.field{border-radius:12px;width:100%;margin:5px 0}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.label{font-size:12px;font-weight:750;color:var(--muted)}.meal{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}.meal:last-child{border:0}.progress{height:7px;background:#f4dddd;border-radius:99px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:var(--red);border-radius:99px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--muted);font-size:11px;text-transform:uppercase}.small{font-size:12px}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
+@media(max-width:650px){.wrap{padding:12px}.grid{grid-template-columns:1fr}.hero{min-height:300px;padding:20px}.formgrid{grid-template-columns:1fr 1fr}.brand h1{font-size:17px}.brand small{font-size:9px}.desktop{display:none}.card{padding:15px}}
+@media print{body *{visibility:hidden!important}#invoicePaper,#invoicePaper *{visibility:visible!important}#invoicePaper{display:block!important;position:absolute;left:0;top:0;width:100%;border:0!important;box-shadow:none!important}#invoicePaper table{font-size:12px}#invoicePaper th,#invoicePaper td{padding:12px;border-bottom:1px solid #ddd}#invoicePaper h2{color:#062d27!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}@media print{@page{size:A4 landscape;margin:10mm}body.print-payroll *{visibility:hidden!important}body.print-payroll #payrollPaper,body.print-payroll #payrollPaper *{visibility:visible!important}body.print-payroll #payrollPaper{display:block!important;position:absolute;left:0;top:0;width:100%;border:0!important;box-shadow:none!important}body.print-payroll #payrollPaper table{font-size:9px}body.print-payroll #payrollPaper th,body.print-payroll #payrollPaper td{padding:6px}}</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="./auth.js"></script><script>
+const SUPABASE_URL='https://jwghmsflabvzzhucuwsn.supabase.co';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTM4NzUsImV4cCI6MjEwODcyOTg3NX0.JgUcVdMOTnYP1Txp_U2xO8R3Txvp0QEQnAvwnpxX5sU';
+let sb=null, live=false;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function toast(msg){let t=$('#toast');if(t){t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',3000)}}
+function money(n){return 'Rs. '+Number(n||0).toLocaleString('en-LK',{maximumFractionDigits:2})}
+function today(){return new Date().toLocaleDateString('en-CA')}
+const defaultRates={empWeekday:2000,empSaturday:2000,empSunday:2300,empWeekBase:1525,empSatBase:1875,empOTHours:3,empOTRate:225,empSundayBase:null,night:100,bonus:5500,bonusDays:21,malePay:2500,femalePay:2100,maleBill:3000,femaleBill:2500,millOT:225,lateRate:150,breakfast:130,lunch:250,dinner:250,boarding:6000};
+let rates={...defaultRates,...JSON.parse(localStorage.getItem('payroyal-rates')||'{}')};
+if(rates.breakfast===150&&rates.lunch===350&&rates.dinner===320){rates.breakfast=130;rates.lunch=250;rates.dinner=250;localStorage.setItem('payroyal-rates',JSON.stringify(rates));}
+function saveRates(){localStorage.setItem('payroyal-rates',JSON.stringify(rates));toast('Settings saved on this device');}
+function client(){if(!window.supabase){toast('Supabase library is still loading');return null}if(SUPABASE_ANON_KEY.includes('PASTE_YOUR')){toast('Add your Supabase anon public key in this file first');return null}if(!sb)sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{realtime:{params:{eventsPerSecond:10}}});return sb}
+async function query(table,filters={}){let c=client();if(!c)return [];let q=c.from(table).select('*');Object.entries(filters).forEach(([k,v])=>q=q.eq(k,v));let {data,error}=await q;if(error){console.error(error);toast(table+': '+error.message);return []}return data||[]}
+async function upsert(table,row,conflict){let c=client();if(!c){queueWrite(table,row,conflict);return false}let {error}=await c.from(table).upsert(row,{onConflict:conflict});if(error){console.error(error);toast('Save failed: '+error.message);queueWrite(table,row,conflict);return false}toast('Saved and synced');return true}
+function queueWrite(table,row,conflict){let q=JSON.parse(localStorage.getItem('payroyal-offline-queue')||'[]');q.push({table,row,conflict,queuedAt:new Date().toISOString()});localStorage.setItem('payroyal-offline-queue',JSON.stringify(q));toast('Offline: saved to sync queue');}
+async function flushQueue(){let q=JSON.parse(localStorage.getItem('payroyal-offline-queue')||'[]');if(!q.length||!navigator.onLine)return;let c=client();if(!c)return;let remain=[];for(let x of q){let {error}=await c.from(x.table).upsert(x.row,{onConflict:x.conflict});if(error)remain.push(x)}localStorage.setItem('payroyal-offline-queue',JSON.stringify(remain));if(q.length!==remain.length)toast('Offline queue synced');}
+window.addEventListener('online',flushQueue);
+const seed=[['RHTD201','Thusith Dissanayake','Male','Millennium Estate',2500,225],['RHNL204','Nuwan Lakmal','Male','Millennium Estate',2500,225],['RHSP200','Sunil Perera','Male','Millennium Estate',2500,225],['RHNS202','Nimal Silva','Male','Millennium Estate',2500,225],['RHKP205','Kamal Perera','Male','Millennium Estate',2500,225],['RHAP203','Amal Priyantha','Male','Millennium Estate',3000,225]];
+async function employees(){let rows=await query('employees');return rows.length?rows:seed.map(([labour_code,name,gender,factory,daily_rate,ot_rate])=>({labour_code,name,gender,factory,daily_rate,ot_rate}))}
+function subscribeLive(){let c=client();if(!c||live)return;live=true;c.channel('pay-royal-live').on('postgres_changes',{event:'*',schema:'public',table:'employees'},()=>toast('Live update: employee records changed')).on('postgres_changes',{event:'*',schema:'public',table:'attendance'},()=>toast('Live update: attendance changed')).subscribe(s=>{if(s==='SUBSCRIBED')toast('Live sync connected')})}
+function dateValue(){return $('#workDate')?.value||today()}
+async function loadAttendance(){let date=dateValue();let host=$('#workers');if(!host)return;host.innerHTML='<div class="card">Loading selected date…</div>';let [staff,records]=await Promise.all([employees(),query('attendance',{date})]);let map=new Map(records.map(r=>[r.employee_id,r]));host.innerHTML='';staff.forEach(e=>{let r=map.get(e.id)||{};let status=r.status||'A';let card=document.createElement('div');card.className='worker';card.innerHTML=`<div class="between"><div><h4>${e.name||e.full_name||e.labour_code}</h4><div class="meta">${e.labour_code} · ${e.factory||e.factory_name||'Factory not set'}</div></div><span class="pill">${e.gender||'Labour'}</span></div><div class="seg">${['P','H','A'].map(v=>`<button data-status="${v}" class="${status===v?'active':''}">${v==='P'?'Present':v==='H'?'Half':'Absent'}</button>`).join('')}</div><div class="row"><label class="small">OT Hours <span class="counter"><button data-dec="ot">−</button><input data-val="ot" type="number" min="0" step=".5" value="${r.ot_hours||0}"><button data-inc="ot">+</button></span></label><label class="small">Late Min <span class="counter"><button data-dec="late">−</button><input data-val="late" type="number" min="0" step="1" value="${r.late_minutes||0}"><button data-inc="late">+</button></span></label></div><label class="small"><input type="checkbox" data-shift ${r.shift_day?'checked':''}> Shift Day</label> <label class="small"><input type="checkbox" data-late ${r.late_mark?'checked':''}> Late Mark</label><div class="divider"></div><div class="between"><span class="muted">Late deduction · not billed to factory</span><b>${money((Number(r.late_minutes)||0)*rates.lateRate/60)}</b></div><button class="primary" style="width:100%;margin-top:10px" data-save>Save ${e.labour_code}</button>`;let selected=status;card.querySelectorAll('[data-status]').forEach(b=>b.onclick=()=>{selected=b.dataset.status;card.querySelectorAll('[data-status]').forEach(x=>x.classList.toggle('active',x===b))});card.querySelectorAll('[data-inc],[data-dec]').forEach(b=>b.onclick=()=>{let inp=card.querySelector(`[data-val="${b.dataset.inc||b.dataset.dec}"]`);let delta=b.dataset.inc?1:-1;inp.value=Math.max(0,Number(inp.value||0)+delta*(inp.dataset.val==='ot'?.5:1))});card.querySelector('[data-save]').onclick=async()=>{if(!e.id){toast('Cannot save: employee database ID is missing');return}let c=client();if(!c)return;let row={employee_id:e.id,date, factory_id:e.factory_id||null,status:selected,ot_hours:Number(card.querySelector('[data-val="ot"]').value||0),late_minutes:Number(card.querySelector('[data-val="late"]').value||0)};let {data:existing,error:findError}=await c.from('attendance').select('id').eq('employee_id',e.id).eq('date',date).maybeSingle();if(findError){console.error(findError);toast('Attendance lookup failed: '+findError.message);return}let result=existing?await c.from('attendance').update(row).eq('id',existing.id):await c.from('attendance').insert(row);if(result.error){console.error(result.error);toast('Attendance save failed: '+result.error.message);return}toast('Attendance saved');await loadAttendance()};host.appendChild(card)});$('#workerCount').textContent=staff.length;$('#recordCount').textContent=records.length;}
+function initAttendance(){let d=$('#workDate');if(d){d.value=today();d.addEventListener('change',()=>{ $('#workers').innerHTML='<div class="card">Loading selected date…</div>';loadAttendance()});loadAttendance();subscribeLive()}}
+function renderRates(){let host=$('#ratesForm');if(!host)return;host.innerHTML=Object.entries(rates).map(([k,v])=>`<label><span class="label">${k.replace(/[A-Z]/g,' $&')}</span><input class="field" data-rate="${k}" type="number" step=".01" value="${v===null?'':v}"></label>`).join('');$('#saveRates').onclick=()=>{host.querySelectorAll('[data-rate]').forEach(i=>rates[i.dataset.rate]=i.value===''?null:Number(i.value));saveRates()}}
+function initMeals(){let host=$('#mealWorkers');if(!host)return;employees().then(staff=>{host.innerHTML=staff.map(e=>`<div class="worker"><div class="between"><div><h4>${e.name}</h4><div class="meta">${e.labour_code}</div></div><b class="amount" data-total>Rs. 0</b></div>${[['breakfast','Breakfast','B'],['lunch','Lunch','L'],['dinner','Dinner','D']].map(([key,label,letter])=>`<div class="meal"><label><input type="checkbox" data-meal="${key}"> ${label} <span class="muted">${letter} · ${money(rates[key])}</span></label><span class="pill">${letter} 1×Rate</span></div>`).join('')}<button class="primary" data-save-meal style="width:100%;margin-top:10px">Save Meals</button></div>`).join('');host.querySelectorAll('.worker').forEach(card=>{const calc=()=>{let total=0;card.querySelectorAll('[data-meal]').forEach(i=>{if(i.checked)total+=rates[i.dataset.meal]});card.querySelector('[data-total]').textContent=money(total)};card.querySelectorAll('[data-meal]').forEach(i=>i.onchange=calc);card.querySelector('[data-save-meal]').onclick=async()=>{let e=staff.find(x=>x.labour_code===card.querySelector('.meta').textContent);let row={labour_code:e.labour_code,meal_date:dateValue(),breakfast:card.querySelector('[data-meal="breakfast"]').checked?1:0,lunch:card.querySelector('[data-meal="lunch"]').checked?1:0,dinner:card.querySelector('[data-meal="dinner"]').checked?1:0};await upsert('meals',row,'labour_code,meal_date')}})})}
+function initSalary(){let f=$('#salaryForm');if(!f)return;f.onsubmit=async ev=>{ev.preventDefault();let code=$('#labourCode').value.trim().toUpperCase();$('#salaryResult').innerHTML='Checking…';let rows=await query('settlements',{labour_code:code});if(!rows.length){$('#salaryResult').innerHTML='<div class="warning">No salary record found for this code. Check the code or contact Royal Hires.</div>';return}let r=rows[0];$('#salaryResult').innerHTML=`<div class="card"><div class="muted">Salary result for ${code}</div><h2>${r.employee_name||r.name||'Employee'}</h2><div class="metric">${money(r.net_salary||r.net_pay||r.amount)}</div><div class="divider"></div><p>Period: ${r.period||r.month||'As recorded'}</p><p class="muted">This page displays records returned by the database. Access is not private until Supabase authentication and Row Level Security policies are configured.</p></div>`}}
+
+let payrollPreview=null, invoicePreview=null, reportEmployees=[], dailySummary=[];
+const rupee=n=>'Rs. '+Number(n||0).toLocaleString('en-LK',{minimumFractionDigits:2,maximumFractionDigits:2});
+function setReportStatus(t){const e=document.querySelector('#statusText');if(e)e.textContent=t;}
+function setPeriodDefaults(){
+ const now=new Date(), y=now.getFullYear(),m=now.getMonth(),d=now.getDate();
+ let start,end;
+ if(d>=25){start=new Date(y,m,25);end=new Date(y,m+1,24);}
+ else{start=new Date(y,m-1,25);end=new Date(y,m,24);}
+ const iso=x=>new Date(x.getTime()-x.getTimezoneOffset()*60000).toISOString().slice(0,10);
+ $('#periodStart').value=iso(start);$('#periodEnd').value=iso(end);
+ updatePeriodLabel();
+}
+function updatePeriodLabel(){const a=$('#periodStart').value,b=$('#periodEnd').value;if(a&&b)$('#periodLabel').value=a+' to '+b;}
+async function initReports(){
+ const c=client();if(!c)return;
+ setPeriodDefaults();
+ $('#periodStart').addEventListener('change',updatePeriodLabel);$('#periodEnd').addEventListener('change',updatePeriodLabel);
+ const {data:ratesData,error}=await c.from('factory_rate_cards').select('*').order('factory_name');
+ if(error){setReportStatus('Factory rates could not load: '+error.message);return;}
+ $('#factorySelect').innerHTML=(ratesData||[]).map(x=>'<option value="'+String(x.factory_name).replace(/"/g,'&quot;')+'">'+x.factory_name+'</option>').join('');
+ if(!ratesData?.length){setReportStatus('No factory rate cards found. Open Settings and configure a factory first.');return;}
+ $('#calculateBtn').onclick=calculatePayroll;
+ $('#savePayrollBtn').onclick=savePayroll;
+ $('#invoiceBtn').onclick=saveInvoice;
+ $('#csvBtn').onclick=exportPayrollCsv;
+ $('#printInvoiceBtn').onclick=()=>window.print();
+ $('#printPayrollBtn').onclick=()=>{document.body.classList.add('print-payroll');window.print();};window.addEventListener('afterprint',()=>document.body.classList.remove('print-payroll'));
+}
+async function calculatePayroll(){
+ const c=client(),factory=$('#factorySelect').value,start=$('#periodStart').value,end=$('#periodEnd').value;
+ if(!start||!end||start>end){setReportStatus('Please enter a valid date range.');return;}
+ const period=$('#periodLabel').value.trim()||start+' to '+end;
+ setReportStatus('Loading employee, attendance and meal records…');
+ $('#calculateBtn').disabled=true;
+ try{
+  const [{data:staff,error:se},{data:att,error:ae},{data:meals,error:me},{data:rateRows,error:re}]=await Promise.all([
+   c.from('employees').select('*'),
+   c.from('attendance').select('*').gte('date',start).lte('date',end),
+   c.from('meals').select('*').gte('meal_date',start).lte('meal_date',end),
+   c.from('factory_rate_cards').select('*').eq('factory_name',factory).limit(1)
+  ]);
+  if(se||ae||me||re)throw se||ae||me||re;
+  const rate=rateRows?.[0];if(!rate)throw new Error('Factory rate card not found.');
+  const workers=(staff||[]).filter(e=>(e.factory||e.factory_id)===factory);
+  const missingGender=workers.filter(e=>!['male','female'].includes(String(e.gender||'').toLowerCase()));if(missingGender.length)throw new Error(missingGender.length+' employee(s) assigned to this factory still need a Male/Female value in Settings before payroll.');
+  if(!workers.length)throw new Error('No employees assigned to '+factory+'. Open Settings → Unassigned Employees and assign each worker to a factory.');
+  const ids=new Set(workers.map(e=>e.id));
+  const aRows=(att||[]).filter(x=>ids.has(x.employee_id));
+  const dailyMap=new Map();aRows.forEach(x=>{const k=x.date;if(!dailyMap.has(k))dailyMap.set(k,{date:k,shifts:0,ot:0,late:0});const d=dailyMap.get(k);d.shifts+=x.status==='P'?1:x.status==='H'?.5:0;d.ot+=Number(x.ot_hours||0);d.late+=Number(x.late_minutes||0);});dailySummary=[...dailyMap.values()].sort((a,b)=>a.date.localeCompare(b.date));
+  const mRows=(meals||[]).filter(x=>ids.has(x.employee_id));
+  const byAtt=new Map(),byMeal=new Map();
+  for(const x of aRows){if(!byAtt.has(x.employee_id))byAtt.set(x.employee_id,[]);byAtt.get(x.employee_id).push(x);}
+  for(const x of mRows){if(!byMeal.has(x.employee_id))byMeal.set(x.employee_id,[]);byMeal.get(x.employee_id).push(x);}
+  const activeWorkers=workers.filter(e=>(byAtt.get(e.id)||[]).length||(byMeal.get(e.id)||[]).length);
+  if(!activeWorkers.length)throw new Error('No attendance or meal entries for this factory in the selected period. Check employee factory assignments.');
+  payrollPreview=activeWorkers.map(e=>{
+   const ar=byAtt.get(e.id)||[],mr=byMeal.get(e.id)||[];
+   const days=ar.reduce((s,x)=>s+(x.status==='P'?1:x.status==='H'?.5:0),0);
+   const ot=ar.reduce((s,x)=>s+Number(x.ot_hours||0),0);
+   const late=ar.reduce((s,x)=>s+Number(x.late_minutes||0),0);
+   const mealCount=mr.reduce((s,x)=>s+Number(x.breakfast||0)*Number(rate.breakfast_rate)+Number(x.lunch||0)*Number(rate.lunch_rate)+Number(x.dinner||0)*Number(rate.dinner_rate),0);
+   const fallbackDaily=Number((String(e.gender||'').toLowerCase()==='female'?rate.female_wage:rate.male_wage)??e.daily_rate??0);
+   const basePay=ar.reduce((sum,x)=>{const units=x.status==='P'?1:x.status==='H'?.5:0;const day=new Date(x.date+'T00:00:00').getDay();const shift=x.shift_type||(day===0?'sunday_poya':day===6?'saturday':'weekday');const specific=shift==='sunday_poya'?rate.sunday_poya_wage:shift==='saturday'?rate.saturday_wage:rate.weekday_wage;return sum+units*Number(specific??fallbackDaily);},0);
+   const otRate=Number(e.ot_rate??rate.ot_wage_rate??0);
+   const gross=basePay+ot*otRate;
+   const bonus=days>=Number(rate.attendance_bonus_days||21)?Number(rate.attendance_bonus||5500):0;
+   const lateDeduction=late*Number(rate.late_deduction_per_hour||150)/60;
+   return {employee:e,days,ot,late,mealDeduction:mealCount,lateDeduction,advanceDeduction:0,gross,otPay:ot*otRate,bonus,net:gross+bonus-mealCount-lateDeduction};
+  });
+  invoicePreview=buildInvoicePreview(payrollPreview,rate,factory,period,start,end);
+  reportEmployees=workers;
+  renderPayroll();
+  $('#savePayrollBtn').disabled=false;
+  $('#invoiceBtn').disabled=!invoicePreview.ready;
+  $('#printInvoiceBtn').disabled=!invoicePreview.ready;
+  $('#printPayrollBtn').disabled=false;
+  $('#payrollPrintPeriod').textContent=factory+' · '+period;
+  renderInvoicePaper();
+  $('#csvBtn').disabled=false;
+  const missing=(staff||[]).filter(e=>!e.factory&&!e.factory_id).length;
+  setReportStatus('Calculation ready for '+activeWorkers.length+' active workers. '+(missing?missing+' employee(s) still have no factory assignment; assign them in Settings. ':'')+'Review rows, enter advances, then save settlements.');
+ }catch(e){console.error(e);setReportStatus('Calculation failed: '+e.message);payrollPreview=null;invoicePreview=null;$('#savePayrollBtn').disabled=true;$('#invoiceBtn').disabled=true;$('#printInvoiceBtn').disabled=true;}
+ finally{$('#calculateBtn').disabled=false;}
+}
+function buildInvoicePreview(rows,rate,factory,period,start,end){
+ const maleDays=rows.filter(x=>String(x.employee.gender).toLowerCase()==='male').reduce((s,x)=>s+x.days,0);
+ const femaleDays=rows.filter(x=>String(x.employee.gender).toLowerCase()==='female').reduce((s,x)=>s+x.days,0);
+ const ot=rows.reduce((s,x)=>s+x.ot,0);
+ const valid=rate.male_bill_rate!==null&&rate.male_bill_rate!==undefined&&rate.female_bill_rate!==null&&rate.female_bill_rate!==undefined&&rate.ot_bill_rate!==null&&rate.ot_bill_rate!==undefined&&rows.every(x=>['male','female'].includes(String(x.employee.gender||'').toLowerCase()));
+ const labour=maleDays*Number(rate.male_bill_rate||0)+femaleDays*Number(rate.female_bill_rate||0);
+ const otAmount=ot*Number(rate.ot_bill_rate||0);
+ return {ready:valid,factory,period,start,end,maleDays,femaleDays,ot,labour,otAmount,total:labour+otAmount,attendanceTotal:maleDays+femaleDays,rate};
+}
+function renderPayroll(){
+ const rows=payrollPreview||[];
+ const money=rupee;
+ $('#payrollTable tbody').innerHTML=rows.map((x,i)=>'<tr><td>'+x.employee.labour_code+'</td><td>'+x.employee.name+'</td><td>'+x.employee.gender+'</td><td>'+x.days.toFixed(1)+'</td><td>'+x.ot.toFixed(1)+'</td><td>'+money(x.gross)+'</td><td>'+money(x.bonus)+'</td><td>'+money(x.mealDeduction)+'</td><td>'+money(x.lateDeduction)+'</td><td><input data-advance="'+i+'" type="number" min="0" step="0.01" value="'+x.advanceDeduction+'" style="width:90px;padding:6px;border:1px solid var(--line);border-radius:8px"></td><td data-net="'+i+'">'+money(x.net)+'</td></tr>').join('')||'<tr><td colspan="11">No employees found.</td></tr>';
+ $('#payrollTable').querySelectorAll('[data-advance]').forEach(inp=>inp.addEventListener('input',()=>{const x=rows[Number(inp.dataset.advance)];x.advanceDeduction=Math.max(0,Number(inp.value||0));x.net=x.gross+x.bonus-x.mealDeduction-x.lateDeduction-x.advanceDeduction;$('#payrollTable').querySelector('[data-net="'+inp.dataset.advance+'"]').textContent=money(x.net);updatePayrollMetrics();}));
+ updatePayrollMetrics();
+ const inv=invoicePreview;
+ $('#mBillLabour').textContent=money(inv.labour);$('#mBillOT').textContent=money(inv.otAmount);$('#mInvoice').textContent=inv.ready?money(inv.total):'Rates required';
+ $('#invoiceHint').textContent=inv.ready?'Male days: '+inv.maleDays+' × '+money(inv.rate.male_bill_rate)+' · Female days: '+inv.femaleDays+' × '+money(inv.rate.female_bill_rate)+' · OT: '+inv.ot+' × '+money(inv.rate.ot_bill_rate):'Billing rates are not configured for this factory. Open Settings → Factory Billing Rates before generating an invoice.';
+ $('#periodBadge').textContent=inv.period;
+}
+function renderInvoicePaper(){
+ const v=invoicePreview;if(!v)return;
+ const num='RH-'+v.factory.replace(/[^A-Z0-9]/gi,'').toUpperCase().slice(0,8)+'-'+v.start.replace(/-/g,'')+'-'+v.end.replace(/-/g,'');
+ $('#invoiceNoPreview').textContent=num+' (DRAFT)';
+ $('#invoiceDatePreview').textContent='Prepared: '+new Date().toLocaleDateString('en-GB');
+ $('#invoiceFactoryPreview').textContent=v.factory;
+ $('#invoicePeriodPreview').textContent=v.period;
+ const lines=[['Male labour shifts',v.maleDays,v.rate.male_bill_rate,v.maleDays*Number(v.rate.male_bill_rate||0)],['Female labour shifts',v.femaleDays,v.rate.female_bill_rate,v.femaleDays*Number(v.rate.female_bill_rate||0)],['Approved overtime hours',v.ot,v.rate.ot_bill_rate,v.otAmount]];
+ $('#invoiceLinesPreview').innerHTML=lines.map(x=>'<tr><td>'+x[0]+'</td><td>'+Number(x[1]).toFixed(2)+'</td><td>'+rupee(x[2])+'</td><td>'+rupee(x[3])+'</td></tr>').join('');
+ $('#invoiceTotalPreview').textContent=rupee(v.total);
+ $('#invoicePaper').style.display=v.ready?'block':'none';
+}
+function updatePayrollMetrics(){const rows=payrollPreview||[];$('#mWorkers').textContent=rows.length;$('#mMale').textContent=rows.filter(x=>String(x.employee.gender).toLowerCase()==='male').length;$('#mFemale').textContent=rows.filter(x=>String(x.employee.gender).toLowerCase()==='female').length;$('#mDays').textContent=rows.reduce((s,x)=>s+x.days,0).toFixed(1);$('#mOT').textContent=rows.reduce((s,x)=>s+x.ot,0).toFixed(1);$('#mMeals').textContent=rupee(rows.reduce((s,x)=>s+x.mealDeduction,0));$('#mLate').textContent=rupee(rows.reduce((s,x)=>s+x.lateDeduction,0));$('#mPayroll').textContent=rupee(rows.reduce((s,x)=>s+x.net,0));}
+function renderDailySummary(){const rate=invoicePreview?.rate;$('#dailySummaryBody').innerHTML=dailySummary.map(x=>'<tr><td>'+x.date+'</td><td>'+x.shifts.toFixed(1)+'</td><td>'+x.ot.toFixed(1)+'</td><td>'+x.late+'</td><td>'+rupee(x.late*Number(rate?.late_deduction_per_hour||150)/60)+'</td></tr>').join('')||'<tr><td colspan="5">No attendance rows for this period.</td></tr>';}
+async function savePayroll(){
+ if(!payrollPreview?.length)return;
+ const c=client(),period=$('#periodLabel').value.trim()||$('#periodStart').value+' to '+$('#periodEnd').value;
+ $('#savePayrollBtn').disabled=true;setReportStatus('Saving salary settlements…');
+ try{
+  for(const x of payrollPreview){
+   const row={employee_id:x.employee.id,labour_code:x.employee.labour_code,period,period_start:$('#periodStart').value,period_end:$('#periodEnd').value,factory_name:$('#factorySelect').value,days:Math.round(x.days*100)/100,ot_hours:x.ot,gross:x.gross,gross_pay:x.gross,ot_pay:x.otPay,bonus:x.bonus,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,net_pay:x.net,net_payable:x.net,calculated_at:new Date().toISOString(),calculation_details:{attendance_days:x.days,late_minutes:x.late,meal_deduction:x.mealDeduction,late_deduction:x.lateDeduction,advance_deduction:x.advanceDeduction,base_pay:x.gross-x.otPay,ot_rate:Number(x.employee.ot_rate??0),shift_rates:{weekday:invoicePreview.rate.weekday_wage,saturday:invoicePreview.rate.saturday_wage,sunday_poya:invoicePreview.rate.sunday_poya_wage}}};
+   const {data:existing,error:findError}=await c.from('settlements').select('id').eq('employee_id',x.employee.id).eq('period',period).maybeSingle();
+   if(findError)throw findError;
+   const result=existing?await c.from('settlements').update(row).eq('id',existing.id):await c.from('settlements').insert(row);
+   if(result.error)throw result.error;
+  }
+  setReportStatus('Saved '+payrollPreview.length+' salary settlements successfully.');
+ }catch(e){console.error(e);setReportStatus('Settlement save stopped: '+e.message+' (Some earlier rows may already have saved. Recalculate and save again safely.)');}
+ finally{$('#savePayrollBtn').disabled=false;}
+}
+async function saveInvoice(){
+ if(!invoicePreview?.ready){setReportStatus('Invoice rates are missing. Configure them in Settings first.');return;}
+ const c=client(),v=invoicePreview;
+ const invoiceNumber='RH-'+v.factory.replace(/[^A-Z0-9]/gi,'').toUpperCase().slice(0,8)+'-'+v.start.replace(/-/g,'')+'-'+v.end.replace(/-/g,'');
+ const row={invoice_number:invoiceNumber,factory_name:v.factory,period:v.period,period_start:v.start,period_end:v.end,attendance_total:v.attendanceTotal,ot_hours:v.ot,labour_amount:v.labour,ot_amount:v.otAmount,other_amount:0,total_amount:v.total,status:'draft',line_items:[{description:'Male attendance',quantity:v.maleDays,rate:Number(v.rate.male_bill_rate),amount:v.maleDays*Number(v.rate.male_bill_rate)},{description:'Female attendance',quantity:v.femaleDays,rate:Number(v.rate.female_bill_rate),amount:v.femaleDays*Number(v.rate.female_bill_rate)},{description:'Approved overtime',quantity:v.ot,rate:Number(v.rate.ot_bill_rate),amount:v.otAmount}]};
+ const {data:existing,error:findError}=await c.from('factory_invoices').select('id').eq('factory_name',v.factory).eq('period',v.period).maybeSingle();
+ if(findError){setReportStatus('Invoice lookup failed: '+findError.message);return;}
+ const result=existing?await c.from('factory_invoices').update(row).eq('id',existing.id):await c.from('factory_invoices').insert({...row,created_by:window.PayRoyalAuth?.session?.user?.id||null});
+ if(result.error){setReportStatus('Invoice save failed: '+result.error.message);return;}
+ setReportStatus('Draft invoice '+invoiceNumber+' saved. Review it before issuing to the factory.');
+}
+function exportPayrollCsv(){
+ if(!payrollPreview?.length)return;
+ const cols=['Labour Code','Name','Gender','Days','OT Hours','Gross','Bonus','Meal Deduction','Late Deduction','Advance','Net Pay'];
+ const lines=[cols,...payrollPreview.map(x=>[x.employee.labour_code,x.employee.name,x.employee.gender,x.days,x.ot,x.gross,x.bonus,x.mealDeduction,x.lateDeduction,x.advanceDeduction,x.net])];
+ const csv=lines.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='pay-royal-payroll-'+$('#periodStart').value+'-'+$('#periodEnd').value+'.csv';a.click();URL.revokeObjectURL(a.href);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{initReports();});
+</script></head><body>
+<header class="top"><div class="brand"><div class="logo">R</div><div><h1>Royal Hires</h1><small>PAYROLL & FACTORY BILLING</small></div><div class="spacer"></div><a class="iconbtn" href="settings.html">⚙ Rates</a></div></header>
+<main class="wrap">
+ <div class="sectionhead"><div><h2>Payroll & Factory Reports</h2><p class="muted">25th–24th payroll cycle · calculate, review and save</p></div></div>
+ <div class="card">
+  <div class="formgrid">
+   <label><span class="label">Factory</span><select id="factorySelect" class="field"><option>Loading factories…</option></select></label>
+   <label><span class="label">Period label</span><input id="periodLabel" class="field" placeholder="2026-10-25 to 2026-11-24"></label>
+   <label><span class="label">From</span><input id="periodStart" class="field" type="date"></label>
+   <label><span class="label">To</span><input id="periodEnd" class="field" type="date"></label>
+  </div>
+  <div class="row" style="margin-top:10px"><button class="primary" id="calculateBtn">Calculate Payroll</button><button class="goldbtn" id="invoiceBtn" disabled>Generate Factory Invoice</button><button class="iconbtn" id="csvBtn" style="color:var(--green);background:white;border-color:var(--line)" disabled>Export CSV</button><button class="iconbtn" id="printInvoiceBtn" style="color:var(--green);background:white;border-color:var(--line)" disabled>Print Invoice</button><button class="iconbtn" id="printPayrollBtn" style="color:var(--green);background:white;border-color:var(--line)" disabled>Print Payroll A4</button></div>
+  <p class="muted small" id="statusText">Select a factory and payroll period to begin.</p>
+ </div>
+ <div class="grid" style="margin-top:14px">
+  <div class="card"><div class="muted">Workers</div><div class="metric" id="mWorkers">—</div></div>
+  <div class="card"><div class="muted">Male workers</div><div class="metric" id="mMale">—</div></div>
+  <div class="card"><div class="muted">Female workers</div><div class="metric" id="mFemale">—</div></div>
+  <div class="card"><div class="muted">Attendance days</div><div class="metric" id="mDays">—</div></div>
+  <div class="card"><div class="muted">Total OT hours</div><div class="metric" id="mOT">—</div></div>
+  <div class="card"><div class="muted">Meal deductions</div><div class="metric" id="mMeals">—</div></div>
+  <div class="card"><div class="muted">Late deductions</div><div class="metric" id="mLate">—</div></div>
+  <div class="card"><div class="muted">Net payroll</div><div class="metric" id="mPayroll">—</div></div>
+ </div>
+ <div class="card" id="payrollPaper" style="margin-top:14px">
+  <div class="between"><div><h3>Royal Hires Private Limited · Payroll Summary</h3><p class="muted small" id="payrollPrintPeriod">Payroll calculation</p><p class="muted small">Advance defaults to Rs. 0. Adjust it before saving if an advance was paid.</p></div><span class="pill" id="periodBadge">Not calculated</span></div>
+  <div class="tablewrap"><table id="payrollTable"><thead><tr><th>Labour Code</th><th>Name</th><th>Gender</th><th>Days</th><th>OT Hrs</th><th>Gross</th><th>Bonus</th><th>Meals</th><th>Late</th><th>Advance</th><th>Net Pay</th></tr></thead><tbody><tr><td colspan="11" class="muted">Calculate payroll to see results.</td></tr></tbody></table></div>
+  <button class="primary" id="savePayrollBtn" style="margin-top:14px" disabled>Save Salary Settlements</button>
+ </div>
+ <div class="card" style="margin-top:14px"><h3>Day-wise attendance, OT & late deductions</h3><div class="tablewrap"><table><thead><tr><th>Date</th><th>Shifts</th><th>OT hours</th><th>Late minutes</th><th>Late deduction</th></tr></thead><tbody id="dailySummaryBody"><tr><td colspan="5" class="muted">Calculate payroll to view daily totals.</td></tr></tbody></table></div></div>
+ <div class="card" style="margin-top:14px">
+  <h3>Factory invoice preview</h3><p class="muted small">Invoice uses configured male/female billing rates and approved OT billing rate. Late deductions and meal deductions are not added to factory billing.</p>
+  <div class="grid"><div><div class="muted">Labour billing</div><div class="metric" id="mBillLabour">—</div></div><div><div class="muted">OT billing</div><div class="metric" id="mBillOT">—</div></div><div><div class="muted">Invoice total</div><div class="metric" id="mInvoice">—</div></div></div>
+  <p class="small muted" id="invoiceHint">Calculate payroll to preview the invoice.</p><section id="invoicePaper" class="card" style="display:none;margin-top:14px;border:1px solid #d7ad63"><div class="between"><div><h2 style="margin:0;color:var(--green)">ROYAL HIRES PRIVATE LIMITED</h2><div class="muted">Factory Labour Supply Invoice</div></div><div style="text-align:right"><b id="invoiceNoPreview">Invoice Draft</b><div class="muted" id="invoiceDatePreview"></div></div></div><div class="divider"></div><p><b>Bill To:</b> <span id="invoiceFactoryPreview"></span></p><p><b>Billing Period:</b> <span id="invoicePeriodPreview"></span></p><div class="tablewrap"><table><thead><tr><th>Description</th><th>Quantity</th><th>Rate</th><th>Amount</th></tr></thead><tbody id="invoiceLinesPreview"></tbody></table></div><div class="divider"></div><div class="between"><b>Grand Total</b><h2 id="invoiceTotalPreview"></h2></div><p class="muted small">Generated by Pay Royal · Royal Hires Private Limited</p></section>
+ </div>
+</main>
+<div class="toast" id="toast"></div>
+<nav class="nav"><a href="index.html">◷<br>Attendance</a><a href="meals.html">♧<br>Meals</a><a href="index.html#add" class="plus">＋<span>Add</span></a><a href="reports.html" class="active">▤<br>Reports</a></nav>
+<div class="footer">Pay Royal · Royal Hires Private Limited</div>
+<script>if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(console.warn);</script>
+</body></html>
