@@ -81,7 +81,8 @@ async function calculatePayroll(){
   for(const x of aRows){if(!byAtt.has(x.employee_id))byAtt.set(x.employee_id,[]);byAtt.get(x.employee_id).push(x);}
   for(const x of mRows){if(!byMeal.has(x.employee_id))byMeal.set(x.employee_id,[]);byMeal.get(x.employee_id).push(x);}
   const activeWorkers=workers.filter(e=>(byAtt.get(e.id)||[]).length||(byMeal.get(e.id)||[]).length);
-  if(!activeWorkers.length)throw new Error('No attendance or meal entries for this factory in the selected period. Check employee factory assignments.');\n  payrollPreview=activeWorkers.map(e=>{
+  if(!activeWorkers.length)throw new Error('No attendance or meal entries for this factory in the selected period. Check employee factory assignments.');
+  payrollPreview=activeWorkers.map(e=>{
    const ar=byAtt.get(e.id)||[],mr=byMeal.get(e.id)||[];
    const days=ar.reduce((s,x)=>s+(x.status==='P'?1:x.status==='H'?.5:0),0);
    const ot=ar.reduce((s,x)=>s+Number(x.ot_hours||0),0);
