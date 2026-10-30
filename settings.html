@@ -40,7 +40,7 @@ async function initFactoryRates(){
  if(error){host.innerHTML='<div class="warning">Could not load factory rates: '+error.message+'</div>';return;}
  if(!data?.length){host.innerHTML='<div class="warning">No factory rate cards configured.</div>';return;}
  const fields=[
-  ['male_wage','Male worker wage'],['female_wage','Female worker wage'],
+  ['male_wage','Male worker wage'],['female_wage','Female worker wage'],['weekday_wage','Weekday wage override'],['saturday_wage','Saturday wage override'],['sunday_poya_wage','Sunday / Poya wage override'],
   ['male_bill_rate','Male factory billing / shift'],['female_bill_rate','Female factory billing / shift'],
   ['ot_wage_rate','Worker OT / hour'],['ot_bill_rate','Factory OT billing / hour'],
   ['late_deduction_per_hour','Late deduction / hour'],['attendance_bonus','Attendance bonus'],
