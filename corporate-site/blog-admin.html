@@ -39,6 +39,62 @@ body{background:linear-gradient(145deg,#f8fbf8,#edf4ee);color:var(--ink)}
 .word-count{font-size:11px;color:#71857d;text-align:right;margin:-10px 0 12px}
 @media(max-width:560px){.admin-tools{grid-template-columns:1fr}.stats{gap:6px}.stat{padding:9px}.stat b{font-size:19px}}
 
+
+/* Creative editor workspace — Royal Green / White / Gold */
+.wrap{max-width:1460px;margin:30px auto;padding:0 24px}
+.intro{padding:26px 30px;border-radius:26px;background:linear-gradient(115deg,#062d27,#0b453b 72%,#174f40);color:#fff;box-shadow:0 18px 45px #062d2725;position:relative;overflow:hidden}
+.intro:after{content:"R";position:absolute;right:28px;top:-45px;font:800 190px/1 Manrope;color:#ffffff0b;pointer-events:none}
+.intro h1{color:#fff;font-size:clamp(32px,4vw,46px);letter-spacing:-.045em}
+.intro p{color:#d8e6dc}.intro .eyebrow{color:#e4c88f}
+.intro .muted{color:#e1eae3}
+.grid{grid-template-columns:minmax(0,1.7fr) minmax(300px,.8fr);align-items:start;gap:22px}
+#workspace>.grid>.panel:first-child{padding:0;overflow:hidden}
+#workspace>.grid>.panel:first-child>.between{padding:24px 26px;background:linear-gradient(110deg,#f5f9f5,#fff);border-bottom:1px solid #e4ece5}
+#postForm{padding:24px 26px 28px}
+#postForm>.two{gap:14px}
+#postForm>.two>div{min-width:0}
+.label{display:block;margin:4px 0 7px;color:#355a4b;font-size:11px;letter-spacing:.045em}
+.field{margin:0 0 18px;min-height:46px;transition:border .18s,box-shadow .18s}
+.fieldarea{min-height:280px;line-height:1.75;padding:16px;resize:vertical}
+#titleEn,#titleSi{font-weight:700;font-size:15px}
+#contentEn,#contentSi{font-size:14px}
+#excerptEn,#excerptSi{min-height:100px;line-height:1.65}
+#slug{font-family:ui-monospace,monospace;font-size:12px}
+#category{font-weight:700}
+#thumbnail{padding:13px;background:#f7faf7;border:1px dashed #b7cbbd}
+#imagePreview{max-height:250px;object-fit:cover;border:1px solid #e2ebe3}
+.notice{border:1px solid #ead8b4;background:linear-gradient(110deg,#fffaf0,#fff);color:#705323;padding:15px 17px;border-radius:15px}
+.actions{position:sticky;bottom:12px;z-index:5;padding:12px;background:#fffffff0;border:1px solid #e3ebe4;border-radius:18px;box-shadow:0 12px 34px #062d2720;backdrop-filter:blur(14px)}
+.actions .btn{min-height:46px;padding:12px 20px}
+#formMessage{padding:6px 2px}
+.word-count{background:#f5f8f4;border-radius:10px;padding:8px 12px;margin:8px 0 12px}
+#workspace> .grid>aside{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto}
+#workspace> .grid>aside h2{font-size:24px}
+.stats{gap:9px}
+.stat{border-radius:16px;padding:13px 10px}
+.admin-tools .field{margin:0}
+.post{gap:11px;flex-wrap:wrap}
+.postmain strong{font-size:13px;line-height:1.35}
+.post .actions{width:100%;padding-left:83px}
+.post .actions .btn{min-height:34px;padding:7px 11px;font-size:11px}
+.btn{transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 9px 22px #062d2720}
+.preview-modal{position:fixed;inset:0;z-index:50;background:#031b17b8;backdrop-filter:blur(9px);display:none;align-items:center;justify-content:center;padding:18px}
+.preview-modal.open{display:flex}
+.preview-sheet{width:min(900px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:24px;box-shadow:0 30px 90px #0006}
+.preview-head{position:sticky;top:0;background:#062d27;color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:2}
+.preview-head strong{font:800 17px Manrope}
+.preview-body{padding:clamp(20px,5vw,48px);color:#17382f}
+.preview-body h1{font:800 clamp(25px,4vw,40px)/1.15 Manrope;color:#062d27}
+.preview-body .preview-excerpt{font-size:17px;color:#65796f;line-height:1.65}
+.preview-body .preview-content{white-space:pre-wrap;line-height:1.9;font-size:15px;margin-top:24px}
+.preview-body img{width:100%;max-height:360px;object-fit:cover;border-radius:18px;margin:12px 0 24px}
+.preview-tabs{display:flex;gap:6px;padding:14px 20px 0}
+.preview-tabs button{border:1px solid #dce8df;background:#f5f8f5;color:#174334;border-radius:999px;padding:9px 16px;font-weight:800}
+.preview-tabs button.active{background:#062d27;color:#fff;border-color:#062d27}
+@media(max-width:950px){.grid{grid-template-columns:1fr}#workspace>.grid>aside{position:static;max-height:none;overflow:visible}}
+@media(max-width:650px){.wrap{padding:0 12px;margin:16px auto}.intro{padding:23px 20px}.intro:after{font-size:130px;right:10px;top:-15px}#postForm{padding:18px 15px 22px}#workspace>.grid>.panel:first-child>.between{padding:19px 17px}.fieldarea{min-height:220px}.actions{bottom:6px}.actions .btn{flex:1}.post .actions{padding-left:0}.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 </style>
 </head>
 <body>
@@ -58,7 +114,7 @@ body{background:linear-gradient(145deg,#f8fbf8,#edf4ee);color:var(--ink)}
 <div class="two"><div><label class="label" for="contentEn">Full article · English</label><textarea id="contentEn" class="field fieldarea" required placeholder="Write your complete English article here..."></textarea></div><div><label class="label" for="contentSi">සම්පූර්ණ ලිපිය · සිංහල</label><textarea id="contentSi" class="field fieldarea" required placeholder="ඔබගේ සම්පූර්ණ සිංහල ලිපිය මෙහි ලියන්න..."></textarea></div></div>
 <label class="label" for="thumbnail">Thumbnail image · JPG, PNG or WebP · up to 5 MB</label><input id="thumbnail" class="field" type="file" accept="image/jpeg,image/png,image/webp"><img id="imagePreview" class="preview hidden" alt="Selected thumbnail preview">
 <div class="notice">Drafts remain private. Only posts you publish will appear in the public Blog section. Both language versions are stored in the existing Royal Hires blog database.</div>
-<div class="actions"><button id="saveDraft" type="button" class="btn ghost">Save draft</button><button id="publish" type="button" class="btn gold">Publish article ↗</button><button id="reset" type="button" class="btn ghost">Clear form</button></div>
+<div class="actions"><button id="saveDraft" type="button" class="btn ghost">Save draft</button><button id="publish" type="button" class="btn gold">Publish article ↗</button><button id="previewPost" type="button" class="btn ghost">Preview article</button><button id="reset" type="button" class="btn ghost">Clear form</button></div>
 <p id="formMessage" class="status" role="status"></p><div class="word-count" id="wordCount">English: 0 words · Sinhala: 0 words</div>
 </form>
 </div>
@@ -66,7 +122,7 @@ body{background:linear-gradient(145deg,#f8fbf8,#edf4ee);color:var(--ink)}
 </div>
 </section>
 </main>
-<footer class="footer">Royal Hires Private Limited · The Royal Standard of Recruitment</footer>
+<div id="previewModal" class="preview-modal" role="dialog" aria-modal="true" aria-label="Article preview"><section class="preview-sheet"><header class="preview-head"><strong>Article preview</strong><button id="closePreview" class="btn gold" type="button">Close preview ✕</button></header><div class="preview-tabs"><button type="button" class="active" data-preview-lang="en">English</button><button type="button" data-preview-lang="si">සිංහල</button></div><article class="preview-body"><div class="eyebrow" id="pvCategory">ROYAL HIRES JOURNAL</div><h1 id="pvTitle">Your article title</h1><p class="preview-excerpt" id="pvExcerpt"></p><img id="pvImage" class="hidden" alt="Article thumbnail"><div class="preview-content" id="pvContent"></div></article></section></div><footer class="footer">Royal Hires Private Limited · The Royal Standard of Recruitment</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (()=>{
@@ -88,12 +144,15 @@ function editPost(p){if(!p)return;$('postId').value=p.id;$('slug').value=p.slug|
 
 function duplicatePost(p){if(!p)return;editPost(p);$('postId').value='';$('slug').value=(p.slug||'article')+'-copy';$('titleEn').value=(p.title_en||'')+' (Copy)';$('titleSi').value=(p.title_si||'')+' (පිටපත)';$('editorHeading').textContent='Duplicate article';$('editState').textContent='New draft';say('formMessage','A copy is ready. Edit it and save as a draft.');}
 async function unpublishPost(id){const p=posts.find(x=>String(x.id)===id);if(!p||!confirm('Move this article back to drafts?'))return;const {error}=await db.from('blog_posts').update({status:'draft',published_at:null,updated_at:new Date().toISOString()}).eq('id',id);if(error){say('postList','Unpublish failed: '+error.message);return;}await loadPosts();say('formMessage','Article moved to drafts.');}
+
+function openPreview(lang='en'){const si=lang==='si';$('pvCategory').textContent=$('category').value+' · ROYAL HIRES JOURNAL';$('pvTitle').textContent=$(si?'titleSi':'titleEn').value||'Your article title';$('pvExcerpt').textContent=$(si?'excerptSi':'excerptEn').value||'';$('pvContent').textContent=$(si?'contentSi':'contentEn').value||'Your article content will appear here.';const src=$('imagePreview').src;if(src&&!$('imagePreview').classList.contains('hidden')){$('pvImage').src=src;$('pvImage').classList.remove('hidden')}else{$('pvImage').classList.add('hidden')}$('previewModal').classList.add('open');document.querySelectorAll('[data-preview-lang]').forEach(b=>b.classList.toggle('active',b.dataset.previewLang===lang));}
+
 function updateWordCount(){const count=id=>($(id).value.trim().match(/\S+/g)||[]).length;$('wordCount').textContent='English: '+count('contentEn')+' words · Sinhala: '+count('contentSi')+' words';}
 function makeSlug(){const t=$('titleEn').value.trim().toLowerCase();if(!$('postId').value&&t){$('slug').value=t.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}}
 
 async function savePost(status){const id=$('postId').value,slug=$('slug').value.trim();const titleEn=$('titleEn').value.trim(),titleSi=$('titleSi').value.trim(),contentEn=$('contentEn').value.trim(),contentSi=$('contentSi').value.trim();if(!slug||!titleEn||!titleSi||!contentEn||!contentSi){say('formMessage','Please complete the slug, both titles and both article contents.');return;}say('formMessage','Saving…');const payload={slug,title_en:titleEn,title_si:titleSi,excerpt_en:$('excerptEn').value,excerpt_si:$('excerptSi').value,content_en:contentEn,content_si:contentSi,category:$('category').value||'Company News',status,published_at:status==='published'?(posts.find(p=>String(p.id)===id)?.published_at||new Date().toISOString()):null,updated_at:new Date().toISOString()};const file=$('thumbnail').files[0];if(file){if(file.size>5*1024*1024){say('formMessage','Thumbnail must be 5 MB or smaller.');return;}if(!['image/jpeg','image/png','image/webp'].includes(file.type)){say('formMessage','Please use a JPG, PNG or WebP image.');return;}const safeName=Date.now()+'-'+file.name.toLowerCase().replace(/[^a-z0-9.-]/g,'-');const {error:uploadError}=await db.storage.from('royal-hires-blog').upload(safeName,file,{upsert:true,contentType:file.type});if(uploadError){say('formMessage','Image upload failed: '+uploadError.message);return;}payload.thumbnail_url=db.storage.from('royal-hires-blog').getPublicUrl(safeName).data.publicUrl;}const result=id?await db.from('blog_posts').update(payload).eq('id',id):await db.from('blog_posts').insert(payload);if(result.error){say('formMessage','Save failed: '+result.error.message);return;}say('formMessage',status==='published'?'Article published successfully.':'Draft saved successfully.');resetForm();await loadPosts();}
 async function deletePost(id){const p=posts.find(x=>String(x.id)===id);if(!p||!confirm('Delete “'+(p.title_en||'this article')+'” permanently?'))return;const {error}=await db.from('blog_posts').delete().eq('id',id);if(error){say('postList','Delete failed: '+error.message);return;}await loadPosts();say('formMessage','Article deleted.');}
-$('signIn').addEventListener('click',signIn);$('password').addEventListener('keydown',e=>{if(e.key==='Enter')signIn();});$('signOut').addEventListener('click',async()=>{await db.auth.signOut();showWorkspace(null);resetForm();});$('saveDraft').addEventListener('click',()=>savePost('draft'));$('publish').addEventListener('click',()=>savePost('published'));$('reset').addEventListener('click',resetForm);$('refresh').addEventListener('click',loadPosts);$('postSearch').addEventListener('input',renderPosts);$('postFilter').addEventListener('change',renderPosts);$('titleEn').addEventListener('blur',makeSlug);['contentEn','contentSi'].forEach(id=>$(id).addEventListener('input',updateWordCount));$('thumbnail').addEventListener('change',()=>{const f=$('thumbnail').files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)){say('formMessage','Use JPG, PNG or WebP images.');$('thumbnail').value='';return;}if(f.size>5*1024*1024){say('formMessage','Image must be 5 MB or smaller.');$('thumbnail').value='';return;}$('imagePreview').src=URL.createObjectURL(f);$('imagePreview').classList.remove('hidden');});
+$('signIn').addEventListener('click',signIn);$('password').addEventListener('keydown',e=>{if(e.key==='Enter')signIn();});$('signOut').addEventListener('click',async()=>{await db.auth.signOut();showWorkspace(null);resetForm();});$('saveDraft').addEventListener('click',()=>savePost('draft'));$('publish').addEventListener('click',()=>savePost('published'));$('reset').addEventListener('click',resetForm);$('refresh').addEventListener('click',loadPosts);$('previewPost').addEventListener('click',()=>openPreview('en'));$('closePreview').addEventListener('click',()=>$('previewModal').classList.remove('open'));$('previewModal').addEventListener('click',e=>{if(e.target===$('previewModal'))$('previewModal').classList.remove('open')});document.querySelectorAll('[data-preview-lang]').forEach(b=>b.addEventListener('click',()=>openPreview(b.dataset.previewLang)));document.addEventListener('keydown',e=>{if(e.key==='Escape')$('previewModal').classList.remove('open')});$('postSearch').addEventListener('input',renderPosts);$('postFilter').addEventListener('change',renderPosts);$('titleEn').addEventListener('blur',makeSlug);['contentEn','contentSi'].forEach(id=>$(id).addEventListener('input',updateWordCount));$('thumbnail').addEventListener('change',()=>{const f=$('thumbnail').files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)){say('formMessage','Use JPG, PNG or WebP images.');$('thumbnail').value='';return;}if(f.size>5*1024*1024){say('formMessage','Image must be 5 MB or smaller.');$('thumbnail').value='';return;}$('imagePreview').src=URL.createObjectURL(f);$('imagePreview').classList.remove('hidden');});
 db.auth.onAuthStateChange((_event,session)=>{if(session&&!isAdmin(session)){db.auth.signOut();showWorkspace(null);say('loginMessage','This account does not have administrator permissions.');return;}showWorkspace(session);});
 checkSession();
 })();
