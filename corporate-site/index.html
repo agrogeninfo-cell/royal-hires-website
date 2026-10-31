@@ -241,6 +241,57 @@ footer{background:#eaf1e9;color:#52675e;border-top:1px solid #dce7df}
 footer .brand span,footer a{color:#23463b}
 @media(max-width:800px){.nav .links{background:#fffffff7;border:1px solid #dce7df;box-shadow:0 22px 50px #173d2c20}.links>a:not(.btn){color:#23463b}.hero-slide:before{background:linear-gradient(90deg,#f8faf5f5,#f8faf5e8 65%,#f8faf5b8),var(--slide-bg) center/cover}}
 
+
+/* Mobile-first hero slider upgrade */
+.meta-hero-progress{position:absolute;z-index:5;left:50%;bottom:34px;transform:translateX(-50%);width:min(230px,42vw);height:3px;border-radius:9px;background:#17463825;overflow:hidden}
+.meta-hero-progress span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#0b493b,#c69a4b);transform:scaleX(0);transform-origin:left}
+.meta-hero-progress span.run{animation:heroProgress 6.5s linear forwards}
+@keyframes heroProgress{to{transform:scaleX(1)}}
+.hero-slide{isolation:isolate}
+.hero-slide:before{background:linear-gradient(90deg,#f8faf5f7 0%,#f8faf5ed 34%,#f8faf5bd 64%,#f8faf55c 100%),var(--slide-bg) center/cover}
+.hero-slide .hero-copy{position:relative;z-index:2;max-width:760px}
+.hero-slide .eyebrow{padding:9px 14px;border:1px solid #c69a4b55;border-radius:99px;background:#fffdf4c9;box-shadow:0 5px 18px #18352d0b;letter-spacing:.12em}
+.hero-slide h1{font-size:clamp(48px,7vw,88px);line-height:.99;letter-spacing:-.055em;margin:25px 0 20px}
+.hero-slide .hero-copy>p{max-width:550px;line-height:1.8}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-actions .btn{min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:10px}
+.slider-controls{z-index:6;gap:13px}
+#slideDots{display:flex;align-items:center;gap:8px}
+#slideDots button{width:8px;height:8px;border-radius:20px;border:0;background:#17463845;padding:0;transition:all .25s}
+#slideDots button.active{width:28px;background:#0b493b}
+.scrollhint{color:#60736b}
+@media(min-width:801px){
+ .hero-slider{min-height:760px}
+ .hero-slide .hero-copy{padding-top:105px}
+ .meta-hero-progress{bottom:40px;left:auto;right:max(48px,calc((100vw - 1200px)/2 + 190px));transform:none}
+}
+@media(max-width:800px){
+ .wrap{width:min(100% - 36px,620px)}
+ .hero-slider{min-height:740px;min-height:calc(100svh - 76px);max-height:900px}
+ .hero-slide:before{background:linear-gradient(180deg,#f8faf5e8 0%,#f8faf5f4 47%,#f8faf5f8 100%),var(--slide-bg) center top/auto 52% no-repeat}
+ .hero-slide:after{background:radial-gradient(ellipse at 78% 18%,#d7ad6340,transparent 42%)}
+ .hero-slide .wrap{display:flex;align-items:flex-end;min-height:inherit;padding-bottom:112px}
+ .hero-slide .hero-copy{padding:0;width:100%}
+ .hero-slide .eyebrow{font-size:10px;letter-spacing:.09em;padding:8px 11px}
+ .hero-slide h1{font-size:clamp(43px,11.8vw,68px);line-height:1.02;margin:19px 0 15px;max-width:560px}
+ .hero-slide .hero-copy>p{font-size:15px;line-height:1.65;max-width:490px}
+ .hero-actions{display:grid;grid-template-columns:1fr;gap:10px;margin-top:22px;max-width:360px}
+ .hero-actions .btn{width:100%;min-height:50px;padding:13px 16px}
+ .hero-note{font-size:11px;line-height:1.5;margin-top:18px;max-width:340px}
+ .slider-controls{left:18px;right:18px;bottom:27px;justify-content:flex-start}
+ .slider-controls>button{width:40px;height:40px;border-radius:14px}
+ .meta-hero-progress{bottom:46px;left:auto;right:20px;transform:none;width:95px}
+ .scrollhint{display:none}
+}
+@media(max-width:390px){
+ .hero-slider{min-height:760px;min-height:calc(100svh - 76px)}
+ .hero-slide .wrap{padding-bottom:115px}
+ .hero-slide h1{font-size:clamp(40px,11vw,48px)}
+ .hero-slide .hero-copy>p{font-size:14px}
+ .meta-hero-progress{width:68px}
+}
+@media(prefers-reduced-motion:reduce){.meta-hero-progress span.run{animation:none;transform:scaleX(1)}}
+
 </style>
 </head>
 <body>
@@ -250,7 +301,7 @@ footer .brand span,footer a{color:#23463b}
 <div class="hero-slide active" style="--slide-bg:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=2000&q=85')"><div class="wrap"><div class="hero-copy"><span class="eyebrow" data-en="Workforce solutions · Sri Lanka" data-si="ශ්‍රී ලංකාවේ ශ්‍රම බලකා විසඳුම්">Workforce solutions · Sri Lanka</span><h1 data-en="People power.<br><span class='gradient'>Business forward.</span>" data-si="මිනිසුන්ගේ ශක්තිය.<br><span class='gradient'>ව්‍යාපාරයේ ඉදිරි ගමන.</span>">People power.<br><span class="gradient">Business forward.</span></h1><p data-en="We connect businesses with dependable people and practical workforce support — helping teams stay focused on the work that matters." data-si="විශ්වාසදායක සේවකයින් සහ ප්‍රායෝගික ශ්‍රම බලකා සහාය මඟින් ව්‍යාපාරවලට ඉදිරියට යාමට අපි සහාය වෙමු.">We connect businesses with dependable people and practical workforce support — helping teams stay focused on the work that matters.</p><div class="hero-actions"><a class="btn" href="#employers" data-en="Find your workforce ↗" data-si="ඔබේ සේවක කණ්ඩායම සොයාගන්න ↗">Find your workforce ↗</a><a class="btn ghost" href="#careers" data-en="Find opportunities →" data-si="රැකියා අවස්ථා සොයන්න →">Find opportunities →</a></div><div class="hero-note"><span class="pulse"></span><span data-en="A people-first manpower partner for growing operations" data-si="වර්ධනය වන ව්‍යාපාර සඳහා මිනිසුන්ට මුල්තැන දෙන සහකරු">A people-first manpower partner for growing operations</span></div></div></div></div>
 <div class="hero-slide" style="--slide-bg:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=2000&q=85')"><div class="wrap"><div class="hero-copy"><span class="eyebrow" data-en="Reliable workforce coordination" data-si="විශ්වාසදායක ශ්‍රම බලකා සම්බන්ධීකරණය">Reliable workforce coordination</span><h1 data-en="Stronger teams.<br><span class='gradient'>Better results.</span>" data-si="ශක්තිමත් කණ්ඩායම්.<br><span class='gradient'>වඩා හොඳ ප්‍රතිඵල.</span>">Stronger teams.<br><span class="gradient">Better results.</span></h1><p data-en="From manpower sourcing to workforce administration, we help keep your operations moving." data-si="සේවකයින් සොයාදීමේ සිට ශ්‍රම බලකා පරිපාලනය දක්වා ඔබේ මෙහෙයුම් අඛණ්ඩව පවත්වා ගැනීමට අපි සහාය වෙමු.">From manpower sourcing to workforce administration, we help keep your operations moving.</p><div class="hero-actions"><a class="btn" href="#services" data-en="Explore our services ↗" data-si="අපගේ සේවාවන් බලන්න ↗">Explore our services ↗</a></div></div></div></div>
 <div class="hero-slide" style="--slide-bg:url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2000&q=85')"><div class="wrap"><div class="hero-copy"><span class="eyebrow" data-en="Opportunities for people" data-si="සෑම පුද්ගලයෙකුටම අවස්ථා">Opportunities for people</span><h1 data-en="Your next step.<br><span class='gradient'>Starts here.</span>" data-si="ඔබේ මීළඟ පියවර.<br><span class='gradient'>මෙතැනින් ඇරඹේ.</span>">Your next step.<br><span class="gradient">Starts here.</span></h1><p data-en="We believe meaningful work and successful businesses grow together. Let’s build what’s next." data-si="අර්ථවත් රැකියා සහ සාර්ථක ව්‍යාපාර එකට වර්ධනය වන බව අපි විශ්වාස කරමු.">We believe meaningful work and successful businesses grow together. Let’s build what’s next.</p><div class="hero-actions"><a class="btn" href="#careers" data-en="Explore opportunities ↗" data-si="අවස්ථා සොයන්න ↗">Explore opportunities ↗</a></div></div></div></div>
-</div><div class="slider-controls"><button id="slidePrev" aria-label="Previous slide">‹</button><div id="slideDots"><button class="active" data-slide="0"></button><button data-slide="1"></button><button data-slide="2"></button></div><button id="slideNext" aria-label="Next slide">›</button></div><div class="scrollhint">SCROLL TO EXPLORE ↓</div></section>
+</div><div class="meta-hero-progress" aria-hidden="true"><span id="heroProgressFill"></span></div><div class="slider-controls"><button id="slidePrev" aria-label="Previous slide">‹</button><div id="slideDots"><button class="active" data-slide="0"></button><button data-slide="1"></button><button data-slide="2"></button></div><button id="slideNext" aria-label="Next slide">›</button></div><div class="scrollhint">SCROLL TO EXPLORE ↓</div></section>
 <section class="hero-blog-rail" id="latestStories" aria-label="Latest Royal Hires blog articles">
  <div class="wrap">
   <div class="hero-blog-head">
@@ -330,7 +381,7 @@ loadPublic();
 <script>
 (()=>{
 const slides=[...document.querySelectorAll('.hero-slide')],dots=[...document.querySelectorAll('#slideDots button')];let current=0,timer;
-function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));dots.forEach((d,n)=>d.classList.toggle('active',n===current));}
+function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));dots.forEach((d,n)=>d.classList.toggle('active',n===current));const bar=document.getElementById('heroProgressFill');if(bar){bar.classList.remove('run');void bar.offsetWidth;bar.classList.add('run');}}
 const hero=document.querySelector('.hero-slider');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function stop(){clearInterval(timer);}
@@ -345,4 +396,6 @@ let lang=localStorage.getItem('rh-lang')||'en';
 function applyLang(){document.documentElement.lang=lang;document.querySelectorAll('[data-en][data-si]').forEach(el=>{el.innerHTML=el.dataset[lang]});document.getElementById('langToggle').textContent=lang==='en'?'සිංහල':'English';localStorage.setItem('rh-lang',lang);}
 document.getElementById('langToggle')?.addEventListener('click',()=>{lang=lang==='en'?'si':'en';applyLang()});applyLang();
 })();
-</script></body></html>
+</script>
+(()=>{const el=document.querySelector('.hero-slider');if(!el)return;let sx=0,sy=0,tracking=false;el.addEventListener('touchstart',e=>{if(!e.touches||e.touches.length!==1)return;sx=e.touches[0].clientX;sy=e.touches[0].clientY;tracking=true},{passive:true});el.addEventListener('touchend',e=>{if(!tracking||!e.changedTouches?.length)return;tracking=false;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.25){const next=document.getElementById(dx<0?'slideNext':'slidePrev');next?.click();}},{passive:true});})();
+</body></html>
