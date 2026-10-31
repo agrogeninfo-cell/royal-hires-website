@@ -4,9 +4,6 @@
 <body><header class="top"><div class="brand"><div class="logo">R</div><div><b>Royal Hires</b><div class="gold" style="font-size:11px">MY WORKER PORTAL</div></div></div></header>
 <main class="wrap"><section class="card"><div class="muted">WELCOME</div><h1 id="workerName">Loading your profile…</h1><div class="muted" id="workerMeta"></div></section><section class="card"><div class="between"><div><b>My Salary Statements</b><div class="muted">Only statements belonging to your employee code</div></div><button class="btn no-print" onclick="window.print()">Print / Save PDF</button></div><div id="salaryList"><div class="empty">Loading your salary records…</div></div></section><div class="card no-print"><button class="btn" id="logout">Sign out</button><p class="muted">If a salary statement is missing, contact the Royal Hires office.</p></div></main><div class="footer">Pay Royal · Royal Hires Private Limited</div>
 <script>
-const URL='https://jwghmsflabvzzhucuwsn.supabase.co',KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiMTc5MzE1Mzg3NSwiZXhwIjoyMTA4NzI5ODc1fQ.x'; 
-</script>
-<script>
 const ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTM4NzUsImV4cCI6MjEwODcyOTg3NX0.JgUcVdMOTnYP1Txp_U2xO8R3Txvp0QEQnAvwnpxX5sU',API='https://jwghmsflabvzzhucuwsn.supabase.co/functions/v1/worker-portal';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const cash=n=>'Rs. '+Number(n||0).toLocaleString('en-LK',{maximumFractionDigits:2});
