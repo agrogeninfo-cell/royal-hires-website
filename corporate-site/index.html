@@ -134,6 +134,63 @@ footer{border-top:1px solid var(--line);padding:30px 0 38px}.footin{display:flex
 @media(max-width:600px){.hero-blog-rail{padding:25px 0 29px}.hero-blog-head{align-items:center}.hero-blog-head h2{font-size:22px}.hero-blog-head p{font-size:11px}.hero-blog-track{grid-auto-columns:minmax(285px,88%);gap:11px}.hero-blog-card{grid-template-columns:94px minmax(0,1fr);min-height:118px;gap:12px;padding:10px}.hero-blog-thumb{width:94px;height:96px}.hero-blog-copy h3{font-size:14px}.hero-blog-actions button{width:35px;height:35px}}
 @media(prefers-reduced-motion:reduce){.hero-blog-track{scroll-behavior:auto}.hero-blog-card,.hero-blog-actions button{transition:none}}
 
+
+/* Royal Hires premium UI refinement — responsive, emerald & champagne */
+:root{--violet:#d7ad63;--violet2:#a77b35;--line:#d7ad6338;--focus:#f0d49c}
+html{scroll-padding-top:104px}body{background:#061d19}
+:focus-visible{outline:2px solid #e8c981;outline-offset:4px}
+.nav{height:86px;background:linear-gradient(180deg,#061d19f2,#061d19a8);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid #d7ad6326}
+.nav.scrolled{background:#061d19ed;box-shadow:0 12px 36px #0003}.navin{gap:18px}.brand{flex-shrink:0}.brand img{box-shadow:0 5px 18px #0004}
+.links{gap:clamp(13px,1.8vw,25px);font-weight:600}.links>a:not(.btn){position:relative;padding:10px 0}
+.links>a:not(.btn):after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:#d7ad63;transition:right .25s}
+.links>a:not(.btn):hover:after{right:0}.nav .links{background:#0b2923}.navin>.btn,#langToggle{white-space:nowrap}
+.btn{box-shadow:0 9px 28px #d7ad6320}.btn:hover{box-shadow:0 15px 34px #d7ad6340}
+.hero-slider{min-height:min(850px,100svh);min-height:max(720px,min(850px,100svh));background:#061d19}
+.hero-slide:before{background:linear-gradient(90deg,#061d19 0%,#061d19ed 34%,#061d19a6 68%,#061d1950 100%),var(--slide-bg) center/cover}
+.hero-slide:after{background:radial-gradient(circle at 78% 34%,#d7ad6328,transparent 42%)}
+.hero-slide .hero-copy{max-width:780px;padding-top:88px}.hero-slide h1{max-width:760px;text-wrap:balance}
+.hero-slide .hero-copy>p{max-width:600px;font-size:clamp(16px,1.5vw,19px)}
+.slider-controls>button{width:44px;height:44px;transition:background .2s,transform .2s}
+.slider-controls>button:hover{background:#d7ad6330;transform:translateY(-2px)}
+.trust{background:linear-gradient(90deg,#0b2923,#0d3329,#0b2923)}.trustitem{min-height:42px}.trustitem b{color:#e8c981}
+.aboutvisual{box-shadow:0 25px 70px #0004;border:1px solid #d7ad6330}
+.leadership{background:radial-gradient(ellipse at 15% 50%,#d7ad6317,transparent 48%),#061d19}
+.leadership-card{background:linear-gradient(120deg,#ffffff0d,#ffffff03);border-color:#d7ad6338;box-shadow:0 24px 70px #0002}
+.leadership-mark{background:radial-gradient(circle at 50% 40%,#d7ad6330,transparent 55%),linear-gradient(145deg,#12372e,#061d19)}
+.leadership-mark span{color:#e8c981;text-shadow:0 0 50px #d7ad6340}
+.services{background:linear-gradient(180deg,#08231d,#0b2923 50%,#08231d)}
+.service{border-color:#d7ad6338;background:linear-gradient(145deg,#ffffff0e,#ffffff04)}
+.service:after{background:#d7ad6328}.service:hover{border-color:#d7ad63;background:#ffffff0d}
+.ico{background:#d7ad631c;color:#e8c981}.check i{color:#e8c981}
+.careers{background:radial-gradient(ellipse at 80% 45%,#d7ad6318,transparent 45%),#08231d}
+.careerbox{background:linear-gradient(115deg,#103b30,#09231d);border-color:#d7ad6350}.careerbox:after{color:#d7ad6308}
+.contactcard{background:linear-gradient(145deg,#10382e,#0b2923);border-color:#d7ad6340;box-shadow:0 22px 60px #0003}
+.field{background:#061d19;border-color:#d7ad6330}.field:focus{border-color:#e8c981;box-shadow:0 0 0 3px #d7ad6318}
+#blog.blog-studio{background:radial-gradient(ellipse at 12% 22%,#d7ad631b,transparent 36%),radial-gradient(ellipse at 88% 70%,#1b8b6f24,transparent 38%),linear-gradient(145deg,#061d19,#092820 58%,#061d19)}
+.blog-feature,.blog-card{border-color:#d7ad6338}.blog-card:hover{border-color:#d7ad63}
+.hero-blog-rail{background:linear-gradient(115deg,#061d19,#0d352a 58%,#09231d)}
+.hero-blog-card{border-color:#d7ad6338}.hero-blog-card:hover{border-color:#d7ad63}
+footer{background:#051813}
+@media(max-width:1100px) and (min-width:801px){.links{gap:12px;font-size:12px}.navin{gap:12px}.navin>.btn{padding:12px 15px}}
+@media(max-width:800px){
+ .nav{height:76px}.navin{gap:9px}.brand{gap:9px;font-size:13px}.brand img{width:38px;height:38px}
+ .navin>.btn{display:none}#langToggle{margin-left:auto;padding:9px 11px!important;font-size:12px}
+ .menu{display:grid;place-items:center;width:42px;height:42px;padding:0;border-radius:13px;background:#ffffff0b;border-color:#d7ad6360;font-size:19px}
+ .links{top:83px;left:17px;right:17px;padding:18px;border:1px solid #d7ad6350;border-radius:20px;background:#08251ff2;box-shadow:0 24px 65px #0008;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);gap:4px}
+ .links.open{display:flex}.links>a:not(.btn){padding:13px 12px;border-radius:11px}
+ .links>a:not(.btn):hover{background:#ffffff0b}.links>a:not(.btn):after{display:none}.links .btn{margin-top:8px}
+ .hero-slider{min-height:760px;min-height:max(700px,88svh)}
+ .hero-slide:before{background:linear-gradient(90deg,#061d19f5,#061d19df 54%,#061d19a8 100%),var(--slide-bg) center/cover}
+ .hero-slide .hero-copy{padding-top:55px}.slider-controls{left:17px;bottom:24px}
+}
+@media(max-width:520px){
+ .hero-slider{min-height:720px;min-height:88svh}.hero-slide .hero-copy{padding-top:35px}
+ .hero-slide h1{font-size:clamp(43px,12vw,58px)}.hero-slide .hero-copy>p{font-size:15px;line-height:1.7}
+ .hero-actions .btn{padding:13px 16px}.hero-note{font-size:11px}.slider-controls{bottom:20px}
+ .trustin{padding:20px 0}.leadership-card{padding:20px}.careerbox{padding:30px 23px}
+}
+@media(prefers-reduced-motion:reduce){.hero-slide{transition:none}.links>a:not(.btn):after{transition:none}}
+
 </style>
 </head>
 <body>
@@ -163,14 +220,18 @@ footer{border-top:1px solid var(--line);padding:30px 0 38px}.footin{display:flex
 <section class="careers" id="careers"><div class="wrap"><div class="careerbox reveal"><div><span class="eyebrow" data-en="For job seekers" data-si="රැකියා අපේක්ෂකයින් සඳහා">For job seekers</span><h2>Ready for your <span class="gradient">next opportunity?</span></h2><p>Looking for factory or operational work? Get in touch with Royal Hires to ask about current opportunities and registration requirements.</p></div><a class="btn" href="https://wa.me/94715833985?text=Hello%20Royal%20Hires%2C%20I%20am%20interested%20in%20job%20opportunities." target="_blank" rel="noopener">Explore opportunities ↗</a></div></div></section>
 
 <section id="blog" class="services blog-studio"><div class="wrap"><div class="sectionhead blog-heading"><div><span class="blog-kicker">Royal Hires Journal · Insights & updates</span><h2>Stories that shape<br><span class="gradient">better work.</span></h2></div><p>Fresh perspectives, company stories and practical workforce knowledge — thoughtfully shared in English and Sinhala.</p></div><div id="publicBlogs" class="blog-grid"><div class="blog-empty">Loading the latest stories…</div></div></div></section>
-\n<section class="contact" id="contact"><div class="wrap"><div class="contactgrid"><div class="reveal"><span class="eyebrow" data-en="Start a conversation" data-si="අප හා සම්බන්ධ වන්න">Start a conversation</span><h2 data-en="Let’s make work <span class='gradient'>work better.</span>" data-si="වැඩ ලෝකය <span class='gradient'>වඩා හොඳ කරමු.</span>">Let’s make work <span class="gradient">work better.</span></h2><p>Whether you’re looking for workforce support or exploring a job opportunity, we’d be glad to hear from you.</p><div class="contactinfo"><div class="contactline"><small>Call / WhatsApp · Recruitment enquiries</small><strong>+94 71 583 3985</strong></div><div class="contactline"><small>Office</small><strong>No. 761, Kaduwela Road, Malabe, Sri Lanka</strong></div></div></div><form class="contactcard reveal" id="contactForm"><h3>Send an enquiry</h3><p>Complete the details and we’ll prepare a WhatsApp message for you to send.</p><div class="formrow"><label><input class="field" name="name" placeholder="Your name" required></label><label><input class="field" name="phone" placeholder="Phone number" required></label></div><label><input class="field" name="type" placeholder="I’m enquiring about (e.g. manpower / employment)" required></label><label><textarea class="field" name="message" placeholder="Tell us a little more..." required></textarea></label><button class="btn" type="submit">Continue to WhatsApp ↗</button></form></div></div></section>
+<section class="contact" id="contact"><div class="wrap"><div class="contactgrid"><div class="reveal"><span class="eyebrow" data-en="Start a conversation" data-si="අප හා සම්බන්ධ වන්න">Start a conversation</span><h2 data-en="Let’s make work <span class='gradient'>work better.</span>" data-si="වැඩ ලෝකය <span class='gradient'>වඩා හොඳ කරමු.</span>">Let’s make work <span class="gradient">work better.</span></h2><p>Whether you’re looking for workforce support or exploring a job opportunity, we’d be glad to hear from you.</p><div class="contactinfo"><div class="contactline"><small>Call / WhatsApp · Recruitment enquiries</small><strong>+94 71 583 3985</strong></div><div class="contactline"><small>Office</small><strong>No. 761, Kaduwela Road, Malabe, Sri Lanka</strong></div></div></div><form class="contactcard reveal" id="contactForm"><h3>Send an enquiry</h3><p>Complete the details and we’ll prepare a WhatsApp message for you to send.</p><div class="formrow"><label><input class="field" name="name" placeholder="Your name" required></label><label><input class="field" name="phone" placeholder="Phone number" required></label></div><label><input class="field" name="type" placeholder="I’m enquiring about (e.g. manpower / employment)" required></label><label><textarea class="field" name="message" placeholder="Tell us a little more..." required></textarea></label><button class="btn" type="submit">Continue to WhatsApp ↗</button></form></div></div></section>
 </main>
 <footer><div class="wrap footin"><a class="brand" href="#home"><img src="../royal-hires-logo.png" alt=""><span>ROYAL HIRES<small>PRIVATE LIMITED</small></span></a><p>© <span id="year"></span> Royal Hires Private Limited. All rights reserved.</p><div class="footlinks"><a href="#about">About</a><a href="#services">Services</a><a href="#blog">Blog</a><a href="#contact">Contact</a><a href="blog-admin.html">Blog Admin</a></div></div></footer>
 <script>
 const nav=document.getElementById('nav'),menu=document.getElementById('menu'),links=document.getElementById('links');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>24),{passive:true});
-menu.addEventListener('click',()=>links.classList.toggle('open'));
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+const setMenu=(open)=>{links.classList.toggle('open',open);menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation');menu.textContent=open?'×':'☰';};
+menu.setAttribute('aria-expanded','false');
+menu.addEventListener('click',()=>setMenu(!links.classList.contains('open')));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false);});
+document.addEventListener('click',e=>{if(!nav.contains(e.target))setMenu(false);});
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal:not(.show)').forEach(el=>observer.observe(el));
 document.getElementById('year').textContent=new Date().getFullYear();
@@ -220,10 +281,16 @@ loadPublic();
 (()=>{
 const slides=[...document.querySelectorAll('.hero-slide')],dots=[...document.querySelectorAll('#slideDots button')];let current=0,timer;
 function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>s.classList.toggle('active',n===current));dots.forEach((d,n)=>d.classList.toggle('active',n===current));}
-function restart(){clearInterval(timer);timer=setInterval(()=>show(current+1),6500)}
+const hero=document.querySelector('.hero-slider');
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function stop(){clearInterval(timer);}
+function restart(){stop();if(!reducedMotion&&!document.hidden&&!hero.matches(':hover')&&!hero.contains(document.activeElement))timer=setInterval(()=>show(current+1),6500)}
 document.getElementById('slidePrev')?.addEventListener('click',()=>{show(current-1);restart()});
 document.getElementById('slideNext')?.addEventListener('click',()=>{show(current+1);restart()});
-dots.forEach(d=>d.addEventListener('click',()=>{show(Number(d.dataset.slide));restart()}));restart();
+dots.forEach(d=>d.addEventListener('click',()=>{show(Number(d.dataset.slide));restart()}));
+hero.addEventListener('pointerenter',stop);hero.addEventListener('pointerleave',restart);
+hero.addEventListener('focusin',stop);hero.addEventListener('focusout',restart);
+document.addEventListener('visibilitychange',restart);restart();
 let lang=localStorage.getItem('rh-lang')||'en';
 function applyLang(){document.documentElement.lang=lang;document.querySelectorAll('[data-en][data-si]').forEach(el=>{el.innerHTML=el.dataset[lang]});document.getElementById('langToggle').textContent=lang==='en'?'සිංහල':'English';localStorage.setItem('rh-lang',lang);}
 document.getElementById('langToggle')?.addEventListener('click',()=>{lang=lang==='en'?'si':'en';applyLang()});applyLang();
