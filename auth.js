@@ -3,6 +3,7 @@
   'use strict';
   const LOGIN='login.html', URL='https://jwghmsflabvzzhucuwsn.supabase.co';
   const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGciOiJIUzI1NiIsInJlZiI6Imp3Z2htc2ZsYWJ2enpodWN1d3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMxNTM4NzUsImV4cCI6MjEwODcyOTg3NX0.JgUcVdMOTnYP1Txp_U2xO8R3Txvp0QEQnAvwnpxX5sU';
+  window.PayRoyalSupabaseConfig = { url: URL, key: KEY };
   const page=location.pathname.split('/').pop()||'index.html';
   if(page===LOGIN||page==='worker-login.html')return;
   document.documentElement.style.visibility='hidden';
