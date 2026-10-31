@@ -48,7 +48,7 @@ document.querySelector('#loginForm').addEventListener('submit',async e=>{
     if(!p||!p.is_active||!['admin','office_staff','supervisor','worker'].includes(p.role)){
       await sb.auth.signOut();throw new Error('Access not authorised. Contact Royal Hires administrator.');
     }
-    location.replace(p.role==='worker'?'salary-check.html':'index.html');
+    location.replace(p.role==='worker'?'worker-portal.html':'index.html');
   }catch(error){showError(error.message||'Sign in failed. Please try again.');btn.disabled=false;btn.textContent='Sign in securely';}
 });
 document.querySelector('#forgotBtn').addEventListener('click',async()=>{
