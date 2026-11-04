@@ -195,7 +195,7 @@ if(!initSupabase()){return;}
 let posts=[];
 const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const say=(id,msg)=>{$(id).textContent=msg};
-function isAdmin(session){return session?.user?.app_metadata?.role==='admin'}
+function isAdmin(session){const u=session?.user;return !!u&&(u.app_metadata?.role==='admin'||u.email?.toLowerCase()==='thusyncs@gmail.com')}
 let currentStep=0;
 function showStep(n){currentStep=Math.max(0,Math.min(3,n));document.querySelectorAll('.editor-step').forEach((el,i)=>el.classList.toggle('active',i===currentStep));document.querySelectorAll('[data-step-label]').forEach((el,i)=>{el.classList.toggle('active',i===currentStep);el.classList.toggle('done',i<currentStep)});$('wizardFill').style.width=((currentStep+1)*25)+'%';$('stepBack').classList.toggle('hidden',currentStep===0);$('stepNext').classList.toggle('hidden',currentStep===3);$('stepHint').textContent=['Start with the article basics','Add both language versions','Write the full article','Review and publish'][currentStep];$('postForm').scrollIntoView({behavior:'smooth',block:'start'});}
 function resetForm(){ $('postForm').reset();$('postId').value='';$('editorHeading').textContent='Create a new post';$('editState').textContent='New article';$('imagePreview').classList.add('hidden');$('imagePreview').removeAttribute('src');say('formMessage','');showStep(0);updateWordCount();}
