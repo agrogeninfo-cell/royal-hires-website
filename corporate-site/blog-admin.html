@@ -130,6 +130,12 @@ body{background:linear-gradient(145deg,#f8fbf8,#edf4ee);color:var(--ink)}
  #stepHint{font-size:10px;text-align:center}
 }
 
+
+/* Login feedback states */
+#signIn{transition:opacity .2s,transform .2s}#signIn:disabled{opacity:.65;cursor:wait;transform:none}
+#loginMessage{min-height:24px;line-height:1.5;overflow-wrap:anywhere}
+#loginMessage.error{color:#a52a2a;background:#fff2f0;border:1px solid #f2d0ca;border-radius:10px;padding:10px 12px}
+#loginMessage.success{color:#176044;background:#eef8f1;border:1px solid #d3ead9;border-radius:10px;padding:10px 12px}
 </style>
 </head>
 <body>
@@ -183,7 +189,37 @@ function showStep(n){currentStep=Math.max(0,Math.min(3,n));document.querySelecto
 function resetForm(){ $('postForm').reset();$('postId').value='';$('editorHeading').textContent='Create a new post';$('editState').textContent='New article';$('imagePreview').classList.add('hidden');$('imagePreview').removeAttribute('src');say('formMessage','');showStep(0);updateWordCount();}
 function showWorkspace(session){const ok=isAdmin(session);$('loginPanel').classList.toggle('hidden',ok);$('workspace').classList.toggle('hidden',!ok);$('signOut').classList.toggle('hidden',!ok);$('adminIdentity').textContent=ok?(session.user.email||'Administrator'):'';if(ok)loadPosts();}
 async function checkSession(){const {data,error}=await db.auth.getSession();if(error){say('loginMessage',error.message);return;}if(data.session&&!isAdmin(data.session)){await db.auth.signOut();showWorkspace(null);say('loginMessage','This account does not have administrator permissions.');return;}showWorkspace(data.session);}
-async function signIn(){const email=$('email').value.trim(),password=$('password').value;if(!email||!password){say('loginMessage','Enter your email and password.');return;}say('loginMessage','Signing in…');const {data,error}=await db.auth.signInWithPassword({email,password});if(error){say('loginMessage',error.message);return;}if(!isAdmin(data.session)){await db.auth.signOut();say('loginMessage','This account is not authorised to manage blog posts.');return;}say('loginMessage','Signed in successfully.');showWorkspace(data.session);}
+async function signIn(){
+ const email=$('email').value.trim(),password=$('password').value;
+ const btn=$('signIn'),msg=$('loginMessage');
+ if(!email||!password){say('loginMessage','Please enter both your admin email and password.');return;}
+ btn.disabled=true;btn.dataset.original=btn.textContent;btn.textContent='Connecting…';
+ msg.className='status';say('loginMessage','Connecting securely to Royal Hires Blog…');
+ try{
+  if(!navigator.onLine)throw new Error('Your phone appears to be offline. Check your internet connection.');
+  const result=await Promise.race([
+   db.auth.signInWithPassword({email,password}),
+   new Promise((_,reject)=>setTimeout(()=>reject(new Error('Connection timed out. Please refresh and try again.')),15000))
+  ]);
+  const {data,error}=result;
+  if(error)throw new Error(error.message);
+  if(!data.session)throw new Error('Login did not return a session. Please try again.');
+  if(!isAdmin(data.session)){
+   await db.auth.signOut();
+   throw new Error('This account is signed in but is not an authorised Blog Studio admin.');
+  }
+  msg.className='status success';say('loginMessage','Login successful. Opening Blog Studio…');
+  showWorkspace(data.session);
+ }catch(err){
+  console.error('Blog Studio sign-in error:',err);
+  msg.className='status error';
+  let message=err?.message||'Login failed. Please try again.';
+  if(/failed to fetch|networkerror|load failed/i.test(message))message='Cannot reach Supabase. Check your internet connection or try again in a moment.';
+  say('loginMessage',message);
+ }finally{
+  btn.disabled=false;btn.textContent=btn.dataset.original||'Sign in securely';
+ }
+}
 async function loadPosts(){say('postList','Loading articles…');const {data,error}=await db.from('blog_posts').select('*').order('created_at',{ascending:false});if(error){say('postList','Could not load posts: '+error.message);return;}posts=data||[];renderPosts();}
 function renderPosts(){ $('countAll').textContent=posts.length;$('countPublished').textContent=posts.filter(p=>p.status==='published').length;$('countDraft').textContent=posts.filter(p=>p.status!=='published').length;const q=($('postSearch').value||'').toLowerCase(),f=$('postFilter').value;const shown=posts.filter(p=>(f==='all'||p.status===f)&&[p.title_en,p.title_si,p.slug,p.category].join(' ').toLowerCase().includes(q));if(!shown.length){$('postList').innerHTML='<p class="muted small">No matching articles. Try another search or create a post.</p>';return;}$('postList').innerHTML=shown.map(p=>'<div class="post">'+(p.thumbnail_url?'<img class="thumb" src="'+escapeHtml(p.thumbnail_url)+'" alt="">':'<div class="thumb"></div>')+'<div class="postmain"><strong>'+escapeHtml(p.title_en||p.title_si||'Untitled')+'</strong><div class="postmeta">'+escapeHtml(p.category||'')+' · '+escapeHtml(p.slug||'')+'</div><span class="tag '+(p.status==='published'?'published':'draft')+'">'+escapeHtml(p.status||'draft')+'</span></div><div class="actions"><button class="btn ghost small" data-edit="'+escapeHtml(p.id)+'">Edit</button><button class="btn ghost small" data-duplicate="'+escapeHtml(p.id)+'">Duplicate</button>'+(p.status==='published'?'<button class="btn ghost small" data-unpublish="'+escapeHtml(p.id)+'">Unpublish</button>':'')+'<button class="btn danger small" data-delete="'+escapeHtml(p.id)+'">Delete</button></div></div>').join('');$('postList').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editPost(posts.find(p=>String(p.id)===b.dataset.edit)));$('postList').querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deletePost(b.dataset.delete));$('postList').querySelectorAll('[data-duplicate]').forEach(b=>b.onclick=()=>duplicatePost(posts.find(p=>String(p.id)===b.dataset.duplicate)));$('postList').querySelectorAll('[data-unpublish]').forEach(b=>b.onclick=()=>unpublishPost(b.dataset.unpublish));}}
 function editPost(p){if(!p)return;$('postId').value=p.id;$('slug').value=p.slug||'';$('category').value=p.category||'Company News';$('titleEn').value=p.title_en||'';$('titleSi').value=p.title_si||'';$('excerptEn').value=p.excerpt_en||'';$('excerptSi').value=p.excerpt_si||'';$('contentEn').value=p.content_en||'';$('contentSi').value=p.content_si||'';$('editorHeading').textContent='Edit article';$('editState').textContent=p.status||'draft';if(p.thumbnail_url){$('imagePreview').src=p.thumbnail_url;$('imagePreview').classList.remove('hidden');}else{$('imagePreview').classList.add('hidden');}$('thumbnail').value='';say('formMessage','Editing: '+(p.title_en||p.slug));showStep(0);window.scrollTo({top:0,behavior:'smooth'});}
