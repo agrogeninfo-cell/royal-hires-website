@@ -173,9 +173,9 @@ body{background:linear-gradient(145deg,#f8fbf8,#edf4ee);color:var(--ink)}
 </section>
 </main>
 <div id="previewModal" class="preview-modal" role="dialog" aria-modal="true" aria-label="Article preview"><section class="preview-sheet"><header class="preview-head"><strong>Article preview</strong><button id="closePreview" class="btn gold" type="button">Close preview ✕</button></header><div class="preview-tabs"><button type="button" class="active" data-preview-lang="en">English</button><button type="button" data-preview-lang="si">සිංහල</button></div><article class="preview-body"><div class="eyebrow" id="pvCategory">ROYAL HIRES JOURNAL</div><h1 id="pvTitle">Your article title</h1><p class="preview-excerpt" id="pvExcerpt"></p><img id="pvImage" class="hidden" alt="Article thumbnail"><div class="preview-content" id="pvContent"></div></article></section></div><footer class="footer">Royal Hires Private Limited · The Royal Standard of Recruitment</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (()=>{
-const sdk=document.createElement("script");sdk.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";sdk.onload=()=>{(async()=>{
 const $=id=>document.getElementById(id);
 window.addEventListener('error',e=>{const m=$('loginMessage');if(m){m.className='status error';m.textContent='Page script error: '+(e.message||'unknown error');}});
 window.addEventListener('unhandledrejection',e=>{const m=$('loginMessage');if(m){m.className='status error';m.textContent='Login error: '+(e.reason?.message||String(e.reason||'unknown error'));}});
@@ -246,7 +246,7 @@ $('stepNext').addEventListener('click',()=>showStep(currentStep+1));$('stepBack'
 $('signIn').addEventListener('click',signIn);$('password').addEventListener('keydown',e=>{if(e.key==='Enter')signIn();});$('signOut').addEventListener('click',async()=>{await db.auth.signOut();showWorkspace(null);resetForm();});$('saveDraft').addEventListener('click',()=>savePost('draft'));$('publish').addEventListener('click',()=>savePost('published'));$('reset').addEventListener('click',resetForm);$('refresh').addEventListener('click',loadPosts);$('previewPost').addEventListener('click',()=>openPreview('en'));$('closePreview').addEventListener('click',()=>$('previewModal').classList.remove('open'));$('previewModal').addEventListener('click',e=>{if(e.target===$('previewModal'))$('previewModal').classList.remove('open')});document.querySelectorAll('[data-preview-lang]').forEach(b=>b.addEventListener('click',()=>openPreview(b.dataset.previewLang)));document.addEventListener('keydown',e=>{if(e.key==='Escape')$('previewModal').classList.remove('open')});$('postSearch').addEventListener('input',renderPosts);$('postFilter').addEventListener('change',renderPosts);$('titleEn').addEventListener('blur',makeSlug);['contentEn','contentSi'].forEach(id=>$(id).addEventListener('input',updateWordCount));$('thumbnail').addEventListener('change',()=>{const f=$('thumbnail').files[0];if(!f)return;if(!['image/jpeg','image/png','image/webp'].includes(f.type)){say('formMessage','Use JPG, PNG or WebP images.');$('thumbnail').value='';return;}if(f.size>5*1024*1024){say('formMessage','Image must be 5 MB or smaller.');$('thumbnail').value='';return;}$('imagePreview').src=URL.createObjectURL(f);$('imagePreview').classList.remove('hidden');});
 db.auth.onAuthStateChange((_event,session)=>{if(session&&!isAdmin(session)){db.auth.signOut();showWorkspace(null);say('loginMessage','This account does not have administrator permissions.');return;}showWorkspace(session);});
 checkSession();
-})();};sdk.onerror=()=>{const m=document.getElementById("loginMessage");if(m){m.className="status error";m.textContent="Supabase SDK could not load. Check internet connection.";}};document.head.appendChild(sdk);
+
 })();
 </script>
 </body></html>
